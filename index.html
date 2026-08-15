@@ -235,9 +235,16 @@ main{
   padding:30px 20px 160px;
 }
 
+/* ★ 중요: 홈에 다른 페이지가 같이 보이지 않게 함 */
+
 .page{
+  display:none;
   min-height:calc(100vh - 100px);
   padding-bottom:80px;
+}
+
+.page.active{
+  display:block;
 }
 
 /* ================= HERO ================= */
