@@ -6,37 +6,84 @@
 <title>똥꼬브라더스 MUSIC</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html{
   scroll-behavior:smooth;
 }
 
-body{
-  margin:0;
-  background:#080808;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  padding-bottom:110px;
-  transition:background .7s,color .7s;
+:root{
+  --bg:#080808;
+  --surface:#171717;
+  --surface2:#222;
+  --surface3:#292929;
+  --text:#fff;
+  --sub:#888;
+  --border:#333;
+  --accent:#1ed760;
+  --header:rgba(24,24,24,.95);
+  --player:rgba(24,24,24,.97);
 }
 
 /* ================= THEMES ================= */
 
 body.white{
-  background:#f4f4f4;
-  color:#111;
+  --bg:#f4f4f4;
+  --surface:#fff;
+  --surface2:#ededed;
+  --surface3:#ddd;
+  --text:#111;
+  --sub:#666;
+  --border:#ccc;
+  --accent:#16a34a;
+  --header:rgba(255,255,255,.92);
+  --player:rgba(255,255,255,.96);
 }
 
 body.green{
-  background:#061b10;
-  color:#fff;
+  --bg:#061b10;
+  --surface:#0c2a1a;
+  --surface2:#123a25;
+  --surface3:#195034;
+  --text:#fff;
+  --sub:#9bb5a5;
+  --border:#286342;
+  --accent:#35e879;
+  --header:rgba(6,27,16,.94);
+  --player:rgba(6,27,16,.97);
 }
 
 body.poop{
-  background:#6b431d;
-  background-image:radial-gradient(circle,#a06a35 2px,transparent 3px);
+  --bg:#6b431d;
+  --surface:#7d5128;
+  --surface2:#8d5e30;
+  --surface3:#a06a35;
+  --text:#fff;
+  --sub:#e1c3a0;
+  --border:#b17b46;
+  --accent:#d89a52;
+  --header:rgba(91,55,24,.94);
+  --player:rgba(91,55,24,.97);
+
+  background-image:
+    radial-gradient(circle,#a06a35 2px,transparent 3px);
   background-size:30px 30px;
+}
+
+/* ================= BODY ================= */
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  padding-bottom:110px;
+
+  transition:
+    background .7s ease,
+    color .7s ease;
 }
 
 /* ================= INTRO ================= */
@@ -80,13 +127,16 @@ body.poop{
     transform:translate(-50%,-50%) scale(.7);
     filter:blur(15px);
   }
+
   30%{
     opacity:1;
     filter:blur(0);
   }
+
   70%{
     opacity:1;
   }
+
   100%{
     opacity:0;
     transform:translate(-50%,-50%) scale(1.15);
@@ -100,6 +150,7 @@ body.poop{
     transform:translate(-50%,-50%) scale(.8);
     filter:blur(10px);
   }
+
   to{
     opacity:1;
     transform:translate(-50%,-50%) scale(1);
@@ -160,6 +211,7 @@ body.poop{
     opacity:0;
     transform:translateY(25px);
   }
+
   to{
     opacity:1;
     transform:translateY(0);
@@ -172,12 +224,21 @@ header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(24,24,24,.95);
+
+  background:var(--header);
   backdrop-filter:blur(15px);
+
   padding:14px 16px;
+
   display:flex;
   align-items:center;
   gap:12px;
+
+  border-bottom:1px solid var(--border);
+
+  transition:
+    background .7s ease,
+    border-color .7s ease;
 }
 
 header b{
@@ -185,22 +246,35 @@ header b{
 }
 
 header span{
-  color:#1ed760;
+  color:var(--accent);
 }
 
 #search{
   flex:1;
   min-width:0;
+
   padding:12px 18px;
-  border:0;
+
+  border:1px solid var(--border);
   border-radius:25px;
-  background:#292929;
-  color:#fff;
+
+  background:var(--surface3);
+  color:var(--text);
+
   outline:none;
   font-size:15px;
+
+  transition:
+    background .7s ease,
+    color .7s ease,
+    border-color .7s ease;
 }
 
-/* 오른쪽 프로필 / 설정 */
+#search::placeholder{
+  color:var(--sub);
+}
+
+/* ================= HEADER BUTTONS ================= */
 
 .header-actions{
   margin-left:auto;
@@ -212,17 +286,25 @@ header span{
 .header-btn{
   width:42px;
   height:42px;
-  border:0;
+
+  border:1px solid var(--border);
   border-radius:50%;
-  background:#292929;
-  color:#fff;
+
+  background:var(--surface3);
+  color:var(--text);
+
   font-size:20px;
   cursor:pointer;
-  transition:.2s;
+
+  transition:
+    background .4s ease,
+    color .4s ease,
+    transform .2s;
 }
 
 .header-btn:hover{
-  background:#3a3a3a;
+  background:var(--accent);
+  color:#fff;
   transform:scale(1.08);
 }
 
@@ -235,7 +317,7 @@ main{
   padding:30px 20px 160px;
 }
 
-/* ★ 중요: 홈에 다른 페이지가 같이 보이지 않게 함 */
+/* ★ 다른 페이지가 홈 밑에 나타나지 않게 함 */
 
 .page{
   display:none;
@@ -251,6 +333,7 @@ main{
 
 .hero{
   min-height:280px;
+
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -262,7 +345,7 @@ main{
 }
 
 .hero p{
-  color:#999;
+  color:var(--sub);
 }
 
 /* ================= REVEAL ================= */
@@ -270,6 +353,7 @@ main{
 .reveal{
   opacity:0;
   transform:translateY(60px) scale(.96);
+
   transition:
     opacity .7s ease,
     transform .7s cubic-bezier(.17,.67,.35,1.3);
@@ -289,16 +373,24 @@ main{
 }
 
 .card{
-  background:#171717;
+  background:var(--surface);
+
+  border:1px solid var(--border);
   border-radius:14px;
+
   padding:20px;
   min-height:150px;
+
   cursor:pointer;
-  transition:.25s;
+
+  transition:
+    background .7s ease,
+    border-color .7s ease,
+    transform .25s;
 }
 
 .card:hover{
-  background:#282828;
+  background:var(--surface2);
   transform:translateY(-6px);
 }
 
@@ -313,7 +405,7 @@ main{
 }
 
 .card-desc{
-  color:#888;
+  color:var(--sub);
   font-size:13px;
   margin-top:6px;
 }
@@ -321,30 +413,45 @@ main{
 /* ================= SONG ================= */
 
 .song{
-  background:#171717;
+  background:var(--surface);
+
+  border:1px solid var(--border);
   border-radius:12px;
+
   padding:16px;
   margin:12px 0;
+
   display:flex;
   align-items:center;
   gap:15px;
+
   cursor:pointer;
-  transition:.25s;
+
+  transition:
+    background .7s ease,
+    border-color .7s ease,
+    transform .25s;
 }
 
 .song:hover{
-  background:#282828;
+  background:var(--surface2);
   transform:translateX(5px);
 }
 
 .song-icon{
   width:55px;
   height:55px;
+
   border-radius:9px;
-  background:linear-gradient(135deg,#222,#555);
+
+  background:var(--surface3);
+
+  border:1px solid var(--border);
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:25px;
   flex-shrink:0;
 }
@@ -359,7 +466,7 @@ main{
 }
 
 .artist{
-  color:#888;
+  color:var(--sub);
   font-size:13px;
   margin-top:5px;
 }
@@ -367,11 +474,21 @@ main{
 .play-button{
   border:0;
   border-radius:50%;
-  background:#1ed760;
+
+  background:var(--accent);
+  color:#fff;
+
   width:42px;
   height:42px;
+
   cursor:pointer;
   font-size:16px;
+
+  transition:.2s;
+}
+
+.play-button:hover{
+  transform:scale(1.1);
 }
 
 /* ================= PAGE ================= */
@@ -382,24 +499,32 @@ main{
 }
 
 .page-sub{
-  color:#888;
+  color:var(--sub);
   margin-bottom:30px;
 }
 
 /* ================= PEOPLE ================= */
 
 .person{
-  background:#171717;
+  background:var(--surface);
+
+  border:1px solid var(--border);
   border-radius:12px;
+
   padding:22px;
   margin:12px 0;
+
   font-size:19px;
   font-weight:bold;
+
+  transition:
+    background .7s ease,
+    border-color .7s ease;
 }
 
 .person span{
   display:block;
-  color:#888;
+  color:var(--sub);
   font-size:14px;
   margin-top:7px;
   font-weight:normal;
@@ -410,12 +535,21 @@ main{
 }
 
 .info-btn{
-  border:0;
+  border:1px solid var(--border);
   border-radius:20px;
   padding:9px 15px;
-  background:#292929;
-  color:#fff;
+
+  background:var(--surface3);
+  color:var(--text);
+
   cursor:pointer;
+
+  transition:.3s;
+}
+
+.info-btn:hover{
+  background:var(--accent);
+  color:#fff;
 }
 
 .person-detail{
@@ -423,6 +557,7 @@ main{
   overflow:hidden;
   opacity:0;
   transform:translateY(-20px);
+
   transition:
     max-height .7s ease,
     opacity .6s ease,
@@ -437,7 +572,7 @@ main{
 }
 
 .person-detail-text{
-  color:#bbb;
+  color:var(--sub);
   line-height:1.7;
 }
 
@@ -445,23 +580,43 @@ main{
 
 .back{
   display:block;
+
   margin:30px 0 80px;
   padding:14px 22px;
+
   border:0;
   border-radius:30px;
-  background:#1ed760;
+
+  background:var(--accent);
+  color:#fff;
+
   font-weight:bold;
   font-size:15px;
+
   cursor:pointer;
+
+  transition:.3s;
+}
+
+.back:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
 }
 
 /* ================= SETTINGS ================= */
 
 .settings-box{
-  background:#171717;
+  background:var(--surface);
+
+  border:1px solid var(--border);
   border-radius:15px;
+
   padding:20px;
   margin:15px 0;
+
+  transition:
+    background .7s ease,
+    border-color .7s ease;
 }
 
 .setting-title{
@@ -477,11 +632,22 @@ main{
 }
 
 .theme-btn{
-  border:0;
+  border:1px solid var(--border);
   border-radius:12px;
+
   padding:12px 18px;
+
   cursor:pointer;
   font-weight:bold;
+
+  transition:
+    transform .2s,
+    filter .3s;
+}
+
+.theme-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
 }
 
 .theme-dark{
@@ -504,33 +670,49 @@ main{
   color:#fff;
 }
 
+/* ================= LANGUAGE ================= */
+
 .lang{
   display:flex;
   align-items:center;
   gap:15px;
+
   padding:15px;
-  background:#222;
+
+  background:var(--surface2);
+
+  border:1px solid var(--border);
   border-radius:12px;
+
   margin:8px 0;
+
   cursor:pointer;
-  transition:.2s;
+
+  transition:
+    background .5s ease,
+    border-color .5s ease,
+    transform .2s;
 }
 
 .lang:hover{
-  background:#333;
+  background:var(--surface3);
+  transform:translateX(4px);
 }
 
 .lang small{
   display:block;
-  color:#888;
+  color:var(--sub);
   margin-top:4px;
 }
 
 /* ================= PROFILE ================= */
 
 .profile-box{
-  background:#171717;
+  background:var(--surface);
+
+  border:1px solid var(--border);
   border-radius:15px;
+
   padding:20px;
   margin:15px 0;
 }
@@ -543,16 +725,24 @@ main{
 .profile-avatar{
   width:130px;
   height:130px;
+
   border-radius:50%;
+
   margin:auto;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:42px;
   font-weight:900;
+
   overflow:hidden;
-  background:#1ed760;
+
+  background:var(--accent);
   color:#fff;
+
+  border:3px solid var(--border);
 }
 
 .profile-avatar img{
@@ -568,20 +758,33 @@ main{
 }
 
 .profile-desc{
-  color:#888;
+  color:var(--sub);
   margin-top:8px;
 }
 
 .edit-input{
   width:100%;
+
   padding:14px;
   margin:7px 0;
-  border:0;
+
+  border:1px solid var(--border);
   border-radius:10px;
-  background:#292929;
-  color:#fff;
+
+  background:var(--surface3);
+  color:var(--text);
+
   outline:none;
   font-size:15px;
+
+  transition:
+    background .7s ease,
+    color .7s ease,
+    border-color .7s ease;
+}
+
+.edit-input::placeholder{
+  color:var(--sub);
 }
 
 .avatar-options{
@@ -594,14 +797,25 @@ main{
 .avatar-option{
   width:70px;
   height:70px;
+
   border-radius:50%;
-  border:2px solid #444;
+
+  border:2px solid var(--border);
+
   cursor:pointer;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:22px;
   font-weight:bold;
+
+  transition:.2s;
+}
+
+.avatar-option:hover{
+  transform:scale(1.08);
 }
 
 .avatar-green{
@@ -635,27 +849,49 @@ main{
 }
 
 .save{
-  background:#1ed760;
+  background:var(--accent);
+  color:#fff;
+
   border:0;
   border-radius:25px;
+
   padding:13px 25px;
+
   font-weight:bold;
   cursor:pointer;
+
   margin-top:15px;
+
+  transition:.3s;
+}
+
+.save:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
 }
 
 /* ================= PLAYER ================= */
 
 .player{
   position:fixed;
+
   bottom:0;
   left:0;
   right:0;
+
   z-index:200;
-  background:rgba(24,24,24,.97);
+
+  background:var(--player);
+
   backdrop-filter:blur(15px);
-  border-top:1px solid #333;
+
+  border-top:1px solid var(--border);
+
   padding:12px 20px;
+
+  transition:
+    background .7s ease,
+    border-color .7s ease;
 }
 
 .player-top{
@@ -670,7 +906,7 @@ main{
 }
 
 #playerArtist{
-  color:#888;
+  color:var(--sub);
 }
 
 audio{
@@ -813,7 +1049,6 @@ onclick="openPage('settings')"
 
 <div class="cards">
 
-
 <div
 class="card reveal"
 onclick="openPage('hits')"
@@ -872,7 +1107,6 @@ onclick="openPage('people')"
 </div>
 
 </div>
-
 
 </div>
 
@@ -1034,7 +1268,7 @@ onclick="goHome()"
 </div>
 
 
-<!-- ================= SETTINGS PAGE ================= -->
+<!-- ================= SETTINGS ================= -->
 
 <div id="settings" class="page">
 
@@ -1042,9 +1276,7 @@ onclick="goHome()"
 ⚙️ 설정
 </h1>
 
-<p
-class="page-sub"
->
+<p class="page-sub">
 이것은 매우 설정인 브로
 </p>
 
@@ -1097,10 +1329,7 @@ onclick="setTheme('poop')"
 </div>
 
 
-<div
-class="lang"
-onclick="setLanguage('ko')"
->
+<div class="lang" onclick="setLanguage('ko')">
 🇰🇷
 <div>
 한국어
@@ -1109,10 +1338,7 @@ onclick="setLanguage('ko')"
 </div>
 
 
-<div
-class="lang"
-onclick="setLanguage('en')"
->
+<div class="lang" onclick="setLanguage('en')">
 🇺🇸
 <div>
 English
@@ -1121,10 +1347,7 @@ English
 </div>
 
 
-<div
-class="lang"
-onclick="setLanguage('zh')"
->
+<div class="lang" onclick="setLanguage('zh')">
 🇨🇳
 <div>
 中文
@@ -1133,10 +1356,7 @@ onclick="setLanguage('zh')"
 </div>
 
 
-<div
-class="lang"
-onclick="setLanguage('ja')"
->
+<div class="lang" onclick="setLanguage('ja')">
 🇯🇵
 <div>
 日本語
@@ -1145,10 +1365,7 @@ onclick="setLanguage('ja')"
 </div>
 
 
-<div
-class="lang"
-onclick="setLanguage('hi')"
->
+<div class="lang" onclick="setLanguage('hi')">
 🇮🇳
 <div>
 हिन्दी
@@ -1157,10 +1374,7 @@ onclick="setLanguage('hi')"
 </div>
 
 
-<div
-class="lang"
-onclick="setLanguage('north')"
->
+<div class="lang" onclick="setLanguage('north')">
 🇰🇵
 <div>
 북조선어
@@ -1181,7 +1395,7 @@ onclick="goHome()"
 </div>
 
 
-<!-- ================= PROFILE PAGE ================= -->
+<!-- ================= PROFILE ================= -->
 
 <div id="profile" class="page">
 
@@ -1383,20 +1597,11 @@ const newSongs=[
 "고구마호박 phonk"
 ];
 
-const songList=
-document.getElementById("songList");
-
-const hitList=
-document.getElementById("hitList");
-
-const newList=
-document.getElementById("newList");
-
-const audio=
-document.getElementById("audio");
-
-const playerTitle=
-document.getElementById("playerTitle");
+const songList=document.getElementById("songList");
+const hitList=document.getElementById("hitList");
+const newList=document.getElementById("newList");
+const audio=document.getElementById("audio");
+const playerTitle=document.getElementById("playerTitle");
 
 
 /* ================= SONG CARD ================= */
@@ -1446,9 +1651,7 @@ function renderSongs(){
 songList.innerHTML="";
 
 songs.forEach(name=>{
-songList.appendChild(
-makeSong(name)
-);
+songList.appendChild(makeSong(name));
 });
 
 observe();
@@ -1461,9 +1664,7 @@ function renderHits(){
 hitList.innerHTML="";
 
 hitSongs.forEach(name=>{
-hitList.appendChild(
-makeSong(name)
-);
+hitList.appendChild(makeSong(name));
 });
 
 observe();
@@ -1476,9 +1677,7 @@ function renderNew(){
 newList.innerHTML="";
 
 newSongs.forEach(name=>{
-newList.appendChild(
-makeSong(name)
-);
+newList.appendChild(makeSong(name));
 });
 
 observe();
@@ -1518,8 +1717,7 @@ audio.play().catch(()=>{});
 
 function observe(){
 
-const observer=
-new IntersectionObserver(
+const observer=new IntersectionObserver(
 
 entries=>{
 
@@ -1529,9 +1727,7 @@ if(entry.isIntersecting){
 
 entry.target.classList.add("show");
 
-observer.unobserve(
-entry.target
-);
+observer.unobserve(entry.target);
 
 }
 
@@ -1558,31 +1754,22 @@ observer.observe(el);
 
 function openPage(page){
 
-const transition=
-document.getElementById("transition");
-
-const text=
-document.getElementById("transitionText");
+const transition=document.getElementById("transition");
+const text=document.getElementById("transitionText");
 
 const names={
 
 hits:"히트곡",
-
 new:"신곡",
-
 people:"노래 만든 사람",
-
 settings:"이것은 매우 설정인 브로",
-
 profile:"프로프로프로프로프로필☆☆"
 
 };
 
-text.textContent=
-names[page]||page;
+text.textContent=names[page]||page;
 
 transition.classList.add("show");
-
 
 setTimeout(()=>{
 
@@ -1598,7 +1785,6 @@ document
 
 window.scrollTo(0,0);
 
-
 if(page==="hits"){
 renderHits();
 }
@@ -1611,13 +1797,9 @@ if(page==="profile"){
 loadProfile();
 }
 
-setTimeout(
-observe,
-100
-);
+setTimeout(observe,100);
 
 },800);
-
 
 setTimeout(()=>{
 
@@ -1632,17 +1814,12 @@ transition.classList.remove("show");
 
 function goHome(){
 
-const transition=
-document.getElementById("transition");
+const transition=document.getElementById("transition");
+const text=document.getElementById("transitionText");
 
-const text=
-document.getElementById("transitionText");
-
-text.textContent=
-"홈으로 가는중 ㅋ";
+text.textContent="홈으로 가는중 ㅋ";
 
 transition.classList.add("show");
-
 
 setTimeout(()=>{
 
@@ -1658,22 +1835,15 @@ document
 
 window.scrollTo(0,0);
 
-document.getElementById(
-"search"
-).value="";
+document.getElementById("search").value="";
 
-document.getElementById(
-"recommendArea"
-).style.display="";
+document.getElementById("recommendArea").style.display="";
 
-document.getElementById(
-"allTitle"
-).textContent="전체 노래";
+document.getElementById("allTitle").textContent="전체 노래";
 
 renderSongs();
 
 },900);
-
 
 setTimeout(()=>{
 
@@ -1688,8 +1858,7 @@ transition.classList.remove("show");
 
 function togglePerson(id){
 
-const box=
-document.getElementById(id);
+const box=document.getElementById(id);
 
 box.classList.toggle("open");
 
@@ -1700,24 +1869,15 @@ box.classList.toggle("open");
 
 document
 .getElementById("search")
-.addEventListener(
-"input",
-function(){
+.addEventListener("input",function(){
 
-const q=
-this.value
-.toLowerCase()
-.trim();
+const q=this.value.toLowerCase().trim();
 
 if(q===""){
 
-document.getElementById(
-"recommendArea"
-).style.display="";
+document.getElementById("recommendArea").style.display="";
 
-document.getElementById(
-"allTitle"
-).textContent="전체 노래";
+document.getElementById("allTitle").textContent="전체 노래";
 
 renderSongs();
 
@@ -1725,18 +1885,13 @@ return;
 
 }
 
-document.getElementById(
-"recommendArea"
-).style.display="none";
+document.getElementById("recommendArea").style.display="none";
 
-document.getElementById(
-"allTitle"
-).textContent="검색 결과";
+document.getElementById("allTitle").textContent="검색 결과";
 
 songList.innerHTML="";
 
-const result=
-songs.filter(name=>
+const result=songs.filter(name=>
 name.toLowerCase().includes(q)
 );
 
@@ -1744,7 +1899,7 @@ if(result.length===0){
 
 songList.innerHTML=`
 
-<p style="color:#888;padding:20px 0">
+<p style="color:var(--sub);padding:20px 0">
 검색 결과가 없습니다.
 </p>
 
@@ -1755,9 +1910,7 @@ return;
 }
 
 result.forEach(name=>{
-songList.appendChild(
-makeSong(name)
-);
+songList.appendChild(makeSong(name));
 });
 
 observe();
@@ -1779,10 +1932,15 @@ if(theme!=="dark"){
 document.body.classList.add(theme);
 }
 
-localStorage.setItem(
-"dtbTheme",
-theme
-);
+localStorage.setItem("dtbTheme",theme);
+
+/* 테마 바뀐 순간 부드럽게 다시 나타나는 효과 */
+
+document.body.style.opacity="0.92";
+
+setTimeout(()=>{
+document.body.style.opacity="1";
+},80);
 
 }
 
@@ -1791,10 +1949,7 @@ theme
 
 function setLanguage(lang){
 
-localStorage.setItem(
-"dtbLanguage",
-lang
-);
+localStorage.setItem("dtbLanguage",lang);
 
 const data={
 
@@ -1850,13 +2005,9 @@ document.querySelector(".hero h1").textContent=t.home;
 
 document.querySelector(".hero p").textContent=t.sub;
 
-document.getElementById(
-"allTitle"
-).textContent=t.all;
+document.getElementById("allTitle").textContent=t.all;
 
-document.querySelector(
-"#recommendArea h2"
-).textContent=t.recommend;
+document.querySelector("#recommendArea h2").textContent=t.recommend;
 
 }
 
@@ -1864,12 +2015,10 @@ document.querySelector(
 /* ================= PROFILE ================= */
 
 let selectedAvatar=
-localStorage.getItem("dtbAvatar")
-||"poop";
+localStorage.getItem("dtbAvatar")||"poop";
 
 let selectedPhoto=
-localStorage.getItem("dtbPhoto")
-||"";
+localStorage.getItem("dtbPhoto")||"";
 
 
 function chooseAvatar(type){
@@ -1886,20 +2035,16 @@ updateAvatar();
 
 function choosePhoto(event){
 
-const file=
-event.target.files[0];
+const file=event.target.files[0];
 
 if(!file)return;
 
-const reader=
-new FileReader();
+const reader=new FileReader();
 
 reader.onload=function(){
 
 selectedAvatar="photo";
-
-selectedPhoto=
-reader.result;
+selectedPhoto=reader.result;
 
 updateAvatar();
 
@@ -1912,21 +2057,16 @@ reader.readAsDataURL(file);
 
 function updateAvatar(){
 
-const avatar=
-document.getElementById(
-"profileAvatar"
-);
+const avatar=document.getElementById("profileAvatar");
 
 avatar.innerHTML="";
 
 if(
-selectedAvatar==="photo"
-&&
+selectedAvatar==="photo" &&
 selectedPhoto
 ){
 
-const img=
-document.createElement("img");
+const img=document.createElement("img");
 
 img.src=selectedPhoto;
 
@@ -1939,7 +2079,6 @@ return;
 if(selectedAvatar==="poop"){
 
 avatar.textContent="💩";
-
 avatar.style.background="#8b5a2b";
 
 return;
@@ -1958,8 +2097,7 @@ red:"#dc2626"
 };
 
 avatar.style.background=
-colors[selectedAvatar]
-||"#1ed760";
+colors[selectedAvatar]||"#1ed760";
 
 }
 
@@ -1967,48 +2105,26 @@ colors[selectedAvatar]
 function saveProfile(){
 
 const name=
-document.getElementById(
-"nameInput"
-).value.trim()
+document.getElementById("nameInput").value.trim()
 ||"똥꼬브라더스";
 
 const desc=
-document.getElementById(
-"descInput"
-).value.trim()
+document.getElementById("descInput").value.trim()
 ||"우리들의 음악 프로필 🎵";
 
-localStorage.setItem(
-"dtbName",
-name
-);
-
-localStorage.setItem(
-"dtbDesc",
-desc
-);
-
-localStorage.setItem(
-"dtbAvatar",
-selectedAvatar
-);
+localStorage.setItem("dtbName",name);
+localStorage.setItem("dtbDesc",desc);
+localStorage.setItem("dtbAvatar",selectedAvatar);
 
 if(selectedPhoto){
 
-localStorage.setItem(
-"dtbPhoto",
-selectedPhoto
-);
+localStorage.setItem("dtbPhoto",selectedPhoto);
 
 }
 
-document.getElementById(
-"profileName"
-).textContent=name;
+document.getElementById("profileName").textContent=name;
 
-document.getElementById(
-"profileDesc"
-).textContent=desc;
+document.getElementById("profileDesc").textContent=desc;
 
 updateAvatar();
 
@@ -2018,40 +2134,24 @@ updateAvatar();
 function loadProfile(){
 
 const name=
-localStorage.getItem(
-"dtbName"
-)||"똥꼬브라더스";
+localStorage.getItem("dtbName")||"똥꼬브라더스";
 
 const desc=
-localStorage.getItem(
-"dtbDesc"
-)||"우리들의 음악 프로필 🎵";
+localStorage.getItem("dtbDesc")||"우리들의 음악 프로필 🎵";
 
 selectedAvatar=
-localStorage.getItem(
-"dtbAvatar"
-)||"poop";
+localStorage.getItem("dtbAvatar")||"poop";
 
 selectedPhoto=
-localStorage.getItem(
-"dtbPhoto"
-)||"";
+localStorage.getItem("dtbPhoto")||"";
 
-document.getElementById(
-"nameInput"
-).value=name;
+document.getElementById("nameInput").value=name;
 
-document.getElementById(
-"descInput"
-).value=desc;
+document.getElementById("descInput").value=desc;
 
-document.getElementById(
-"profileName"
-).textContent=name;
+document.getElementById("profileName").textContent=name;
 
-document.getElementById(
-"profileDesc"
-).textContent=desc;
+document.getElementById("profileDesc").textContent=desc;
 
 updateAvatar();
 
@@ -2086,8 +2186,7 @@ observe();
 
 setTimeout(()=>{
 
-const intro=
-document.getElementById("intro");
+const intro=document.getElementById("intro");
 
 if(intro){
 
@@ -2101,8 +2200,7 @@ intro.style.visibility="hidden";
 
 setTimeout(()=>{
 
-const intro=
-document.getElementById("intro");
+const intro=document.getElementById("intro");
 
 if(intro){
 intro.remove();
