@@ -27,14 +27,19 @@ h1{font-size:44px}
 .card{cursor:pointer;min-height:120px}
 .card:hover,.song:hover{background:#282828}
 .song{display:flex;align-items:center;gap:15px;cursor:pointer}
-.song-info{flex:1}.artist{color:#888;font-size:13px;margin-top:5px}
+.song-info{flex:1}
+.artist{color:#888;font-size:13px;margin-top:5px}
 button{border:0;border-radius:50%;background:#1ed760;width:40px;height:40px}
 .reveal{opacity:0;transform:translateY(60px);transition:.7s}
 .show{opacity:1;transform:none}
 .player{position:fixed;bottom:0;left:0;right:0;background:#181818;padding:12px 20px;border-top:1px solid #333;z-index:10}
 #playerArtist{color:#888;margin-left:10px}
 audio{width:100%}
-@media(max-width:600px){header{flex-direction:column;align-items:stretch}h1{font-size:32px}.cards{grid-template-columns:1fr}}
+@media(max-width:600px){
+header{flex-direction:column;align-items:stretch}
+h1{font-size:32px}
+.cards{grid-template-columns:1fr}
+}
 </style>
 </head>
 
@@ -59,6 +64,8 @@ audio{width:100%}
 <p>우리들의 음악을 한곳에서 🎧</p>
 </section>
 
+<div id="recommend">
+
 <h2 class="reveal">추천 재생목록</h2>
 
 <div class="cards">
@@ -67,7 +74,9 @@ audio{width:100%}
 <div class="card reveal">🍠 고구마호박</div>
 </div>
 
-<h2 class="reveal">전체 노래</h2>
+</div>
+
+<h2 id="songTitle" class="reveal">전체 노래</h2>
 <div id="songList"></div>
 
 </main>
@@ -81,42 +90,108 @@ audio{width:100%}
 </div>
 
 <script>
-const songs=["알피지","고구마호박","국민여러분","깔롱질 것","치킨먹고싶다","고구마호박 phonk"];
+
+const songs=[
+"알피지",
+"고구마호박",
+"국민여러분",
+"깔롱질 것",
+"치킨먹고싶다",
+"고구마호박 phonk"
+];
+
 const list=document.getElementById("songList");
+const recommend=document.getElementById("recommend");
+const songTitle=document.getElementById("songTitle");
 
 function showSongs(arr=songs){
+
 list.innerHTML="";
-arr.forEach((name,i)=>{
+
+arr.forEach(name=>{
+
+let i=songs.indexOf(name);
+
 let d=document.createElement("div");
+
 d.className="song reveal";
-d.innerHTML=`<div>🎵</div><div class="song-info"><b>${name}</b><div class="artist">똥꼬브라더스</div></div><button>▶</button>`;
+
+d.innerHTML=`
+<div>🎵</div>
+<div class="song-info">
+<b>${name}</b>
+<div class="artist">똥꼬브라더스</div>
+</div>
+<button>▶</button>
+`;
+
 d.onclick=()=>{
+
 document.getElementById("playerTitle").textContent=name;
+
 };
+
 list.appendChild(d);
+
 });
+
 observe();
+
 }
 
 function observe(){
+
 let o=new IntersectionObserver(es=>{
+
 es.forEach(e=>{
+
 if(e.isIntersecting){
+
 e.target.classList.add("show");
+
 o.unobserve(e.target);
+
 }
+
 });
+
 },{threshold:.1});
-document.querySelectorAll(".reveal:not(.show)").forEach(e=>o.observe(e));
+
+document
+.querySelectorAll(".reveal:not(.show)")
+.forEach(e=>o.observe(e));
+
 }
 
 document.getElementById("search").oninput=e=>{
-let q=e.target.value.toLowerCase();
-showSongs(songs.filter(x=>x.toLowerCase().includes(q)));
+
+let q=e.target.value.toLowerCase().trim();
+
+if(q===""){
+
+recommend.style.display="";
+songTitle.textContent="전체 노래";
+
+showSongs();
+
+}else{
+
+recommend.style.display="none";
+songTitle.textContent="검색 결과";
+
+showSongs(
+songs.filter(x=>
+x.toLowerCase().includes(q)
+)
+);
+
+}
+
 };
 
 showSongs();
 observe();
+
 </script>
 
 </body>
