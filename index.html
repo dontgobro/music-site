@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>똥꼬브라더스 MUSIC</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:#fff;font-family:Arial;padding-bottom:100px}
+#intro{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;animation:out 1s 4s forwards}
+.intro-logo{font-size:44px;font-weight:900;animation:logo 3s forwards}
+.intro-music{position:absolute;margin-top:110px;color:#1ed760;letter-spacing:7px;opacity:0;animation:music 1s 2s forwards}
+@keyframes logo{0%{opacity:0;transform:scale(.7);filter:blur(15px)}30%{opacity:1;filter:blur(0)}70%{opacity:1}100%{opacity:0;transform:scale(1.15)}}
+@keyframes music{to{opacity:1}}
+@keyframes out{to{opacity:0;visibility:hidden}}
+#home{opacity:0;animation:home 1s 4s forwards}
+@keyframes home{to{opacity:1}}
+header{position:sticky;top:0;z-index:5;background:#181818;padding:16px;display:flex;gap:15px;align-items:center}
+header b{white-space:nowrap}header span{color:#1ed760}
+input{flex:1;padding:12px 18px;border:0;border-radius:25px;background:#292929;color:#fff}
+main{max-width:900px;margin:auto;padding:30px 20px}
+.hero{min-height:280px;display:flex;justify-content:center;flex-direction:column}
+h1{font-size:44px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card,.song{background:#171717;border-radius:12px;padding:18px;margin:10px 0}
+.card{cursor:pointer;min-height:120px}
+.card:hover,.song:hover{background:#282828}
+.song{display:flex;align-items:center;gap:15px;cursor:pointer}
+.song-info{flex:1}.artist{color:#888;font-size:13px;margin-top:5px}
+button{border:0;border-radius:50%;background:#1ed760;width:40px;height:40px}
+.reveal{opacity:0;transform:translateY(60px);transition:.7s}
+.show{opacity:1;transform:none}
+.player{position:fixed;bottom:0;left:0;right:0;background:#181818;padding:12px 20px;border-top:1px solid #333;z-index:10}
+#playerArtist{color:#888;margin-left:10px}
+audio{width:100%}
+@media(max-width:600px){header{flex-direction:column;align-items:stretch}h1{font-size:32px}.cards{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+  <div class="intro-logo">똥꼬브라더스</div>
+  <div class="intro-music">MUSIC</div>
+</div>
+
+<div id="home">
+
+<header>
+  <b>🎵 똥꼬브라더스 <span>MUSIC</span></b>
+  <input id="search" placeholder="🔍 노래 검색">
+</header>
+
+<main>
+
+<section class="hero reveal">
+<h1>똥꼬브라더스 MUSIC</h1>
+<p>우리들의 음악을 한곳에서 🎧</p>
+</section>
+
+<h2 class="reveal">추천 재생목록</h2>
+
+<div class="cards">
+<div class="card reveal">🔥 신곡<br>고구마호박 phonk</div>
+<div class="card reveal">🎧 인기곡</div>
+<div class="card reveal">🍠 고구마호박</div>
+</div>
+
+<h2 class="reveal">전체 노래</h2>
+<div id="songList"></div>
+
+</main>
+
+<div class="player">
+<b id="playerTitle">노래를 선택하세요</b>
+<span id="playerArtist">똥꼬브라더스</span>
+<audio id="audio" controls></audio>
+</div>
+
+</div>
+
+<script>
+const songs=["알피지","고구마호박","국민여러분","깔롱질 것","치킨먹고싶다","고구마호박 phonk"];
+const list=document.getElementById("songList");
+
+function showSongs(arr=songs){
+list.innerHTML="";
+arr.forEach((name,i)=>{
+let d=document.createElement("div");
+d.className="song reveal";
+d.innerHTML=`<div>🎵</div><div class="song-info"><b>${name}</b><div class="artist">똥꼬브라더스</div></div><button>▶</button>`;
+d.onclick=()=>{
+document.getElementById("playerTitle").textContent=name;
+};
+list.appendChild(d);
+});
+observe();
+}
+
+function observe(){
+let o=new IntersectionObserver(es=>{
+es.forEach(e=>{
+if(e.isIntersecting){
+e.target.classList.add("show");
+o.unobserve(e.target);
+}
+});
+},{threshold:.1});
+document.querySelectorAll(".reveal:not(.show)").forEach(e=>o.observe(e));
+}
+
+document.getElementById("search").oninput=e=>{
+let q=e.target.value.toLowerCase();
+showSongs(songs.filter(x=>x.toLowerCase().includes(q)));
+};
+
+showSongs();
+observe();
+</script>
+
+</body>
+</html>
