@@ -101,6 +101,23 @@ animation:transitionIn .8s forwards;
 to{opacity:1;transform:scale(1);filter:blur(0)}
 }
 
+/* THEME FADE */
+#themeFade{
+position:fixed;
+inset:0;
+background:#000;
+z-index:99995;
+pointer-events:none;
+opacity:0;
+visibility:hidden;
+transition:opacity .35s ease;
+}
+
+#themeFade.show{
+opacity:1;
+visibility:visible;
+}
+
 /* HOME */
 #home{
 opacity:0;
@@ -155,7 +172,6 @@ transition:.25s;
 
 #settingsButton:hover{
 transform:rotate(25deg);
-background:#383838;
 }
 
 /* MAIN */
@@ -197,7 +213,7 @@ margin:0 0 10px;
 
 .hero p{color:#999}
 
-/* SCROLL */
+/* REVEAL */
 .reveal{
 opacity:0;
 transform:translateY(60px) scale(.96);
@@ -330,9 +346,7 @@ justify-content:space-between;
 gap:12px;
 }
 
-.person-name{
-flex:1;
-}
+.person-name{flex:1}
 
 .person-nickname{
 display:block;
@@ -404,10 +418,6 @@ cursor:pointer;
 }
 
 /* SETTINGS */
-#settingsPage{
-min-height:calc(100vh - 100px);
-}
-
 .settings-title{
 font-size:42px;
 margin:45px 0 10px;
@@ -418,45 +428,60 @@ color:#888;
 margin-bottom:35px;
 }
 
-.theme-list{
+.settings-section{
+margin-top:35px;
+}
+
+.settings-section h2{
+margin-bottom:15px;
+}
+
+.theme-list,
+.language-list{
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:15px;
 }
 
-.theme{
+.theme,
+.language{
 background:#171717;
 border:2px solid transparent;
 border-radius:16px;
-padding:25px;
-min-height:130px;
+padding:20px;
+min-height:110px;
 cursor:pointer;
 transition:.25s;
 }
 
-.theme:hover{
+.theme:hover,
+.language:hover{
 transform:translateY(-5px);
 background:#252525;
 }
 
-.theme.active{
+.theme.active,
+.language.active{
 border-color:#1ed760;
 }
 
-.theme-icon{
-font-size:42px;
-margin-bottom:12px;
+.theme-icon,
+.language-icon{
+font-size:38px;
+margin-bottom:10px;
 }
 
-.theme-name{
-font-size:20px;
+.theme-name,
+.language-name{
+font-size:19px;
 font-weight:bold;
 }
 
-.theme-desc{
+.theme-desc,
+.language-desc{
 font-size:13px;
 color:#888;
-margin-top:6px;
+margin-top:5px;
 }
 
 .settings-exit{
@@ -472,11 +497,6 @@ color:#fff;
 font-size:16px;
 font-weight:bold;
 cursor:pointer;
-transition:.25s;
-}
-
-.settings-exit:hover{
-background:#3a3a3a;
 }
 
 /* PLAYER */
@@ -505,42 +525,10 @@ margin-bottom:7px;
 
 audio{width:100%}
 
-/* THEME FADE */
-#themeFade{
-position:fixed;
-inset:0;
-background:#000;
-z-index:99995;
-pointer-events:none;
-opacity:0;
-visibility:hidden;
-transition:opacity .35s ease;
-}
-
-#themeFade.show{
-opacity:1;
-visibility:visible;
-}
-
 /* DARK */
 body.theme-dark{
 background:#080808;
 color:#fff;
-}
-
-body.theme-dark header{
-background:rgba(24,24,24,.95);
-}
-
-body.theme-dark .card,
-body.theme-dark .song,
-body.theme-dark .person,
-body.theme-dark .theme{
-background:#171717;
-}
-
-body.theme-dark .player{
-background:rgba(24,24,24,.97);
 }
 
 /* WHITE */
@@ -553,11 +541,7 @@ body.theme-white header{
 background:rgba(255,255,255,.95);
 }
 
-body.theme-white #search{
-background:#e5e5e5;
-color:#111;
-}
-
+body.theme-white #search,
 body.theme-white #settingsButton{
 background:#e5e5e5;
 color:#111;
@@ -566,29 +550,9 @@ color:#111;
 body.theme-white .card,
 body.theme-white .song,
 body.theme-white .person,
-body.theme-white .theme{
+body.theme-white .theme,
+body.theme-white .language{
 background:#fff;
-color:#111;
-}
-
-body.theme-white .card:hover,
-body.theme-white .song:hover,
-body.theme-white .theme:hover{
-background:#e9e9e9;
-}
-
-body.theme-white .artist,
-body.theme-white .card-desc,
-body.theme-white .theme-desc,
-body.theme-white .page-sub,
-body.theme-white .hero p,
-body.theme-white .settings-sub,
-body.theme-white .person-nickname{
-color:#777;
-}
-
-body.theme-white .info-button{
-background:#e5e5e5;
 color:#111;
 }
 
@@ -613,10 +577,7 @@ body.theme-green header{
 background:rgba(5,45,25,.95);
 }
 
-body.theme-green #search{
-background:#103c25;
-}
-
+body.theme-green #search,
 body.theme-green #settingsButton{
 background:#103c25;
 }
@@ -624,22 +585,13 @@ background:#103c25;
 body.theme-green .card,
 body.theme-green .song,
 body.theme-green .person,
-body.theme-green .theme{
+body.theme-green .theme,
+body.theme-green .language{
 background:#0c3020;
-}
-
-body.theme-green .card:hover,
-body.theme-green .song:hover,
-body.theme-green .theme:hover{
-background:#12482d;
 }
 
 body.theme-green .player{
 background:rgba(5,45,25,.97);
-}
-
-body.theme-green .settings-exit{
-background:#103c25;
 }
 
 /* POOP */
@@ -654,10 +606,7 @@ body.theme-poop header{
 background:rgba(60,35,20,.93);
 }
 
-body.theme-poop #search{
-background:#4d2d1a;
-}
-
+body.theme-poop #search,
 body.theme-poop #settingsButton{
 background:#4d2d1a;
 }
@@ -665,22 +614,13 @@ background:#4d2d1a;
 body.theme-poop .card,
 body.theme-poop .song,
 body.theme-poop .person,
-body.theme-poop .theme{
+body.theme-poop .theme,
+body.theme-poop .language{
 background:rgba(55,32,18,.94);
-}
-
-body.theme-poop .card:hover,
-body.theme-poop .song:hover,
-body.theme-poop .theme:hover{
-background:rgba(80,45,25,.96);
 }
 
 body.theme-poop .player{
 background:rgba(60,35,20,.97);
-}
-
-body.theme-poop .settings-exit{
-background:#4d2d1a;
 }
 
 /* MOBILE */
@@ -691,9 +631,7 @@ flex-direction:column;
 align-items:stretch;
 }
 
-header b{
-text-align:center;
-}
+header b{text-align:center}
 
 #settingsButton{
 position:absolute;
@@ -701,15 +639,11 @@ right:15px;
 top:11px;
 }
 
-.hero h1{
-font-size:34px;
-}
+.hero h1{font-size:34px}
 
-.cards{
-grid-template-columns:1fr;
-}
-
-.theme-list{
+.cards,
+.theme-list,
+.language-list{
 grid-template-columns:1fr;
 }
 
@@ -730,12 +664,6 @@ font-size:30px;
 .person-top{
 align-items:flex-start;
 }
-
-.info-button{
-font-size:12px;
-padding:8px 11px;
-}
-
 }
 </style>
 </head>
@@ -786,9 +714,11 @@ onclick="openSettings()"
 
 <section class="hero reveal">
 
-<h1>똥꼬브라더스 MUSIC</h1>
+<h1 data-i18n="homeTitle">
+똥꼬브라더스 MUSIC
+</h1>
 
-<p>
+<p data-i18n="homeSub">
 우리들의 음악을 한곳에서 🎧
 </p>
 
@@ -796,43 +726,34 @@ onclick="openSettings()"
 
 <div id="recommendArea">
 
-<h2 class="reveal">
+<h2 class="reveal" data-i18n="recommend">
 추천 똥꼬똥꼬
 </h2>
 
 <div class="cards">
 
-<div
-class="card reveal"
-onclick="openPage('hits')"
->
+<div class="card reveal" onclick="openPage('hits')">
 <div class="card-icon">🔥</div>
-<div class="card-title">히트곡</div>
-<div class="card-desc">똥꼬브라더스 인기곡</div>
+<div class="card-title" data-i18n="hits">히트곡</div>
+<div class="card-desc" data-i18n="hitsDesc">똥꼬브라더스 인기곡</div>
 </div>
 
-<div
-class="card reveal"
-onclick="openPage('new')"
->
+<div class="card reveal" onclick="openPage('new')">
 <div class="card-icon">🆕</div>
-<div class="card-title">신곡</div>
-<div class="card-desc">새롭게 나온 노래</div>
+<div class="card-title" data-i18n="new">신곡</div>
+<div class="card-desc" data-i18n="newDesc">새롭게 나온 노래</div>
 </div>
 
-<div
-class="card reveal"
-onclick="openPage('people')"
->
+<div class="card reveal" onclick="openPage('people')">
 <div class="card-icon">🎤</div>
-<div class="card-title">노래 만든 사람</div>
-<div class="card-desc">똥꼬브라더스 제작진</div>
+<div class="card-title" data-i18n="people">노래 만든 사람</div>
+<div class="card-desc" data-i18n="peopleDesc">똥꼬브라더스 제작진</div>
 </div>
 
 </div>
 </div>
 
-<h2 id="allTitle" class="reveal">
+<h2 id="allTitle" class="reveal" data-i18n="allSongs">
 전체 노래
 </h2>
 
@@ -844,18 +765,17 @@ onclick="openPage('people')"
 <!-- HIT -->
 <div id="hits" class="page">
 
-<h1 class="page-title">🔥 히트곡</h1>
+<h1 class="page-title" data-i18n="hitsTitle">
+🔥 히트곡
+</h1>
 
-<p class="page-sub">
+<p class="page-sub" data-i18n="hitsSub">
 똥꼬브라더스의 대표 히트곡
 </p>
 
 <div id="hitList"></div>
 
-<button
-class="back"
-onclick="goHome()"
->
+<button class="back" onclick="goHome()" data-i18n="backHome">
 ← 홈으로 돌아가기
 </button>
 
@@ -865,18 +785,17 @@ onclick="goHome()"
 <!-- NEW -->
 <div id="new" class="page">
 
-<h1 class="page-title">🆕 신곡</h1>
+<h1 class="page-title" data-i18n="newTitle">
+🆕 신곡
+</h1>
 
-<p class="page-sub">
+<p class="page-sub" data-i18n="newSub">
 똥꼬브라더스의 새로운 노래
 </p>
 
 <div id="newList"></div>
 
-<button
-class="back"
-onclick="goHome()"
->
+<button class="back" onclick="goHome()" data-i18n="backHome">
 ← 홈으로 돌아가기
 </button>
 
@@ -886,16 +805,14 @@ onclick="goHome()"
 <!-- PEOPLE -->
 <div id="people" class="page">
 
-<h1 class="page-title">
+<h1 class="page-title" data-i18n="peopleTitle">
 🎤 노래 만든 사람
 </h1>
 
-<p class="page-sub">
+<p class="page-sub" data-i18n="peopleSub">
 똥꼬브라더스를 만든 사람들
 </p>
 
-
-<!-- 김지완 -->
 <div class="person reveal">
 
 <div class="person-top">
@@ -913,6 +830,7 @@ onclick="goHome()"
 <button
 class="info-button"
 onclick="togglePerson(this)"
+data-i18n="showInfo"
 >
 설명 보기
 </button>
@@ -920,22 +838,17 @@ onclick="togglePerson(this)"
 </div>
 
 <div class="person-description">
-
 <div class="person-description-inner">
-
 똥꼬브라더스 공동창업자<br>
 비트박스, 게임 잘함<br>
 덩득과자 맛평가 잘함<br>
 아이디어 좋음
-
+</div>
 </div>
 
 </div>
 
-</div>
 
-
-<!-- 이호빈 -->
 <div class="person reveal">
 
 <div class="person-top">
@@ -953,6 +866,7 @@ onclick="togglePerson(this)"
 <button
 class="info-button"
 onclick="togglePerson(this)"
+data-i18n="showInfo"
 >
 설명 보기
 </button>
@@ -960,23 +874,19 @@ onclick="togglePerson(this)"
 </div>
 
 <div class="person-description">
-
 <div class="person-description-inner">
-
 똥꼬브라더스 공동창업자<br>
 덩득과자 제조 잘함<br>
 영상편집 잘함
-
+</div>
 </div>
 
 </div>
-
-</div>
-
 
 <button
 class="back"
 onclick="goHome()"
+data-i18n="backHome"
 >
 ← 홈으로 돌아가기
 </button>
@@ -987,61 +897,103 @@ onclick="goHome()"
 <!-- SETTINGS -->
 <div id="settingsPage" class="page">
 
-<h1 class="settings-title">
+<h1 class="settings-title" data-i18n="settings">
 ⚙️ 설정
 </h1>
 
-<p class="settings-sub">
+<p class="settings-sub" data-i18n="settingsSub">
 똥꼬브라더스 MUSIC 설정
 </p>
 
+
+<div class="settings-section">
+
+<h2 data-i18n="themeTitle">
+🎨 테마
+</h2>
+
 <div class="theme-list">
 
-<div
-class="theme active"
-data-theme="dark"
-onclick="changeTheme('dark')"
->
+<div class="theme active" data-theme="dark" onclick="changeTheme('dark')">
 <div class="theme-icon">🌑</div>
-<div class="theme-name">다크</div>
-<div class="theme-desc">기본 검정 테마</div>
+<div class="theme-name" data-i18n="dark">다크</div>
+<div class="theme-desc" data-i18n="darkDesc">기본 검정 테마</div>
 </div>
 
-<div
-class="theme"
-data-theme="white"
-onclick="changeTheme('white')"
->
+<div class="theme" data-theme="white" onclick="changeTheme('white')">
 <div class="theme-icon">☀️</div>
-<div class="theme-name">화이트</div>
-<div class="theme-desc">깔끔한 밝은 테마</div>
+<div class="theme-name" data-i18n="white">화이트</div>
+<div class="theme-desc" data-i18n="whiteDesc">깔끔한 밝은 테마</div>
 </div>
 
-<div
-class="theme"
-data-theme="green"
-onclick="changeTheme('green')"
->
+<div class="theme" data-theme="green" onclick="changeTheme('green')">
 <div class="theme-icon">🟢</div>
-<div class="theme-name">그린</div>
-<div class="theme-desc">초록색 음악 테마</div>
+<div class="theme-name" data-i18n="green">그린</div>
+<div class="theme-desc" data-i18n="greenDesc">초록색 음악 테마</div>
 </div>
 
-<div
-class="theme"
-data-theme="poop"
-onclick="changeTheme('poop')"
->
+<div class="theme" data-theme="poop" onclick="changeTheme('poop')">
 <div class="theme-icon">💩</div>
-<div class="theme-name">똥</div>
-<div class="theme-desc">💩 이모지 배경</div>
+<div class="theme-name" data-i18n="poop">똥</div>
+<div class="theme-desc" data-i18n="poopDesc">💩 이모지 배경</div>
 </div>
 
 </div>
+</div>
+
+
+<div class="settings-section">
+
+<h2 data-i18n="languageTitle">
+🌐 언어
+</h2>
+
+<div class="language-list">
+
+<div class="language active" data-lang="ko" onclick="changeLanguage('ko')">
+<div class="language-icon">🇰🇷</div>
+<div class="language-name">한국어</div>
+<div class="language-desc">Korean</div>
+</div>
+
+<div class="language" data-lang="en" onclick="changeLanguage('en')">
+<div class="language-icon">🇺🇸</div>
+<div class="language-name">English</div>
+<div class="language-desc">English</div>
+</div>
+
+<div class="language" data-lang="zh" onclick="changeLanguage('zh')">
+<div class="language-icon">🇨🇳</div>
+<div class="language-name">中文</div>
+<div class="language-desc">Chinese</div>
+</div>
+
+<div class="language" data-lang="ja" onclick="changeLanguage('ja')">
+<div class="language-icon">🇯🇵</div>
+<div class="language-name">日本語</div>
+<div class="language-desc">Japanese</div>
+</div>
+
+<div class="language" data-lang="hi" onclick="changeLanguage('hi')">
+<div class="language-icon">🇮🇳</div>
+<div class="language-name">हिन्दी</div>
+<div class="language-desc">Hindi</div>
+</div>
+
+<div class="language" data-lang="kp" onclick="changeLanguage('kp')">
+<div class="language-icon">🇰🇵</div>
+<div class="language-name">북조선어 💀</div>
+<div class="language-desc">D.T.B. 개그 모드</div>
+</div>
+
+</div>
+</div>
+
 
 <button
 class="settings-exit"
 onclick="exitSettings()"
+data-i18n="settingsExit"
 >
 ← 설정 나가기
 </button>
@@ -1056,7 +1008,7 @@ onclick="exitSettings()"
 
 <div class="player-top">
 
-<b id="playerTitle">
+<b id="playerTitle" data-i18n="selectSong">
 노래를 선택하세요
 </b>
 
@@ -1066,10 +1018,7 @@ onclick="exitSettings()"
 
 </div>
 
-<audio
-id="audio"
-controls
-></audio>
+<audio id="audio" controls></audio>
 
 </div>
 
@@ -1116,9 +1065,7 @@ d.className="song reveal";
 
 d.innerHTML=`
 
-<div class="song-icon">
-🎵
-</div>
+<div class="song-icon">🎵</div>
 
 <div class="song-info">
 
@@ -1132,9 +1079,7 @@ ${name}
 
 </div>
 
-<button class="play-button">
-▶
-</button>
+<button class="play-button">▶</button>
 
 `;
 
@@ -1200,11 +1145,8 @@ const files={
 };
 
 if(files[name]){
-
 audio.src=files[name];
-
 audio.play().catch(()=>{});
-
 }
 
 }
@@ -1222,7 +1164,6 @@ entries.forEach(entry=>{
 if(entry.isIntersecting){
 
 entry.target.classList.add("show");
-
 observer.unobserve(entry.target);
 
 }
@@ -1234,9 +1175,7 @@ observer.unobserve(entry.target);
 );
 
 document
-.querySelectorAll(
-".page.active .reveal:not(.show)"
-)
+.querySelectorAll(".page.active .reveal:not(.show)")
 .forEach(el=>{
 observer.observe(el);
 });
@@ -1244,7 +1183,7 @@ observer.observe(el);
 }
 
 
-/* OPEN PAGE */
+/* PAGE OPEN */
 
 function openPage(page){
 
@@ -1275,36 +1214,28 @@ document
 
 window.scrollTo(0,0);
 
-if(page==="hits"){
-renderHits();
-}
-
-if(page==="new"){
-renderNew();
-}
+if(page==="hits") renderHits();
+if(page==="new") renderNew();
 
 observe();
 
 },800);
 
 setTimeout(()=>{
-
 transition.classList.remove("show");
-
 },1600);
 
 }
 
 
-/* GO HOME */
+/* HOME */
 
 function goHome(){
 
 const transition=document.getElementById("transition");
 const text=document.getElementById("transitionText");
 
-text.textContent=
-"홈으로 돌아가는 중이다 이똥꼬야";
+text.textContent=getText("homeGoing");
 
 transition.classList.add("show");
 
@@ -1323,19 +1254,15 @@ document
 window.scrollTo(0,0);
 
 document.getElementById("search").value="";
-
 document.getElementById("recommendArea").style.display="";
-
-document.getElementById("allTitle").textContent="전체 노래";
+document.getElementById("allTitle").textContent=getText("allSongs");
 
 renderSongs();
 
 },900);
 
 setTimeout(()=>{
-
 transition.classList.remove("show");
-
 },1800);
 
 }
@@ -1348,8 +1275,7 @@ function openSettings(){
 const transition=document.getElementById("transition");
 const text=document.getElementById("transitionText");
 
-text.textContent=
-"이것은 매우 설정인 브로";
+text.textContent=getText("settingsIntro");
 
 transition.classList.add("show");
 
@@ -1372,9 +1298,7 @@ observe();
 },900);
 
 setTimeout(()=>{
-
 transition.classList.remove("show");
-
 },1800);
 
 }
@@ -1387,8 +1311,7 @@ function exitSettings(){
 const transition=document.getElementById("transition");
 const text=document.getElementById("transitionText");
 
-text.textContent=
-"홈으로 가는중 ㅋ";
+text.textContent=getText("settingsGoingHome");
 
 transition.classList.add("show");
 
@@ -1407,25 +1330,21 @@ document
 window.scrollTo(0,0);
 
 document.getElementById("search").value="";
-
 document.getElementById("recommendArea").style.display="";
-
-document.getElementById("allTitle").textContent="전체 노래";
+document.getElementById("allTitle").textContent=getText("allSongs");
 
 renderSongs();
 
 },900);
 
 setTimeout(()=>{
-
 transition.classList.remove("show");
-
 },1800);
 
 }
 
 
-/* CHANGE THEME */
+/* THEME */
 
 function changeTheme(theme){
 
@@ -1450,29 +1369,465 @@ document
 el.classList.remove("active");
 });
 
-const selected=
-document.querySelector(
+const selected=document.querySelector(
 '.theme[data-theme="'+theme+'"]'
 );
 
-if(selected){
-selected.classList.add("active");
-}
+if(selected) selected.classList.add("active");
 
 localStorage.setItem("dtb-theme",theme);
 
 },300);
 
 setTimeout(()=>{
-
 fade.classList.remove("show");
-
 },700);
 
 }
 
 
-/* LOAD THEME */
+/* PERSON INFO */
+
+function togglePerson(button){
+
+const person=button.closest(".person");
+const isOpen=person.classList.contains("open");
+
+if(isOpen){
+
+person.classList.remove("open");
+button.textContent=getText("showInfo");
+
+}else{
+
+person.classList.add("open");
+button.textContent=getText("close");
+
+}
+
+}
+
+
+/* LANGUAGES */
+
+const translations={
+
+ko:{
+homeTitle:"똥꼬브라더스 MUSIC",
+homeSub:"우리들의 음악을 한곳에서 🎧",
+recommend:"추천 똥꼬똥꼬",
+hits:"히트곡",
+hitsDesc:"똥꼬브라더스 인기곡",
+new:"신곡",
+newDesc:"새롭게 나온 노래",
+people:"노래 만든 사람",
+peopleDesc:"똥꼬브라더스 제작진",
+allSongs:"전체 노래",
+hitsTitle:"🔥 히트곡",
+hitsSub:"똥꼬브라더스의 대표 히트곡",
+newTitle:"🆕 신곡",
+newSub:"똥꼬브라더스의 새로운 노래",
+peopleTitle:"🎤 노래 만든 사람",
+peopleSub:"똥꼬브라더스를 만든 사람들",
+settings:"⚙️ 설정",
+settingsSub:"똥꼬브라더스 MUSIC 설정",
+themeTitle:"🎨 테마",
+languageTitle:"🌐 언어",
+dark:"다크",
+darkDesc:"기본 검정 테마",
+white:"화이트",
+whiteDesc:"깔끔한 밝은 테마",
+green:"그린",
+greenDesc:"초록색 음악 테마",
+poop:"똥",
+poopDesc:"💩 이모지 배경",
+settingsExit:"← 설정 나가기",
+backHome:"← 홈으로 돌아가기",
+showInfo:"설명 보기",
+close:"닫기",
+selectSong:"노래를 선택하세요",
+search:"🔍 노래 검색",
+noResult:"검색 결과가 없습니다.",
+settingsIntro:"이것은 매우 설정인 브로",
+settingsGoingHome:"홈으로 가는중 ㅋ",
+homeGoing:"홈으로 돌아가는 중이다 이똥꼬야"
+},
+
+en:{
+homeTitle:"D.T.B. MUSIC",
+homeSub:"All our music in one place 🎧",
+recommend:"Recommended",
+hits:"Hit Songs",
+hitsDesc:"D.T.B. popular songs",
+new:"New Songs",
+newDesc:"Freshly released songs",
+people:"Creators",
+peopleDesc:"D.T.B. production team",
+allSongs:"All Songs",
+hitsTitle:"🔥 Hit Songs",
+hitsSub:"D.T.B. 대표 히트곡",
+newTitle:"🆕 New Songs",
+newSub:"New D.T.B. songs",
+peopleTitle:"🎤 Creators",
+peopleSub:"The people behind D.T.B.",
+settings:"⚙️ Settings",
+settingsSub:"D.T.B. MUSIC Settings",
+themeTitle:"🎨 Theme",
+languageTitle:"🌐 Language",
+dark:"Dark",
+darkDesc:"Classic dark theme",
+white:"White",
+whiteDesc:"Clean bright theme",
+green:"Green",
+greenDesc:"Green music theme",
+poop:"Poop",
+poopDesc:"💩 Emoji background",
+settingsExit:"← Exit Settings",
+backHome:"← Back Home",
+showInfo:"View Info",
+close:"Close",
+selectSong:"Select a song",
+search:"🔍 Search songs",
+noResult:"No results found.",
+settingsIntro:"Very setting, bro",
+settingsGoingHome:"Going home lol",
+homeGoing:"Going back home"
+},
+
+zh:{
+homeTitle:"D.T.B. MUSIC",
+homeSub:"把我们的音乐集中在这里 🎧",
+recommend:"推荐歌曲",
+hits:"热门歌曲",
+hitsDesc:"D.T.B. 人气歌曲",
+new:"新歌",
+newDesc:"最新发布的歌曲",
+people:"制作人员",
+peopleDesc:"D.T.B. 制作团队",
+allSongs:"全部歌曲",
+hitsTitle:"🔥 热门歌曲",
+hitsSub:"D.T.B. 代表热门歌曲",
+newTitle:"🆕 新歌",
+newSub:"D.T.B. 最新歌曲",
+peopleTitle:"🎤 制作人员",
+peopleSub:"D.T.B. 的制作人员",
+settings:"⚙️ 设置",
+settingsSub:"D.T.B. MUSIC 设置",
+themeTitle:"🎨 主题",
+languageTitle:"🌐 语言",
+dark:"深色",
+darkDesc:"经典黑色主题",
+white:"白色",
+whiteDesc:"清爽明亮主题",
+green:"绿色",
+greenDesc:"绿色音乐主题",
+poop:"便便",
+poopDesc:"💩 表情背景",
+settingsExit:"← 退出设置",
+backHome:"← 返回首页",
+showInfo:"查看介绍",
+close:"关闭",
+selectSong:"请选择歌曲",
+search:"🔍 搜索歌曲",
+noResult:"没有找到歌曲。",
+settingsIntro:"这是非常设置的兄弟",
+settingsGoingHome:"正在回首页哈哈",
+homeGoing:"正在回到首页"
+},
+
+ja:{
+homeTitle:"D.T.B. MUSIC",
+homeSub:"僕たちの音楽をひとつの場所に 🎧",
+recommend:"おすすめ",
+hits:"ヒット曲",
+hitsDesc:"D.T.B. 人気曲",
+new:"新曲",
+newDesc:"新しく出た曲",
+people:"制作者",
+peopleDesc:"D.T.B. 制作チーム",
+allSongs:"すべての曲",
+hitsTitle:"🔥 ヒット曲",
+hitsSub:"D.T.B. の代表ヒット曲",
+newTitle:"🆕 新曲",
+newSub:"D.T.B. の新しい曲",
+peopleTitle:"🎤 制作者",
+peopleSub:"D.T.B. を作った人たち",
+settings:"⚙️ 設定",
+settingsSub:"D.T.B. MUSIC 設定",
+themeTitle:"🎨 テーマ",
+languageTitle:"🌐 言語",
+dark:"ダーク",
+darkDesc:"基本の黒テーマ",
+white:"ホワイト",
+whiteDesc:"明るくシンプルなテーマ",
+green:"グリーン",
+greenDesc:"緑の音楽テーマ",
+poop:"うんち",
+poopDesc:"💩 絵文字背景",
+settingsExit:"← 設定を終了",
+backHome:"← ホームへ戻る",
+showInfo:"説明を見る",
+close:"閉じる",
+selectSong:"曲を選択してください",
+search:"🔍 曲を検索",
+noResult:"検索結果がありません。",
+settingsIntro:"これはとても設定なブラザー",
+settingsGoingHome:"ホームへ戻るぞｗ",
+homeGoing:"ホームへ戻っています"
+},
+
+hi:{
+homeTitle:"D.T.B. MUSIC",
+homeSub:"हमारा संगीत एक ही जगह पर 🎧",
+recommend:"सुझाए गए गाने",
+hits:"हिट गाने",
+hitsDesc:"D.T.B. के लोकप्रिय गाने",
+new:"नए गाने",
+newDesc:"नए जारी किए गए गाने",
+people:"निर्माता",
+peopleDesc:"D.T.B. टीम",
+allSongs:"सभी गाने",
+hitsTitle:"🔥 हिट गाने",
+hitsSub:"D.T.B. के लोकप्रिय गाने",
+newTitle:"🆕 नए गाने",
+newSub:"D.T.B. के नए गाने",
+peopleTitle:"🎤 निर्माता",
+peopleSub:"D.T.B. बनाने वाले लोग",
+settings:"⚙️ सेटिंग्स",
+settingsSub:"D.T.B. MUSIC सेटिंग्स",
+themeTitle:"🎨 थीम",
+languageTitle:"🌐 भाषा",
+dark:"डार्क",
+darkDesc:"क्लासिक काला थीम",
+white:"व्हाइट",
+whiteDesc:"साफ़ और चमकदार थीम",
+green:"ग्रीन",
+greenDesc:"हरा संगीत थीम",
+poop:"पूप",
+poopDesc:"💩 इमोजी बैकग्राउंड",
+settingsExit:"← सेटिंग्स से बाहर",
+backHome:"← होम पर वापस",
+showInfo:"जानकारी देखें",
+close:"बंद करें",
+selectSong:"एक गाना चुनें",
+search:"🔍 गाने खोजें",
+noResult:"कोई परिणाम नहीं मिला।",
+settingsIntro:"यह बहुत ही सेटिंग वाला भाई है",
+settingsGoingHome:"होम जा रहे हैं lol",
+homeGoing:"होम वापस जा रहे हैं"
+},
+
+kp:{
+homeTitle:"똥꼬브라더스 음악",
+homeSub:"우리 음악을 한곳에 모아놓았소 🎧",
+recommend:"동무에게 추천하는 노래",
+hits:"인민 인기곡",
+hitsDesc:"동무들이 많이 듣는 노래라우",
+new:"새 노래",
+newDesc:"새롭게 나온 노래라우",
+people:"노래 만든 동무들",
+peopleDesc:"똥꼬브라더스 제작 동무들",
+allSongs:"모든 노래",
+hitsTitle:"🔥 인민 인기곡",
+hitsSub:"똥꼬브라더스의 대표 인기곡이라우",
+newTitle:"🆕 새 노래",
+newSub:"새롭게 나온 노래라우",
+peopleTitle:"🎤 노래 만든 동무들",
+peopleSub:"똥꼬브라더스를 만든 동무들이라우",
+settings:"⚙️ 설정 동무",
+settingsSub:"똥꼬브라더스 음악 설정이라우",
+themeTitle:"🎨 테마를 고르라우",
+languageTitle:"🌐 말투를 고르라우",
+dark:"어두운 테마",
+darkDesc:"검은색으로 하라우",
+white:"밝은 테마",
+whiteDesc:"환하게 하라우",
+green:"푸른 초록 테마",
+greenDesc:"초록색으로 하라우",
+poop:"똥 테마",
+poopDesc:"💩 똥이 가득하라우",
+settingsExit:"← 설정에서 나가라우",
+backHome:"← 첫 화면으로 돌아가라우",
+showInfo:"설명 보라우",
+close:"닫으라우",
+selectSong:"노래 하나 골라보라우",
+search:"🔍 노래를 찾아보라우",
+noResult:"찾아봤는데 없구만 기래.",
+settingsIntro:"이것은 매우 설정인 브로라우",
+settingsGoingHome:"내래 첫 화면으로 돌아가는 중이라우",
+homeGoing:"내래 태초의 화면으로 돌아가는 중이라우"
+}
+
+};
+
+
+/* CURRENT LANGUAGE */
+
+let currentLang=
+localStorage.getItem("dtb-language") || "ko";
+
+
+function getText(key){
+return translations[currentLang][key] || translations.ko[key] || key;
+}
+
+
+/* APPLY LANGUAGE */
+
+function applyLanguage(){
+
+const t=translations[currentLang];
+
+document
+.querySelectorAll("[data-i18n]")
+.forEach(el=>{
+
+const key=el.getAttribute("data-i18n");
+
+if(t[key]){
+el.textContent=t[key];
+}
+
+});
+
+
+document
+.getElementById("search")
+.placeholder=t.search;
+
+
+document
+.querySelectorAll(".language")
+.forEach(el=>{
+el.classList.remove("active");
+});
+
+
+const selected=document.querySelector(
+'.language[data-lang="'+currentLang+'"]'
+);
+
+if(selected){
+selected.classList.add("active");
+}
+
+
+/* 현재 열려 있는 설명 버튼 */
+document
+.querySelectorAll(".person")
+.forEach(person=>{
+
+const button=person.querySelector(".info-button");
+
+if(button){
+button.textContent=
+person.classList.contains("open")
+? getText("close")
+: getText("showInfo");
+}
+
+});
+
+
+/* 검색 결과가 떠 있으면 다시 표시 */
+if(document.getElementById("homePage").classList.contains("active")){
+
+const q=document
+.getElementById("search")
+.value
+.trim();
+
+if(q===""){
+document.getElementById("allTitle").textContent=
+getText("allSongs");
+}else{
+document.getElementById("allTitle").textContent=
+getText("search");
+}
+
+}
+
+}
+
+
+function changeLanguage(lang){
+
+const fade=document.getElementById("themeFade");
+
+fade.classList.add("show");
+
+setTimeout(()=>{
+
+currentLang=lang;
+
+localStorage.setItem(
+"dtb-language",
+lang
+);
+
+applyLanguage();
+
+},300);
+
+setTimeout(()=>{
+fade.classList.remove("show");
+},700);
+
+}
+
+
+/* SEARCH */
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+function(){
+
+const q=this.value.toLowerCase().trim();
+
+if(q===""){
+
+document.getElementById("recommendArea").style.display="";
+document.getElementById("allTitle").textContent=getText("allSongs");
+
+renderSongs();
+
+return;
+
+}
+
+document.getElementById("recommendArea").style.display="none";
+document.getElementById("allTitle").textContent=getText("search");
+
+songList.innerHTML="";
+
+const result=songs.filter(name=>
+name.toLowerCase().includes(q)
+);
+
+if(result.length===0){
+
+songList.innerHTML=`
+<p style="color:#888;padding:20px 0;">
+${getText("noResult")}
+</p>
+`;
+
+return;
+
+}
+
+result.forEach(name=>{
+songList.appendChild(makeSong(name));
+});
+
+observe();
+
+});
+
+
+/* SAVED THEME */
 
 const savedTheme=
 localStorage.getItem("dtb-theme");
@@ -1489,8 +1844,7 @@ document
 el.classList.remove("active");
 });
 
-const saved=
-document.querySelector(
+const saved=document.querySelector(
 '.theme[data-theme="'+savedTheme+'"]'
 );
 
@@ -1505,111 +1859,9 @@ document.body.classList.add("theme-dark");
 }
 
 
-/* PERSON INFO */
-
-function togglePerson(button){
-
-const person=
-button.closest(".person");
-
-const isOpen=
-person.classList.contains("open");
-
-if(isOpen){
-
-person.classList.remove("open");
-
-button.textContent=
-"설명 보기";
-
-}else{
-
-person.classList.add("open");
-
-button.textContent=
-"닫기";
-
-}
-
-}
-
-
-/* SEARCH */
-
-document
-.getElementById("search")
-.addEventListener(
-"input",
-function(){
-
-const q=
-this.value
-.toLowerCase()
-.trim();
-
-if(q===""){
-
-document.getElementById(
-"recommendArea"
-).style.display="";
-
-document.getElementById(
-"allTitle"
-).textContent="전체 노래";
-
-renderSongs();
-
-return;
-
-}
-
-document.getElementById(
-"recommendArea"
-).style.display="none";
-
-document.getElementById(
-"allTitle"
-).textContent="검색 결과";
-
-songList.innerHTML="";
-
-const result=
-songs.filter(name=>
-name.toLowerCase().includes(q)
-);
-
-if(result.length===0){
-
-songList.innerHTML=`
-
-<p style="
-color:#888;
-padding:20px 0;
-">
-검색 결과가 없습니다.
-</p>
-
-`;
-
-return;
-
-}
-
-result.forEach(name=>{
-
-songList.appendChild(
-makeSong(name)
-);
-
-});
-
-observe();
-
-});
-
-
 /* START */
 
+applyLanguage();
 renderSongs();
 observe();
 
@@ -1618,22 +1870,19 @@ observe();
 
 setTimeout(()=>{
 
-const intro=
-document.getElementById("intro");
+const intro=document.getElementById("intro");
 
 if(intro){
-
 intro.style.opacity="0";
 intro.style.visibility="hidden";
-
 }
 
 },5000);
 
+
 setTimeout(()=>{
 
-const intro=
-document.getElementById("intro");
+const intro=document.getElementById("intro");
 
 if(intro){
 intro.remove();
