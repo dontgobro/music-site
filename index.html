@@ -3,87 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>똥꼬브라더스 MUSIC</title>
+<title>D.T.B. STUDIO</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
   scroll-behavior:smooth;
 }
 
-:root{
-  --bg:#080808;
-  --surface:#171717;
-  --surface2:#222;
-  --surface3:#292929;
-  --text:#fff;
-  --sub:#888;
-  --border:#333;
-  --accent:#1ed760;
-  --header:rgba(24,24,24,.95);
-  --player:rgba(24,24,24,.97);
+body{
+  margin:0;
+  background:#080808;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  padding-bottom:110px;
+  transition:.5s;
+  overflow-x:hidden;
 }
 
 /* ================= THEMES ================= */
 
 body.white{
-  --bg:#f4f4f4;
-  --surface:#fff;
-  --surface2:#ededed;
-  --surface3:#ddd;
-  --text:#111;
-  --sub:#666;
-  --border:#ccc;
-  --accent:#16a34a;
-  --header:rgba(255,255,255,.92);
-  --player:rgba(255,255,255,.96);
+  background:#f4f4f4;
+  color:#111;
+}
+
+body.white header,
+body.white .card,
+body.white .song,
+body.white .settings-box,
+body.white .profile-box,
+body.white .person,
+body.white .player{
+  background:#fff;
+  color:#111;
+}
+
+body.white .card-desc,
+body.white .artist,
+body.white .page-sub,
+body.white .profile-desc,
+body.white .person span{
+  color:#777;
 }
 
 body.green{
-  --bg:#061b10;
-  --surface:#0c2a1a;
-  --surface2:#123a25;
-  --surface3:#195034;
-  --text:#fff;
-  --sub:#9bb5a5;
-  --border:#286342;
-  --accent:#35e879;
-  --header:rgba(6,27,16,.94);
-  --player:rgba(6,27,16,.97);
+  background:#061b10;
+}
+
+body.green header,
+body.green .card,
+body.green .song,
+body.green .settings-box,
+body.green .profile-box,
+body.green .person,
+body.green .player{
+  background:#0d2919;
 }
 
 body.poop{
-  --bg:#6b431d;
-  --surface:#7d5128;
-  --surface2:#8d5e30;
-  --surface3:#a06a35;
-  --text:#fff;
-  --sub:#e1c3a0;
-  --border:#b17b46;
-  --accent:#d89a52;
-  --header:rgba(91,55,24,.94);
-  --player:rgba(91,55,24,.97);
-
+  background:#6b431d;
   background-image:
     radial-gradient(circle,#a06a35 2px,transparent 3px);
   background-size:30px 30px;
-}
-
-/* ================= BODY ================= */
-
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,sans-serif;
-  padding-bottom:110px;
-
-  transition:
-    background .7s ease,
-    color .7s ease;
 }
 
 /* ================= INTRO ================= */
@@ -107,7 +90,6 @@ body{
   text-align:center;
   font-size:44px;
   font-weight:900;
-  letter-spacing:-3px;
   transform:translate(-50%,-50%);
 }
 
@@ -127,16 +109,10 @@ body{
     transform:translate(-50%,-50%) scale(.7);
     filter:blur(15px);
   }
-
-  30%{
+  30%,70%{
     opacity:1;
     filter:blur(0);
   }
-
-  70%{
-    opacity:1;
-  }
-
   100%{
     opacity:0;
     transform:translate(-50%,-50%) scale(1.15);
@@ -150,7 +126,6 @@ body{
     transform:translate(-50%,-50%) scale(.8);
     filter:blur(10px);
   }
-
   to{
     opacity:1;
     transform:translate(-50%,-50%) scale(1);
@@ -170,7 +145,7 @@ body{
   justify-content:center;
   opacity:0;
   visibility:hidden;
-  transition:opacity .7s ease;
+  transition:.7s;
 }
 
 #transition.show{
@@ -182,40 +157,6 @@ body{
   font-size:40px;
   font-weight:900;
   text-align:center;
-  opacity:0;
-  transform:scale(.8);
-  filter:blur(12px);
-}
-
-#transition.show #transitionText{
-  animation:transitionIn .8s forwards;
-}
-
-@keyframes transitionIn{
-  to{
-    opacity:1;
-    transform:scale(1);
-    filter:blur(0);
-  }
-}
-
-/* ================= HOME ================= */
-
-#home{
-  opacity:0;
-  animation:homeIn 1s 4s forwards;
-}
-
-@keyframes homeIn{
-  from{
-    opacity:0;
-    transform:translateY(25px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
 /* ================= HEADER ================= */
@@ -224,21 +165,12 @@ header{
   position:sticky;
   top:0;
   z-index:100;
-
-  background:var(--header);
+  background:rgba(24,24,24,.95);
   backdrop-filter:blur(15px);
-
   padding:14px 16px;
-
   display:flex;
   align-items:center;
-  gap:12px;
-
-  border-bottom:1px solid var(--border);
-
-  transition:
-    background .7s ease,
-    border-color .7s ease;
+  gap:10px;
 }
 
 header b{
@@ -246,66 +178,80 @@ header b{
 }
 
 header span{
-  color:var(--accent);
+  color:#1ed760;
 }
 
 #search{
   flex:1;
   min-width:0;
-
   padding:12px 18px;
-
-  border:1px solid var(--border);
+  border:0;
   border-radius:25px;
-
-  background:var(--surface3);
-  color:var(--text);
-
+  background:#292929;
+  color:#fff;
   outline:none;
-  font-size:15px;
-
-  transition:
-    background .7s ease,
-    color .7s ease,
-    border-color .7s ease;
 }
-
-#search::placeholder{
-  color:var(--sub);
-}
-
-/* ================= HEADER BUTTONS ================= */
 
 .header-actions{
   margin-left:auto;
   display:flex;
-  gap:8px;
+  gap:7px;
   flex-shrink:0;
 }
 
-.header-btn{
-  width:42px;
+/* 프로필 글씨가 세로로 안 찢어지게 */
+
+.header-profile{
   height:42px;
-
-  border:1px solid var(--border);
-  border-radius:50%;
-
-  background:var(--surface3);
-  color:var(--text);
-
-  font-size:20px;
+  min-width:72px;
+  padding:0 13px;
+  border:0;
+  border-radius:22px;
+  background:#fff;
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
   cursor:pointer;
-
-  transition:
-    background .4s ease,
-    color .4s ease,
-    transform .2s;
+  font-weight:bold;
+  font-size:13px;
+  white-space:nowrap;
+  overflow:hidden;
 }
 
-.header-btn:hover{
-  background:var(--accent);
+.header-profile img{
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.header-profile .mini-poop{
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+}
+
+.poop-button{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:#8b5a2b;
   color:#fff;
-  transform:scale(1.08);
+  font-size:20px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.poop-button:hover{
+  transform:scale(1.1) rotate(-5deg);
 }
 
 /* ================= MAIN ================= */
@@ -316,8 +262,6 @@ main{
   margin:auto;
   padding:30px 20px 160px;
 }
-
-/* ★ 다른 페이지가 홈 밑에 나타나지 않게 함 */
 
 .page{
   display:none;
@@ -333,7 +277,6 @@ main{
 
 .hero{
   min-height:280px;
-
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -345,23 +288,7 @@ main{
 }
 
 .hero p{
-  color:var(--sub);
-}
-
-/* ================= REVEAL ================= */
-
-.reveal{
-  opacity:0;
-  transform:translateY(60px) scale(.96);
-
-  transition:
-    opacity .7s ease,
-    transform .7s cubic-bezier(.17,.67,.35,1.3);
-}
-
-.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
+  color:#999;
 }
 
 /* ================= CARDS ================= */
@@ -373,25 +300,17 @@ main{
 }
 
 .card{
-  background:var(--surface);
-
-  border:1px solid var(--border);
+  background:#171717;
   border-radius:14px;
-
   padding:20px;
   min-height:150px;
-
   cursor:pointer;
-
-  transition:
-    background .7s ease,
-    border-color .7s ease,
-    transform .25s;
+  transition:.25s;
 }
 
 .card:hover{
-  background:var(--surface2);
   transform:translateY(-6px);
+  background:#282828;
 }
 
 .card-icon{
@@ -405,7 +324,7 @@ main{
 }
 
 .card-desc{
-  color:var(--sub);
+  color:#888;
   font-size:13px;
   margin-top:6px;
 }
@@ -413,47 +332,31 @@ main{
 /* ================= SONG ================= */
 
 .song{
-  background:var(--surface);
-
-  border:1px solid var(--border);
+  background:#171717;
   border-radius:12px;
-
   padding:16px;
   margin:12px 0;
-
   display:flex;
   align-items:center;
   gap:15px;
-
   cursor:pointer;
-
-  transition:
-    background .7s ease,
-    border-color .7s ease,
-    transform .25s;
+  transition:.25s;
 }
 
 .song:hover{
-  background:var(--surface2);
   transform:translateX(5px);
+  background:#282828;
 }
 
 .song-icon{
   width:55px;
   height:55px;
-
   border-radius:9px;
-
-  background:var(--surface3);
-
-  border:1px solid var(--border);
-
+  background:linear-gradient(135deg,#222,#555);
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:25px;
-  flex-shrink:0;
 }
 
 .song-info{
@@ -466,7 +369,7 @@ main{
 }
 
 .artist{
-  color:var(--sub);
+  color:#888;
   font-size:13px;
   margin-top:5px;
 }
@@ -474,21 +377,10 @@ main{
 .play-button{
   border:0;
   border-radius:50%;
-
-  background:var(--accent);
-  color:#fff;
-
+  background:#1ed760;
   width:42px;
   height:42px;
-
   cursor:pointer;
-  font-size:16px;
-
-  transition:.2s;
-}
-
-.play-button:hover{
-  transform:scale(1.1);
 }
 
 /* ================= PAGE ================= */
@@ -499,80 +391,59 @@ main{
 }
 
 .page-sub{
-  color:var(--sub);
+  color:#888;
   margin-bottom:30px;
 }
 
 /* ================= PEOPLE ================= */
 
+.person,
+.settings-box,
+.profile-box{
+  background:#171717;
+  border-radius:15px;
+  padding:20px;
+  margin:15px 0;
+}
+
 .person{
-  background:var(--surface);
-
-  border:1px solid var(--border);
-  border-radius:12px;
-
-  padding:22px;
-  margin:12px 0;
-
   font-size:19px;
   font-weight:bold;
-
-  transition:
-    background .7s ease,
-    border-color .7s ease;
 }
 
 .person span{
   display:block;
-  color:var(--sub);
+  color:#888;
   font-size:14px;
   margin-top:7px;
   font-weight:normal;
 }
 
-.person-buttons{
-  margin-top:15px;
-}
-
 .info-btn{
-  border:1px solid var(--border);
+  border:0;
   border-radius:20px;
   padding:9px 15px;
-
-  background:var(--surface3);
-  color:var(--text);
-
-  cursor:pointer;
-
-  transition:.3s;
-}
-
-.info-btn:hover{
-  background:var(--accent);
+  background:#292929;
   color:#fff;
+  cursor:pointer;
+  margin-top:15px;
 }
 
 .person-detail{
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transform:translateY(-20px);
-
-  transition:
-    max-height .7s ease,
-    opacity .6s ease,
-    transform .7s ease;
+  transition:.6s;
 }
 
 .person-detail.open{
   max-height:300px;
   opacity:1;
-  transform:translateY(0);
   padding-top:18px;
 }
 
 .person-detail-text{
-  color:var(--sub);
+  color:#bbb;
   line-height:1.7;
 }
 
@@ -580,44 +451,16 @@ main{
 
 .back{
   display:block;
-
   margin:30px 0 80px;
   padding:14px 22px;
-
   border:0;
   border-radius:30px;
-
-  background:var(--accent);
-  color:#fff;
-
+  background:#1ed760;
   font-weight:bold;
-  font-size:15px;
-
   cursor:pointer;
-
-  transition:.3s;
-}
-
-.back:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
 }
 
 /* ================= SETTINGS ================= */
-
-.settings-box{
-  background:var(--surface);
-
-  border:1px solid var(--border);
-  border-radius:15px;
-
-  padding:20px;
-  margin:15px 0;
-
-  transition:
-    background .7s ease,
-    border-color .7s ease;
-}
 
 .setting-title{
   font-size:20px;
@@ -632,90 +475,36 @@ main{
 }
 
 .theme-btn{
-  border:1px solid var(--border);
+  border:0;
   border-radius:12px;
-
   padding:12px 18px;
-
   cursor:pointer;
   font-weight:bold;
-
-  transition:
-    transform .2s,
-    filter .3s;
 }
 
-.theme-btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
-}
-
-.theme-dark{
-  background:#111;
-  color:#fff;
-}
-
-.theme-white{
-  background:#fff;
-  color:#111;
-}
-
-.theme-green{
-  background:#16a34a;
-  color:#fff;
-}
-
-.theme-poop{
-  background:#6b431d;
-  color:#fff;
-}
-
-/* ================= LANGUAGE ================= */
+.theme-dark{background:#111;color:#fff}
+.theme-white{background:#fff;color:#111}
+.theme-green{background:#16a34a;color:#fff}
+.theme-poop{background:#6b431d;color:#fff}
 
 .lang{
   display:flex;
   align-items:center;
   gap:15px;
-
   padding:15px;
-
-  background:var(--surface2);
-
-  border:1px solid var(--border);
+  background:#222;
   border-radius:12px;
-
   margin:8px 0;
-
   cursor:pointer;
-
-  transition:
-    background .5s ease,
-    border-color .5s ease,
-    transform .2s;
-}
-
-.lang:hover{
-  background:var(--surface3);
-  transform:translateX(4px);
 }
 
 .lang small{
   display:block;
-  color:var(--sub);
+  color:#888;
   margin-top:4px;
 }
 
 /* ================= PROFILE ================= */
-
-.profile-box{
-  background:var(--surface);
-
-  border:1px solid var(--border);
-  border-radius:15px;
-
-  padding:20px;
-  margin:15px 0;
-}
 
 .profile-head{
   text-align:center;
@@ -725,24 +514,16 @@ main{
 .profile-avatar{
   width:130px;
   height:130px;
-
   border-radius:50%;
-
   margin:auto;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:42px;
   font-weight:900;
-
   overflow:hidden;
-
-  background:var(--accent);
-  color:#fff;
-
-  border:3px solid var(--border);
+  background:#fff;
+  color:#111;
 }
 
 .profile-avatar img{
@@ -758,140 +539,71 @@ main{
 }
 
 .profile-desc{
-  color:var(--sub);
+  color:#888;
   margin-top:8px;
 }
 
 .edit-input{
   width:100%;
-
   padding:14px;
   margin:7px 0;
-
-  border:1px solid var(--border);
+  border:0;
   border-radius:10px;
-
-  background:var(--surface3);
-  color:var(--text);
-
+  background:#292929;
+  color:#fff;
   outline:none;
-  font-size:15px;
-
-  transition:
-    background .7s ease,
-    color .7s ease,
-    border-color .7s ease;
-}
-
-.edit-input::placeholder{
-  color:var(--sub);
 }
 
 .avatar-options{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:15px;
 }
 
 .avatar-option{
   width:70px;
   height:70px;
-
   border-radius:50%;
-
-  border:2px solid var(--border);
-
+  border:2px solid #444;
   cursor:pointer;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:22px;
-  font-weight:bold;
-
-  transition:.2s;
 }
 
-.avatar-option:hover{
-  transform:scale(1.08);
-}
-
-.avatar-green{
-  background:#1ed760;
-  color:#fff;
-}
-
-.avatar-blue{
-  background:#2563eb;
-  color:#fff;
-}
-
-.avatar-purple{
-  background:#7c3aed;
-  color:#fff;
-}
-
-.avatar-red{
-  background:#dc2626;
-  color:#fff;
-}
-
-.avatar-poop{
-  background:#8b5a2b;
-  color:#fff;
-  font-size:35px;
-}
+.avatar-green{background:#1ed760;color:#fff}
+.avatar-blue{background:#2563eb;color:#fff}
+.avatar-purple{background:#7c3aed;color:#fff}
+.avatar-red{background:#dc2626;color:#fff}
+.avatar-poop{background:#fff;color:#111;font-size:35px}
 
 .file{
   display:none;
 }
 
 .save{
-  background:var(--accent);
-  color:#fff;
-
+  background:#1ed760;
   border:0;
   border-radius:25px;
-
   padding:13px 25px;
-
   font-weight:bold;
   cursor:pointer;
-
   margin-top:15px;
-
-  transition:.3s;
-}
-
-.save:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
 }
 
 /* ================= PLAYER ================= */
 
 .player{
   position:fixed;
-
   bottom:0;
   left:0;
   right:0;
-
   z-index:200;
-
-  background:var(--player);
-
+  background:rgba(24,24,24,.97);
   backdrop-filter:blur(15px);
-
-  border-top:1px solid var(--border);
-
+  border-top:1px solid #333;
   padding:12px 20px;
-
-  transition:
-    background .7s ease,
-    border-color .7s ease;
 }
 
 .player-top{
@@ -901,16 +613,144 @@ main{
   margin-bottom:7px;
 }
 
-#playerTitle{
-  font-weight:bold;
-}
-
 #playerArtist{
-  color:var(--sub);
+  color:#888;
 }
 
 audio{
   width:100%;
+}
+
+/* ================= POOP RAIN ================= */
+
+#poopRain{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  pointer-events:none;
+  overflow:hidden;
+  display:none;
+}
+
+.falling-poop{
+  position:absolute;
+  top:-100px;
+  font-size:35px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+  }
+}
+
+/* ================= DOG ================= */
+
+#dogScene{
+  position:fixed;
+  inset:0;
+  z-index:6000;
+  display:none;
+  pointer-events:none;
+  background:rgba(0,0,0,.25);
+}
+
+.dog{
+  position:absolute;
+  bottom:20px;
+  left:-300px;
+  font-size:170px;
+  animation:dogWalk 7s linear forwards;
+}
+
+@keyframes dogWalk{
+  0%{left:-300px}
+  35%{left:35%}
+  55%{left:48%}
+  70%{left:52%}
+  100%{left:110%}
+}
+
+.dog-poop{
+  position:absolute;
+  bottom:35px;
+  left:52%;
+  font-size:55px;
+  opacity:0;
+  animation:dogPoop 7s forwards;
+}
+
+@keyframes dogPoop{
+  0%,60%{opacity:0;transform:scale(.2)}
+  65%{opacity:1;transform:scale(1)}
+  100%{opacity:1;transform:scale(1)}
+}
+
+/* ================= SHUTDOWN ================= */
+
+#shutdown{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  z-index:9000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  font-family:Arial,sans-serif;
+}
+
+.shutdown-poop{
+  font-size:170px;
+  animation:bigPoop 2s forwards;
+}
+
+@keyframes bigPoop{
+  from{transform:scale(1)}
+  to{transform:scale(5);opacity:0}
+}
+
+.shutdown-box{
+  display:none;
+  width:min(430px,90%);
+  text-align:center;
+}
+
+.shutdown-icon{
+  font-size:70px;
+  margin-bottom:25px;
+}
+
+.restart-btn{
+  margin-top:30px;
+  padding:16px 28px;
+  border:1px solid #555;
+  background:#1b1b1b;
+  color:#fff;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:17px;
+}
+
+.restart-btn:hover{
+  background:#292929;
+}
+
+/* ================= RESTART ================= */
+
+#restarting{
+  position:fixed;
+  inset:0;
+  background:#000;
+  color:#fff;
+  z-index:10000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  opacity:0;
+  transition:opacity 1s;
 }
 
 /* ================= MOBILE ================= */
@@ -922,7 +762,7 @@ audio{
   }
 
   header b{
-    width:auto;
+    font-size:14px;
   }
 
   #search{
@@ -932,6 +772,12 @@ audio{
 
   .header-actions{
     margin-left:auto;
+  }
+
+  .header-profile{
+    min-width:68px;
+    padding:0 10px;
+    font-size:12px;
   }
 
   .cards{
@@ -946,13 +792,8 @@ audio{
     font-size:34px;
   }
 
-  .intro-logo,
-  .intro-music{
-    font-size:34px;
-  }
-
-  #transitionText{
-    font-size:30px;
+  .dog{
+    font-size:120px;
   }
 }
 </style>
@@ -963,158 +804,180 @@ audio{
 <!-- INTRO -->
 
 <div id="intro">
-
-<div class="intro-logo">
-똥꼬브라더스
+  <div class="intro-logo">D.T.B.</div>
+  <div class="intro-music">STUDIO</div>
 </div>
 
-<div class="intro-music">
-D.T.B. STUDIO
-</div>
-
-</div>
-
-
-<!-- TRANSITION -->
+<!-- PAGE TRANSITION -->
 
 <div id="transition">
+  <div id="transitionText"></div>
+</div>
 
-<div id="transitionText"></div>
+<!-- 똥비 -->
+
+<div id="poopRain"></div>
+
+<!-- 강아지 -->
+
+<div id="dogScene">
+  <div class="dog">🐕</div>
+  <div class="dog-poop">💩</div>
+</div>
+
+<!-- 셧다운 -->
+
+<div id="shutdown">
+
+  <div id="shutdownPoop" class="shutdown-poop">
+    💩
+  </div>
+
+  <div id="shutdownBox" class="shutdown-box">
+
+    <div class="shutdown-icon">
+      🪟
+    </div>
+
+    <div style="font-size:24px">
+      시스템이 종료되었습니다
+    </div>
+
+    <button
+      class="restart-btn"
+      onclick="restartSite()"
+    >
+      ⏻ 다시 시작
+    </button>
+
+  </div>
 
 </div>
 
+<div id="restarting">
+  다시 시작하는 중..
+</div>
 
-<div id="home">
 
-<!-- HEADER -->
+<!-- ================= SITE ================= -->
+
+<div id="site">
 
 <header>
 
-<b>
-🎵 똥꼬브라더스
-<span>MUSIC</span>
-</b>
+  <b>
+    🎵 똥꼬브라더스
+    <span>MUSIC</span>
+  </b>
 
-<input
-id="search"
-placeholder="🔍 노래 검색"
->
+  <input
+    id="search"
+    placeholder="🔍 노래 검색"
+  >
 
-<div class="header-actions">
+  <div class="header-actions">
 
-<button
-class="header-btn"
-onclick="openPage('profile')"
->
-👤
-</button>
+    <button
+      class="header-profile"
+      onclick="openPage('profile')"
+    >
 
-<button
-class="header-btn"
-onclick="openPage('settings')"
->
-⚙️
-</button>
+      <span id="headerAvatar">
+        💩
+      </span>
 
-</div>
+      <span>
+        프로필
+      </span>
+
+    </button>
+
+    <button
+      class="poop-button"
+      onclick="startPoopEvent()"
+    >
+      💩
+    </button>
+
+    <button
+      class="header-profile"
+      style="min-width:42px;padding:0;font-size:19px"
+      onclick="openPage('settings')"
+    >
+      ⚙️
+    </button>
+
+  </div>
 
 </header>
 
 
 <main>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 
 <div id="homePage" class="page active">
 
-<section class="hero reveal">
+<section class="hero">
 
-<h1>
-똥꼬브라더스 MUSIC
-</h1>
+  <h1>
+    똥꼬브라더스 MUSIC
+  </h1>
 
-<p>
-우리들의 음악을 한곳에서 🎧
-</p>
+  <p>
+    우리들의 음악을 한곳에서 🎧
+  </p>
 
 </section>
 
 
 <div id="recommendArea">
 
-<h2 class="reveal">
-추천 똥꼬똥꼬
+<h2>
+  추천 똥꼬똥꼬
 </h2>
-
 
 <div class="cards">
 
 <div
-class="card reveal"
-onclick="openPage('hits')"
+  class="card"
+  onclick="openPage('hits')"
 >
-
-<div class="card-icon">
-🔥
+  <div class="card-icon">🔥</div>
+  <div class="card-title">히트곡</div>
+  <div class="card-desc">
+    똥꼬브라더스 인기곡
+  </div>
 </div>
-
-<div class="card-title">
-히트곡
-</div>
-
-<div class="card-desc">
-똥꼬브라더스 인기곡
-</div>
-
-</div>
-
 
 <div
-class="card reveal"
-onclick="openPage('new')"
+  class="card"
+  onclick="openPage('new')"
 >
-
-<div class="card-icon">
-🆕
+  <div class="card-icon">🆕</div>
+  <div class="card-title">신곡</div>
+  <div class="card-desc">
+    새롭게 나온 노래
+  </div>
 </div>
-
-<div class="card-title">
-신곡
-</div>
-
-<div class="card-desc">
-새롭게 나온 노래
-</div>
-
-</div>
-
 
 <div
-class="card reveal"
-onclick="openPage('people')"
+  class="card"
+  onclick="openPage('people')"
 >
-
-<div class="card-icon">
-🎤
-</div>
-
-<div class="card-title">
-노래 만든 사람
-</div>
-
-<div class="card-desc">
-똥꼬브라더스 제작진
+  <div class="card-icon">🎤</div>
+  <div class="card-title">노래 만든 사람</div>
+  <div class="card-desc">
+    똥꼬브라더스 제작진
+  </div>
 </div>
 
 </div>
-
-</div>
-
 </div>
 
 
-<h2 id="allTitle" class="reveal">
-전체 노래
+<h2 id="allTitle">
+  전체 노래
 </h2>
 
 <div id="songList"></div>
@@ -1122,289 +985,248 @@ onclick="openPage('people')"
 </div>
 
 
-<!-- ================= HIT PAGE ================= -->
+<!-- HIT -->
 
 <div id="hits" class="page">
 
 <h1 class="page-title">
-🔥 히트곡
+  🔥 히트곡
 </h1>
 
 <p class="page-sub">
-똥꼬브라더스의 대표 히트곡
+  똥꼬브라더스의 대표 히트곡
 </p>
 
 <div id="hitList"></div>
 
-<button
-class="back"
-onclick="goHome()"
->
-← 홈으로 돌아가기
+<button class="back" onclick="goHome()">
+  ← 홈으로 돌아가기
 </button>
 
 </div>
 
 
-<!-- ================= NEW PAGE ================= -->
+<!-- NEW -->
 
 <div id="new" class="page">
 
 <h1 class="page-title">
-🆕 신곡
+  🆕 신곡
 </h1>
 
 <p class="page-sub">
-똥꼬브라더스의 새로운 노래
+  똥꼬브라더스의 새로운 노래
 </p>
 
 <div id="newList"></div>
 
-<button
-class="back"
-onclick="goHome()"
->
-← 홈으로 돌아가기
+<button class="back" onclick="goHome()">
+  ← 홈으로 돌아가기
 </button>
 
 </div>
 
 
-<!-- ================= PEOPLE PAGE ================= -->
+<!-- PEOPLE -->
 
 <div id="people" class="page">
 
 <h1 class="page-title">
-🎤 노래 만든 사람
+  🎤 노래 만든 사람
 </h1>
 
 <p class="page-sub">
-똥꼬브라더스를 만든 사람들
+  똥꼬브라더스를 만든 사람들
 </p>
 
+<div class="person">
 
-<div class="person reveal">
+  김지완
 
-김지완
+  <span>지꼬똥</span>
 
-<span>
-지꼬똥
-</span>
+  <button
+    class="info-btn"
+    onclick="togglePerson('kimInfo')"
+  >
+    설명보기
+  </button>
 
-<div class="person-buttons">
-
-<button
-class="info-btn"
-onclick="togglePerson('kimInfo')"
->
-설명보기
-</button>
-
-</div>
-
-<div
-id="kimInfo"
-class="person-detail"
->
-
-<div class="person-detail-text">
-
-똥꼬브라더스 공동창업자,<br>
-비트박스, 게임,<br>
-덩득과자 맛평가 잘함,<br>
-아이디어 좋음
-
-</div>
-
-</div>
+  <div
+    id="kimInfo"
+    class="person-detail"
+  >
+    <div class="person-detail-text">
+      똥꼬브라더스 공동창업자,<br>
+      비트박스, 게임,<br>
+      덩득과자 맛평가 잘함,<br>
+      아이디어 좋음
+    </div>
+  </div>
 
 </div>
 
 
-<div class="person reveal">
+<div class="person">
 
-이호빈
+  이호빈
 
-<span>
-호꼬똥
-</span>
+  <span>호꼬똥</span>
 
-<div class="person-buttons">
+  <button
+    class="info-btn"
+    onclick="togglePerson('leeInfo')"
+  >
+    설명보기
+  </button>
 
-<button
-class="info-btn"
-onclick="togglePerson('leeInfo')"
->
-설명보기
-</button>
-
-</div>
-
-<div
-id="leeInfo"
-class="person-detail"
->
-
-<div class="person-detail-text">
-
-똥꼬브라더스 공동창업자,<br>
-덩득과자 제조 잘함,<br>
-영상편집 잘함
+  <div
+    id="leeInfo"
+    class="person-detail"
+  >
+    <div class="person-detail-text">
+      똥꼬브라더스 공동창업자,<br>
+      덩득과자 제조 잘함,<br>
+      영상편집 잘함
+    </div>
+  </div>
 
 </div>
 
-</div>
-
-</div>
-
-
-<button
-class="back"
-onclick="goHome()"
->
-← 홈으로 돌아가기
+<button class="back" onclick="goHome()">
+  ← 홈으로 돌아가기
 </button>
 
 </div>
 
 
-<!-- ================= SETTINGS ================= -->
+<!-- SETTINGS -->
 
 <div id="settings" class="page">
 
 <h1 class="page-title">
-⚙️ 설정
+  ⚙️ 설정
 </h1>
 
 <p class="page-sub">
-이것은 매우 설정인 브로
+  이것은 매우 설정인 브로
 </p>
 
 
 <div class="settings-box">
 
 <div class="setting-title">
-🎨 테마
+  🎨 테마
 </div>
 
 <div class="theme-buttons">
 
 <button
-class="theme-btn theme-dark"
-onclick="setTheme('dark')"
+  class="theme-btn theme-dark"
+  onclick="setTheme('dark')"
 >
-다크
+  다크
 </button>
 
 <button
-class="theme-btn theme-white"
-onclick="setTheme('white')"
+  class="theme-btn theme-white"
+  onclick="setTheme('white')"
 >
-화이트
+  화이트
 </button>
 
 <button
-class="theme-btn theme-green"
-onclick="setTheme('green')"
+  class="theme-btn theme-green"
+  onclick="setTheme('green')"
 >
-그린
+  그린
 </button>
 
 <button
-class="theme-btn theme-poop"
-onclick="setTheme('poop')"
+  class="theme-btn theme-poop"
+  onclick="setTheme('poop')"
 >
-💩 똥
+  💩 똥
 </button>
 
 </div>
-
 </div>
 
 
 <div class="settings-box">
 
 <div class="setting-title">
-🌐 언어
+  🌐 언어
 </div>
-
 
 <div class="lang" onclick="setLanguage('ko')">
-🇰🇷
-<div>
-한국어
-<small>기본 언어</small>
+  🇰🇷
+  <div>
+    한국어
+    <small>기본 언어</small>
+  </div>
 </div>
-</div>
-
 
 <div class="lang" onclick="setLanguage('en')">
-🇺🇸
-<div>
-English
-<small>English mode</small>
+  🇺🇸
+  <div>
+    English
+    <small>English mode</small>
+  </div>
 </div>
-</div>
-
 
 <div class="lang" onclick="setLanguage('zh')">
-🇨🇳
-<div>
-中文
-<small>中文模式</small>
+  🇨🇳
+  <div>
+    中文
+    <small>中文模式</small>
+  </div>
 </div>
-</div>
-
 
 <div class="lang" onclick="setLanguage('ja')">
-🇯🇵
-<div>
-日本語
-<small>日本語モード</small>
+  🇯🇵
+  <div>
+    日本語
+    <small>日本語モード</small>
+  </div>
 </div>
-</div>
-
 
 <div class="lang" onclick="setLanguage('hi')">
-🇮🇳
-<div>
-हिन्दी
-<small>हिन्दी भाषा</small>
+  🇮🇳
+  <div>
+    हिन्दी
+    <small>हिन्दी भाषा</small>
+  </div>
 </div>
-</div>
-
 
 <div class="lang" onclick="setLanguage('north')">
-🇰🇵
-<div>
-북조선어
-<small>내래 내 북조선에서 왔디</small>
-</div>
-</div>
-
+  🇰🇵
+  <div>
+    북조선어
+    <small>내래 내 북조선에서 왔디</small>
+  </div>
 </div>
 
+</div>
 
-<button
-class="back"
-onclick="goHome()"
->
-← 설정 나가기
+
+<button class="back" onclick="goHome()">
+  ← 설정 나가기
 </button>
 
 </div>
 
 
-<!-- ================= PROFILE ================= -->
+<!-- PROFILE -->
 
 <div id="profile" class="page">
 
 <h1 class="page-title">
-👤 프로필
+  👤 프로필
 </h1>
 
 <p class="page-sub">
-프로프로프로프로프로필☆☆
+  프로프로프로프로프로필☆☆
 </p>
 
 
@@ -1413,134 +1235,120 @@ onclick="goHome()"
 <div class="profile-head">
 
 <div
-id="profileAvatar"
-class="profile-avatar"
+  id="profileAvatar"
+  class="profile-avatar"
 >
-💩
+  💩
 </div>
 
 <div
-id="profileName"
-class="profile-name"
+  id="profileName"
+  class="profile-name"
 >
-똥꼬브라더스
+  똥꼬브라더스
 </div>
 
 <div
-id="profileDesc"
-class="profile-desc"
+  id="profileDesc"
+  class="profile-desc"
 >
-우리들의 음악 프로필 🎵
+  우리들의 음악 프로필 🎵
 </div>
 
 </div>
 
 
 <div class="setting-title">
-프로필 편집
+  프로필 편집
 </div>
 
-
 <input
-id="nameInput"
-class="edit-input"
-placeholder="이름"
+  id="nameInput"
+  class="edit-input"
+  placeholder="이름"
 >
 
-
 <input
-id="descInput"
-class="edit-input"
-placeholder="설명"
+  id="descInput"
+  class="edit-input"
+  placeholder="설명"
 >
 
 
 <div
-class="setting-title"
-style="margin-top:25px"
+  class="setting-title"
+  style="margin-top:25px"
 >
-프로필 사진 바꾸기
+  프로필 사진 바꾸기
 </div>
 
 
 <div class="avatar-options">
 
-
 <div
-class="avatar-option avatar-green"
-onclick="chooseAvatar('green')"
+  class="avatar-option avatar-green"
+  onclick="chooseAvatar('green')"
 >
-똥
+  똥
 </div>
 
-
 <div
-class="avatar-option avatar-blue"
-onclick="chooseAvatar('blue')"
+  class="avatar-option avatar-blue"
+  onclick="chooseAvatar('blue')"
 >
-똥
+  똥
 </div>
 
-
 <div
-class="avatar-option avatar-purple"
-onclick="chooseAvatar('purple')"
+  class="avatar-option avatar-purple"
+  onclick="chooseAvatar('purple')"
 >
-똥
+  똥
 </div>
 
-
 <div
-class="avatar-option avatar-red"
-onclick="chooseAvatar('red')"
+  class="avatar-option avatar-red"
+  onclick="chooseAvatar('red')"
 >
-똥
+  똥
 </div>
 
-
 <div
-class="avatar-option avatar-poop"
-onclick="chooseAvatar('poop')"
+  class="avatar-option avatar-poop"
+  onclick="chooseAvatar('poop')"
 >
-💩
+  💩
 </div>
-
 
 <label
-class="avatar-option"
-style="background:#333"
+  class="avatar-option"
+  style="background:#333"
 >
+  📷
 
-📷
-
-<input
-class="file"
-type="file"
-accept="image/*"
-onchange="choosePhoto(event)"
->
-
+  <input
+    class="file"
+    type="file"
+    accept="image/*"
+    onchange="choosePhoto(event)"
+  >
 </label>
-
 
 </div>
 
 
 <button
-class="save"
-onclick="saveProfile()"
+  class="save"
+  onclick="saveProfile()"
 >
-저장
+  저장
 </button>
 
 </div>
 
 
-<button
-class="back"
-onclick="goHome()"
->
-← 홈으로 돌아가기
+<button class="back" onclick="goHome()">
+  ← 홈으로 돌아가기
 </button>
 
 </div>
@@ -1548,26 +1356,23 @@ onclick="goHome()"
 </main>
 
 
-<!-- ================= PLAYER ================= -->
+<!-- PLAYER -->
 
 <div class="player">
 
 <div class="player-top">
 
 <b id="playerTitle">
-노래를 선택하세요
+  노래를 선택하세요
 </b>
 
 <span id="playerArtist">
-똥꼬브라더스
+  똥꼬브라더스
 </span>
 
 </div>
 
-<audio
-id="audio"
-controls
-></audio>
+<audio id="audio" controls></audio>
 
 </div>
 
@@ -1579,288 +1384,188 @@ controls
 /* ================= SONGS ================= */
 
 const songs=[
-"알피지",
-"고구마호박",
-"국민여러분",
-"깔롱질 것",
-"치킨먹고싶다",
-"고구마호박 phonk"
+  "알피지",
+  "고구마호박",
+  "국민여러분",
+  "깔롱질 것",
+  "치킨먹고싶다",
+  "고구마호박 phonk"
 ];
 
 const hitSongs=[
-"고구마호박",
-"치킨먹고싶다"
+  "고구마호박",
+  "치킨먹고싶다"
 ];
 
 const newSongs=[
-"치킨먹고싶다",
-"고구마호박 phonk"
+  "치킨먹고싶다",
+  "고구마호박 phonk"
 ];
 
-const songList=document.getElementById("songList");
-const hitList=document.getElementById("hitList");
-const newList=document.getElementById("newList");
 const audio=document.getElementById("audio");
 const playerTitle=document.getElementById("playerTitle");
 
 
-/* ================= SONG CARD ================= */
+/* ================= SONG ================= */
 
 function makeSong(name){
 
-const d=document.createElement("div");
+  const d=document.createElement("div");
 
-d.className="song reveal";
+  d.className="song";
 
-d.innerHTML=`
+  d.innerHTML=`
+    <div class="song-icon">🎵</div>
 
-<div class="song-icon">
-🎵
-</div>
+    <div class="song-info">
+      <div class="song-title">${name}</div>
+      <div class="artist">똥꼬브라더스</div>
+    </div>
 
-<div class="song-info">
+    <button class="play-button">▶</button>
+  `;
 
-<div class="song-title">
-${name}
-</div>
+  d.onclick=()=>{
+    playSong(name);
+  };
 
-<div class="artist">
-똥꼬브라더스
-</div>
-
-</div>
-
-<button class="play-button">
-▶
-</button>
-
-`;
-
-d.onclick=()=>{
-playSong(name);
-};
-
-return d;
+  return d;
 }
 
 
-/* ================= RENDER ================= */
-
 function renderSongs(){
 
-songList.innerHTML="";
+  songList.innerHTML="";
 
-songs.forEach(name=>{
-songList.appendChild(makeSong(name));
-});
-
-observe();
+  songs.forEach(name=>{
+    songList.appendChild(makeSong(name));
+  });
 
 }
 
 
 function renderHits(){
 
-hitList.innerHTML="";
+  hitList.innerHTML="";
 
-hitSongs.forEach(name=>{
-hitList.appendChild(makeSong(name));
-});
-
-observe();
+  hitSongs.forEach(name=>{
+    hitList.appendChild(makeSong(name));
+  });
 
 }
 
 
 function renderNew(){
 
-newList.innerHTML="";
+  newList.innerHTML="";
 
-newSongs.forEach(name=>{
-newList.appendChild(makeSong(name));
-});
-
-observe();
+  newSongs.forEach(name=>{
+    newList.appendChild(makeSong(name));
+  });
 
 }
 
 
-/* ================= PLAY ================= */
+/* ================= PLAYER ================= */
 
 function playSong(name){
 
-playerTitle.textContent=name;
+  playerTitle.textContent=name;
 
-const files={
+  const files={
+    "알피지":"alpg.mp3",
+    "고구마호박":"goguma-hobak.mp3",
+    "국민여러분":"gukmin.mp3",
+    "깔롱질 것":"kkalong.mp3",
+    "치킨먹고싶다":"chicken.mp3",
+    "고구마호박 phonk":"goguma-phonk.mp3"
+  };
 
-"알피지":"alpg.mp3",
-"고구마호박":"goguma-hobak.mp3",
-"국민여러분":"gukmin.mp3",
-"깔롱질 것":"kkalong.mp3",
-"치킨먹고싶다":"chicken.mp3",
-"고구마호박 phonk":"goguma-phonk.mp3"
+  if(files[name]){
 
-};
+    audio.src=files[name];
 
-if(files[name]){
+    audio.play().catch(()=>{});
 
-audio.src=files[name];
-
-audio.play().catch(()=>{});
-
-}
+  }
 
 }
 
 
-/* ================= SCROLL ================= */
-
-function observe(){
-
-const observer=new IntersectionObserver(
-
-entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-observer.unobserve(entry.target);
-
-}
-
-});
-
-},
-
-{
-threshold:.1
-}
-
-);
-
-document
-.querySelectorAll(".reveal:not(.show)")
-.forEach(el=>{
-observer.observe(el);
-});
-
-}
-
-
-/* ================= OPEN PAGE ================= */
+/* ================= PAGE ================= */
 
 function openPage(page){
 
-const transition=document.getElementById("transition");
-const text=document.getElementById("transitionText");
+  const transition=document.getElementById("transition");
+  const text=document.getElementById("transitionText");
 
-const names={
+  const names={
+    hits:"히트곡",
+    new:"신곡",
+    people:"노래 만든 사람",
+    settings:"이것은 매우 설정인 브로",
+    profile:"프로프로프로프로프로필☆☆"
+  };
 
-hits:"히트곡",
-new:"신곡",
-people:"노래 만든 사람",
-settings:"이것은 매우 설정인 브로",
-profile:"프로프로프로프로프로필☆☆"
+  text.textContent=names[page]||page;
 
-};
+  transition.classList.add("show");
 
-text.textContent=names[page]||page;
+  setTimeout(()=>{
 
-transition.classList.add("show");
+    document
+      .querySelectorAll(".page")
+      .forEach(p=>p.classList.remove("active"));
 
-setTimeout(()=>{
+    document
+      .getElementById(page)
+      .classList.add("active");
 
-document
-.querySelectorAll(".page")
-.forEach(p=>{
-p.classList.remove("active");
-});
+    window.scrollTo(0,0);
 
-document
-.getElementById(page)
-.classList.add("active");
+    if(page==="hits") renderHits();
+    if(page==="new") renderNew();
+    if(page==="profile") loadProfile();
 
-window.scrollTo(0,0);
+  },700);
 
-if(page==="hits"){
-renderHits();
-}
-
-if(page==="new"){
-renderNew();
-}
-
-if(page==="profile"){
-loadProfile();
-}
-
-setTimeout(observe,100);
-
-},800);
-
-setTimeout(()=>{
-
-transition.classList.remove("show");
-
-},1600);
+  setTimeout(()=>{
+    transition.classList.remove("show");
+  },1400);
 
 }
 
-
-/* ================= HOME ================= */
 
 function goHome(){
 
-const transition=document.getElementById("transition");
-const text=document.getElementById("transitionText");
+  document
+    .querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
 
-text.textContent="홈으로 가는중 ㅋ";
+  document
+    .getElementById("homePage")
+    .classList.add("active");
 
-transition.classList.add("show");
+  window.scrollTo(0,0);
 
-setTimeout(()=>{
+  document.getElementById("search").value="";
 
-document
-.querySelectorAll(".page")
-.forEach(p=>{
-p.classList.remove("active");
-});
+  document.getElementById("recommendArea").style.display="";
 
-document
-.getElementById("homePage")
-.classList.add("active");
+  document.getElementById("allTitle").textContent="전체 노래";
 
-window.scrollTo(0,0);
-
-document.getElementById("search").value="";
-
-document.getElementById("recommendArea").style.display="";
-
-document.getElementById("allTitle").textContent="전체 노래";
-
-renderSongs();
-
-},900);
-
-setTimeout(()=>{
-
-transition.classList.remove("show");
-
-},1800);
+  renderSongs();
 
 }
 
 
-/* ================= PEOPLE DETAIL ================= */
+/* ================= PEOPLE ================= */
 
 function togglePerson(id){
 
-const box=document.getElementById(id);
-
-box.classList.toggle("open");
+  document
+    .getElementById(id)
+    .classList.toggle("open");
 
 }
 
@@ -1868,79 +1573,63 @@ box.classList.toggle("open");
 /* ================= SEARCH ================= */
 
 document
-.getElementById("search")
-.addEventListener("input",function(){
+  .getElementById("search")
+  .addEventListener("input",function(){
 
-const q=this.value.toLowerCase().trim();
+    const q=this.value.toLowerCase().trim();
 
-if(q===""){
+    if(q===""){
 
-document.getElementById("recommendArea").style.display="";
+      document.getElementById("recommendArea").style.display="";
+      document.getElementById("allTitle").textContent="전체 노래";
 
-document.getElementById("allTitle").textContent="전체 노래";
+      renderSongs();
 
-renderSongs();
+      return;
+    }
 
-return;
+    document.getElementById("recommendArea").style.display="none";
+    document.getElementById("allTitle").textContent="검색 결과";
 
-}
+    songList.innerHTML="";
 
-document.getElementById("recommendArea").style.display="none";
+    const result=songs.filter(name=>
+      name.toLowerCase().includes(q)
+    );
 
-document.getElementById("allTitle").textContent="검색 결과";
+    if(result.length===0){
 
-songList.innerHTML="";
+      songList.innerHTML=`
+        <p style="color:#888;padding:20px 0">
+          검색 결과가 없습니다.
+        </p>
+      `;
 
-const result=songs.filter(name=>
-name.toLowerCase().includes(q)
-);
+      return;
+    }
 
-if(result.length===0){
+    result.forEach(name=>{
+      songList.appendChild(makeSong(name));
+    });
 
-songList.innerHTML=`
-
-<p style="color:var(--sub);padding:20px 0">
-검색 결과가 없습니다.
-</p>
-
-`;
-
-return;
-
-}
-
-result.forEach(name=>{
-songList.appendChild(makeSong(name));
-});
-
-observe();
-
-});
+  });
 
 
 /* ================= THEME ================= */
 
 function setTheme(theme){
 
-document.body.classList.remove(
-"white",
-"green",
-"poop"
-);
+  document.body.classList.remove(
+    "white",
+    "green",
+    "poop"
+  );
 
-if(theme!=="dark"){
-document.body.classList.add(theme);
-}
+  if(theme!=="dark"){
+    document.body.classList.add(theme);
+  }
 
-localStorage.setItem("dtbTheme",theme);
-
-/* 테마 바뀐 순간 부드럽게 다시 나타나는 효과 */
-
-document.body.style.opacity="0.92";
-
-setTimeout(()=>{
-document.body.style.opacity="1";
-},80);
+  localStorage.setItem("dtbTheme",theme);
 
 }
 
@@ -1949,65 +1638,62 @@ document.body.style.opacity="1";
 
 function setLanguage(lang){
 
-localStorage.setItem("dtbLanguage",lang);
+  localStorage.setItem("dtbLanguage",lang);
 
-const data={
+  const data={
 
-ko:{
-home:"똥꼬브라더스 MUSIC",
-sub:"우리들의 음악을 한곳에서 🎧",
-all:"전체 노래",
-recommend:"추천 똥꼬똥꼬"
-},
+    ko:{
+      home:"똥꼬브라더스 MUSIC",
+      sub:"우리들의 음악을 한곳에서 🎧",
+      all:"전체 노래",
+      recommend:"추천 똥꼬똥꼬"
+    },
 
-en:{
-home:"D.T.B. MUSIC",
-sub:"Our music in one place 🎧",
-all:"All Songs",
-recommend:"Recommended"
-},
+    en:{
+      home:"D.T.B. MUSIC",
+      sub:"Our music in one place 🎧",
+      all:"All Songs",
+      recommend:"Recommended"
+    },
 
-zh:{
-home:"똥꼬브라더스 MUSIC",
-sub:"我们的音乐都在这里 🎧",
-all:"全部歌曲",
-recommend:"推荐"
-},
+    zh:{
+      home:"똥꼬브라더스 MUSIC",
+      sub:"我们的音乐都在这里 🎧",
+      all:"全部歌曲",
+      recommend:"推荐"
+    },
 
-ja:{
-home:"똥꼬브라더스 MUSIC",
-sub:"僕たちの音楽をここに 🎧",
-all:"すべての曲",
-recommend:"おすすめ"
-},
+    ja:{
+      home:"똥꼬브라더스 MUSIC",
+      sub:"僕たちの音楽をここに 🎧",
+      all:"すべての曲",
+      recommend:"おすすめ"
+    },
 
-hi:{
-home:"똥꼬브라더스 MUSIC",
-sub:"हमारा संगीत एक जगह 🎧",
-all:"सभी गाने",
-recommend:"अनुशंसित"
-},
+    hi:{
+      home:"똥꼬브라더스 MUSIC",
+      sub:"हमारा संगीत एक जगह 🎧",
+      all:"सभी गाने",
+      recommend:"अनुशंसित"
+    },
 
-north:{
-home:"똥꼬브라더스 음악",
-sub:"내래 우리 음악을 한곳에서 듣자우 🎧",
-all:"전체 노래",
-recommend:"추천 똥꼬똥꼬"
-}
+    north:{
+      home:"똥꼬브라더스 음악",
+      sub:"내래 우리 음악을 한곳에서 듣자우 🎧",
+      all:"전체 노래",
+      recommend:"추천 똥꼬똥꼬"
+    }
 
-};
+  };
 
-const t=data[lang];
+  const t=data[lang];
 
-if(!t)return;
+  if(!t)return;
 
-document.querySelector(".hero h1").textContent=t.home;
-
-document.querySelector(".hero p").textContent=t.sub;
-
-document.getElementById("allTitle").textContent=t.all;
-
-document.querySelector("#recommendArea h2").textContent=t.recommend;
+  document.querySelector(".hero h1").textContent=t.home;
+  document.querySelector(".hero p").textContent=t.sub;
+  document.getElementById("allTitle").textContent=t.all;
+  document.querySelector("#recommendArea h2").textContent=t.recommend;
 
 }
 
@@ -2015,145 +1701,284 @@ document.querySelector("#recommendArea h2").textContent=t.recommend;
 /* ================= PROFILE ================= */
 
 let selectedAvatar=
-localStorage.getItem("dtbAvatar")||"poop";
+  localStorage.getItem("dtbAvatar")||"poop";
 
 let selectedPhoto=
-localStorage.getItem("dtbPhoto")||"";
+  localStorage.getItem("dtbPhoto")||"";
 
 
 function chooseAvatar(type){
 
-selectedAvatar=type;
-selectedPhoto="";
+  selectedAvatar=type;
+  selectedPhoto="";
 
-localStorage.removeItem("dtbPhoto");
+  localStorage.removeItem("dtbPhoto");
 
-updateAvatar();
+  updateAvatar();
 
 }
 
 
 function choosePhoto(event){
 
-const file=event.target.files[0];
+  const file=event.target.files[0];
 
-if(!file)return;
+  if(!file)return;
 
-const reader=new FileReader();
+  const reader=new FileReader();
 
-reader.onload=function(){
+  reader.onload=function(){
 
-selectedAvatar="photo";
-selectedPhoto=reader.result;
+    selectedAvatar="photo";
+    selectedPhoto=reader.result;
 
-updateAvatar();
+    updateAvatar();
 
-};
+  };
 
-reader.readAsDataURL(file);
+  reader.readAsDataURL(file);
 
 }
 
 
 function updateAvatar(){
 
-const avatar=document.getElementById("profileAvatar");
+  const avatar=
+    document.getElementById("profileAvatar");
 
-avatar.innerHTML="";
+  const headerAvatar=
+    document.getElementById("headerAvatar");
 
-if(
-selectedAvatar==="photo" &&
-selectedPhoto
-){
+  avatar.innerHTML="";
+  headerAvatar.innerHTML="";
 
-const img=document.createElement("img");
+  if(
+    selectedAvatar==="photo" &&
+    selectedPhoto
+  ){
 
-img.src=selectedPhoto;
+    const img=document.createElement("img");
+    img.src=selectedPhoto;
 
-avatar.appendChild(img);
+    avatar.appendChild(img);
 
-return;
+    const mini=document.createElement("img");
+    mini.src=selectedPhoto;
 
-}
+    headerAvatar.appendChild(mini);
 
-if(selectedAvatar==="poop"){
+    return;
+  }
 
-avatar.textContent="💩";
-avatar.style.background="#8b5a2b";
+  if(selectedAvatar==="poop"){
 
-return;
+    avatar.textContent="💩";
+    avatar.style.background="#fff";
+    avatar.style.color="#111";
 
-}
+    headerAvatar.innerHTML=
+      `<span class="mini-poop">💩</span>`;
 
-avatar.textContent="똥";
+    return;
+  }
 
-const colors={
+  avatar.textContent="똥";
 
-green:"#1ed760",
-blue:"#2563eb",
-purple:"#7c3aed",
-red:"#dc2626"
+  const colors={
+    green:"#1ed760",
+    blue:"#2563eb",
+    purple:"#7c3aed",
+    red:"#dc2626"
+  };
 
-};
+  avatar.style.background=
+    colors[selectedAvatar]||"#fff";
 
-avatar.style.background=
-colors[selectedAvatar]||"#1ed760";
+  headerAvatar.innerHTML=
+    `<span class="mini-poop">💩</span>`;
 
 }
 
 
 function saveProfile(){
 
-const name=
-document.getElementById("nameInput").value.trim()
-||"똥꼬브라더스";
+  const name=
+    document.getElementById("nameInput")
+      .value.trim()||"똥꼬브라더스";
 
-const desc=
-document.getElementById("descInput").value.trim()
-||"우리들의 음악 프로필 🎵";
+  const desc=
+    document.getElementById("descInput")
+      .value.trim()||"우리들의 음악 프로필 🎵";
 
-localStorage.setItem("dtbName",name);
-localStorage.setItem("dtbDesc",desc);
-localStorage.setItem("dtbAvatar",selectedAvatar);
+  localStorage.setItem("dtbName",name);
+  localStorage.setItem("dtbDesc",desc);
+  localStorage.setItem("dtbAvatar",selectedAvatar);
 
-if(selectedPhoto){
+  if(selectedPhoto){
+    localStorage.setItem("dtbPhoto",selectedPhoto);
+  }
 
-localStorage.setItem("dtbPhoto",selectedPhoto);
+  document.getElementById("profileName").textContent=name;
+  document.getElementById("profileDesc").textContent=desc;
 
-}
-
-document.getElementById("profileName").textContent=name;
-
-document.getElementById("profileDesc").textContent=desc;
-
-updateAvatar();
+  updateAvatar();
 
 }
 
 
 function loadProfile(){
 
-const name=
-localStorage.getItem("dtbName")||"똥꼬브라더스";
+  const name=
+    localStorage.getItem("dtbName")
+    ||"똥꼬브라더스";
 
-const desc=
-localStorage.getItem("dtbDesc")||"우리들의 음악 프로필 🎵";
+  const desc=
+    localStorage.getItem("dtbDesc")
+    ||"우리들의 음악 프로필 🎵";
 
-selectedAvatar=
-localStorage.getItem("dtbAvatar")||"poop";
+  selectedAvatar=
+    localStorage.getItem("dtbAvatar")
+    ||"poop";
 
-selectedPhoto=
-localStorage.getItem("dtbPhoto")||"";
+  selectedPhoto=
+    localStorage.getItem("dtbPhoto")
+    ||"";
 
-document.getElementById("nameInput").value=name;
+  document.getElementById("nameInput").value=name;
+  document.getElementById("descInput").value=desc;
+  document.getElementById("profileName").textContent=name;
+  document.getElementById("profileDesc").textContent=desc;
 
-document.getElementById("descInput").value=desc;
+  updateAvatar();
 
-document.getElementById("profileName").textContent=name;
+}
 
-document.getElementById("profileDesc").textContent=desc;
 
-updateAvatar();
+/* ================= 💩 EVENT ================= */
+
+function startPoopEvent(){
+
+  const rain=
+    document.getElementById("poopRain");
+
+  rain.innerHTML="";
+  rain.style.display="block";
+
+  /* 엄청 많이 */
+
+  for(let i=0;i<120;i++){
+
+    const poop=document.createElement("div");
+
+    poop.className="falling-poop";
+    poop.textContent="💩";
+
+    poop.style.left=
+      Math.random()*100+"%";
+
+    poop.style.fontSize=
+      (20+Math.random()*45)+"px";
+
+    poop.style.animationDuration=
+      (1+Math.random()*2.5)+"s";
+
+    poop.style.animationDelay=
+      Math.random()*2+"s";
+
+    rain.appendChild(poop);
+
+  }
+
+  setTimeout(()=>{
+
+    rain.style.display="none";
+
+    startDog();
+
+  },4500);
+
+}
+
+
+/* ================= DOG ================= */
+
+function startDog(){
+
+  const dogScene=
+    document.getElementById("dogScene");
+
+  dogScene.style.display="block";
+
+  setTimeout(()=>{
+
+    dogScene.style.display="none";
+
+    startShutdown();
+
+  },7200);
+
+}
+
+
+/* ================= SHUTDOWN ================= */
+
+function startShutdown(){
+
+  const shutdown=
+    document.getElementById("shutdown");
+
+  const poop=
+    document.getElementById("shutdownPoop");
+
+  const box=
+    document.getElementById("shutdownBox");
+
+  shutdown.style.display="flex";
+
+  poop.style.display="block";
+  box.style.display="none";
+
+  setTimeout(()=>{
+
+    poop.style.display="none";
+    box.style.display="block";
+
+  },2100);
+
+}
+
+
+/* ================= RESTART ================= */
+
+function restartSite(){
+
+  const shutdown=
+    document.getElementById("shutdown");
+
+  const restarting=
+    document.getElementById("restarting");
+
+  shutdown.style.display="none";
+
+  restarting.style.display="flex";
+
+  setTimeout(()=>{
+
+    restarting.style.opacity="1";
+
+  },50);
+
+  setTimeout(()=>{
+
+    restarting.style.opacity="0";
+
+  },2300);
+
+  setTimeout(()=>{
+
+    location.reload();
+
+  },3400);
 
 }
 
@@ -2161,50 +1986,44 @@ updateAvatar();
 /* ================= LOAD ================= */
 
 const savedTheme=
-localStorage.getItem("dtbTheme");
+  localStorage.getItem("dtbTheme");
 
 if(savedTheme){
-setTheme(savedTheme);
+  setTheme(savedTheme);
 }
 
 const savedLanguage=
-localStorage.getItem("dtbLanguage");
+  localStorage.getItem("dtbLanguage");
 
 if(savedLanguage){
-setLanguage(savedLanguage);
+  setLanguage(savedLanguage);
 }
 
-
-/* ================= START ================= */
-
 renderSongs();
+loadProfile();
 
-observe();
 
-
-/* ================= INTRO REMOVE ================= */
+/* ================= INTRO ================= */
 
 setTimeout(()=>{
 
-const intro=document.getElementById("intro");
+  const intro=document.getElementById("intro");
 
-if(intro){
-
-intro.style.opacity="0";
-intro.style.visibility="hidden";
-
-}
+  if(intro){
+    intro.style.opacity="0";
+    intro.style.visibility="hidden";
+  }
 
 },5000);
 
 
 setTimeout(()=>{
 
-const intro=document.getElementById("intro");
+  const intro=document.getElementById("intro");
 
-if(intro){
-intro.remove();
-}
+  if(intro){
+    intro.remove();
+  }
 
 },6200);
 
