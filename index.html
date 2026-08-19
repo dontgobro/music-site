@@ -45,7 +45,6 @@ body{
     height:100%;
 }
 
-/* D.T.B. */
 .intro-dtb{
     position:absolute;
     left:calc(50% - 150px);
@@ -53,15 +52,11 @@ body{
     font-size:clamp(52px,8vw,88px);
     font-weight:1000;
     letter-spacing:12px;
-
     opacity:0;
     transform:translateX(-120px);
-
-    animation:
-        dtbSlide 1.4s cubic-bezier(.16,1,.3,1) .2s forwards;
+    animation:dtbSlide 1.4s cubic-bezier(.16,1,.3,1) .2s forwards;
 }
 
-/* _____ */
 .intro-line{
     position:absolute;
     left:50%;
@@ -69,14 +64,10 @@ body{
     width:0;
     height:2px;
     background:#fff;
-
     transform:translateX(-50%);
-
-    animation:
-        lineSlide 1.3s cubic-bezier(.16,1,.3,1) 1.1s forwards;
+    animation:lineSlide 1.3s cubic-bezier(.16,1,.3,1) 1.1s forwards;
 }
 
-/* STUDIO */
 .intro-studio{
     position:absolute;
     left:calc(50% - 10px);
@@ -84,12 +75,9 @@ body{
     font-size:clamp(22px,4vw,38px);
     font-weight:700;
     letter-spacing:14px;
-
     opacity:0;
     transform:translate(100px,20px);
-
-    animation:
-        studioSlide 1.5s cubic-bezier(.16,1,.3,1) 1.6s forwards;
+    animation:studioSlide 1.5s cubic-bezier(.16,1,.3,1) 1.6s forwards;
 }
 
 @keyframes dtbSlide{
@@ -98,7 +86,6 @@ body{
         transform:translateX(-120px);
         filter:blur(15px);
     }
-
     100%{
         opacity:1;
         transform:translateX(0);
@@ -111,7 +98,6 @@ body{
         width:0;
         opacity:0;
     }
-
     100%{
         width:min(420px,70vw);
         opacity:1;
@@ -124,7 +110,6 @@ body{
         transform:translate(100px,20px);
         filter:blur(12px);
     }
-
     100%{
         opacity:1;
         transform:translate(0,0);
@@ -160,7 +145,6 @@ main{
     letter-spacing:2px;
     color:#777;
     margin-bottom:55px;
-
     opacity:0;
     transform:translateY(25px);
     transition:1s ease;
@@ -177,11 +161,9 @@ main{
 
 .title-section{
     min-height:75vh;
-
     display:flex;
     flex-direction:column;
     justify-content:center;
-
     padding-bottom:100px;
 }
 
@@ -190,11 +172,9 @@ main{
     line-height:1.05;
     font-weight:1000;
     letter-spacing:-3px;
-
     opacity:0;
     transform:translateY(45px);
     filter:blur(10px);
-
     transition:
         opacity 1s ease,
         transform 1s cubic-bezier(.16,1,.3,1),
@@ -212,10 +192,8 @@ main{
     color:#777;
     font-size:15px;
     line-height:1.8;
-
     opacity:0;
     transform:translateY(30px);
-
     transition:
         opacity 1s ease .15s,
         transform 1s ease .15s;
@@ -239,10 +217,7 @@ main{
     border:1px solid #222;
     border-radius:24px;
     padding:35px;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.4);
-
+    box-shadow:0 25px 80px rgba(0,0,0,.4);
     opacity:0;
     transform:translateY(70px);
     transition:
@@ -301,10 +276,8 @@ main{
     border:1px solid #202020;
     border-radius:24px;
     padding:35px;
-
     opacity:0;
     transform:translateY(80px);
-
     transition:
         opacity 1s ease,
         transform 1s cubic-bezier(.16,1,.3,1);
@@ -325,13 +298,10 @@ main{
     display:flex;
     align-items:center;
     gap:15px;
-
     padding:18px 0;
     border-bottom:1px solid #1d1d1d;
-
     color:#bbb;
     font-size:16px;
-
     opacity:0;
     transform:translateX(-30px);
     transition:
@@ -360,6 +330,12 @@ main{
     transition-delay:.6s;
 }
 
+/* 채팅 기능 */
+
+.future-box.show .feature:nth-child(6){
+    transition-delay:.75s;
+}
+
 .feature:last-child{
     border-bottom:0;
 }
@@ -381,7 +357,6 @@ main{
     color:#444;
     font-size:12px;
     letter-spacing:2px;
-
     opacity:0;
     transform:translateY(25px);
     transition:1s ease;
@@ -456,7 +431,6 @@ main{
     </div>
 </div>
 
-
 <!-- =========================
      SITE
 ========================= -->
@@ -468,7 +442,6 @@ main{
     <div id="brand" class="small-brand">
         D.T.B. (구. 똥꼬브라더스)
     </div>
-
 
     <!-- 제목 -->
 
@@ -485,7 +458,6 @@ main{
         </p>
 
     </section>
-
 
     <!-- 점검 시간 -->
 
@@ -514,7 +486,6 @@ main{
         </div>
 
     </section>
-
 
     <!-- 추가 예정 -->
 
@@ -546,10 +517,14 @@ main{
                 <div>더 많은 미니게임</div>
             </div>
 
+            <div class="feature">
+                <div class="dot"></div>
+                <div>채팅 기능</div>
+            </div>
+
         </div>
 
     </section>
-
 
     <div id="footer" class="footer">
         D.T.B. STUDIO · 2026
@@ -558,7 +533,6 @@ main{
 </main>
 
 </div>
-
 
 <script>
 
@@ -614,7 +588,6 @@ const observer = new IntersectionObserver(
         threshold:.15
     }
 );
-
 
 document.querySelectorAll(
     ".info-box, .future-box, .footer"
