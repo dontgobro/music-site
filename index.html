@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>D.T.B. MUSIC</title>
 
 <style>
@@ -11,252 +11,213 @@
 html{scroll-behavior:smooth}
 
 body{
-  margin:0;
-  background:#080808;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  padding-bottom:110px;
-  transition:.5s;
+ margin:0;
+ background:#080808;
+ color:#fff;
+ font-family:Arial,sans-serif;
+ padding-bottom:100px;
+ overflow-x:hidden;
+ transition:.4s;
 }
 
 body.white{background:#f4f4f4;color:#111}
 body.green{background:#061b10;color:#fff}
 body.poop{
-  background:#6b431d;
-  background-image:radial-gradient(circle,#a06a35 2px,transparent 3px);
-  background-size:30px 30px;
+ background:#6b431d;
+ background-image:radial-gradient(circle,#a06a35 2px,transparent 3px);
+ background-size:30px 30px;
 }
+
+button,input{font-family:inherit}
+
+button{cursor:pointer}
 
 /* INTRO */
 
 #intro{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+ position:fixed;
+ inset:0;
+ background:#000;
+ z-index:99999;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ transition:1s;
 }
 
-.intro-wrap{text-align:center}
+.intro-wrap{
+ text-align:center;
+}
 
 .intro-dtb{
-  font-size:70px;
-  font-weight:900;
-  letter-spacing:8px;
-  opacity:0;
-  animation:introDtb 1.5s forwards;
+ font-size:65px;
+ font-weight:1000;
+ letter-spacing:10px;
+ animation:introIn 1.5s forwards;
 }
 
 .intro-studio{
-  font-size:28px;
-  letter-spacing:15px;
-  margin-top:12px;
+ font-size:25px;
+ letter-spacing:14px;
+ margin-top:10px;
+ opacity:0;
+ animation:typeIn 2s 1s forwards;
+}
+
+@keyframes introIn{
+ from{
   opacity:0;
-  width:0;
-  overflow:hidden;
-  white-space:nowrap;
-  margin-left:auto;
-  margin-right:auto;
-  animation:
-    studioWrite 1.8s 1s steps(12) forwards;
-}
-
-@keyframes introDtb{
-  from{opacity:0;transform:scale(.7);filter:blur(15px)}
-  to{opacity:1;transform:scale(1);filter:blur(0)}
-}
-
-@keyframes studioWrite{
-  from{width:0;opacity:0}
-  to{width:100%;opacity:1}
-}
-
-/* TRANSITION */
-
-#transition{
-  position:fixed;
-  inset:0;
-  z-index:99990;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  visibility:hidden;
-  transition:.6s;
-}
-
-#transition.show{
+  transform:translateY(30px) scale(.7);
+  filter:blur(15px)
+ }
+ to{
   opacity:1;
-  visibility:visible;
+  transform:none;
+  filter:blur(0)
+ }
 }
 
-#transitionText{
-  font-size:40px;
-  font-weight:900;
+@keyframes typeIn{
+ from{opacity:0;width:0}
+ to{opacity:1;width:330px}
 }
 
 /* HEADER */
 
 header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(24,24,24,.96);
-  backdrop-filter:blur(15px);
-  padding:12px 16px;
-  display:flex;
-  align-items:center;
-  gap:10px;
+ position:sticky;
+ top:0;
+ z-index:100;
+ padding:12px 16px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ background:rgba(20,20,20,.95);
+ backdrop-filter:blur(15px);
 }
 
 header b{white-space:nowrap}
-header span{color:#1ed760}
+header b span{color:#1ed760}
 
 #search{
-  flex:1;
-  min-width:0;
-  padding:12px 18px;
-  border:0;
-  border-radius:25px;
-  background:#292929;
-  color:#fff;
-  outline:none;
+ flex:1;
+ min-width:100px;
+ border:0;
+ outline:0;
+ padding:12px 17px;
+ border-radius:25px;
+ background:#292929;
+ color:#fff;
 }
 
 .header-actions{
-  margin-left:auto;
-  display:flex;
-  gap:7px;
-  flex-shrink:0;
+ display:flex;
+ gap:7px;
+ margin-left:auto;
 }
 
 .header-btn{
-  height:42px;
-  min-width:42px;
-  padding:0 12px;
-  border:0;
-  border-radius:21px;
-  background:#292929;
-  color:#fff;
-  cursor:pointer;
-  font-size:17px;
+ min-width:42px;
+ height:42px;
+ border:0;
+ border-radius:22px;
+ background:#292929;
+ color:#fff;
+ font-weight:bold;
 }
 
-.profile-header-btn{
-  display:flex;
-  align-items:center;
-  gap:6px;
+.header-btn:hover{
+ background:#3b3b3b;
 }
-
-#headerAvatar{
-  width:25px;
-  height:25px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:#fff;
-  color:#111;
-  font-size:13px;
-  font-weight:bold;
-}
-
-#headerAvatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* MAIN */
 
 main{
-  max-width:900px;
-  min-height:100vh;
-  margin:auto;
-  padding:25px 20px 150px;
+ max-width:900px;
+ min-height:100vh;
+ margin:auto;
+ padding:25px 20px 150px;
 }
 
-.page{display:none;min-height:calc(100vh - 100px)}
+.page{
+ display:none;
+ min-height:calc(100vh - 100px);
+}
+
 .page.active{display:block}
 
 .hero{
-  min-height:300px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+ min-height:320px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
 }
 
-.hero h1{font-size:44px;margin:0 0 12px}
-.hero p{color:#999}
-
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:.7s;
+.hero h1{
+ font-size:45px;
+ margin:0 0 10px;
 }
 
-.reveal.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* CARDS */
+.hero p{color:#888}
 
 .cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
 }
 
 .card{
-  background:#171717;
-  border-radius:15px;
-  padding:20px;
-  min-height:150px;
-  cursor:pointer;
-  transition:.25s;
+ background:#171717;
+ border-radius:16px;
+ padding:22px;
+ min-height:150px;
+ cursor:pointer;
+ transition:.25s;
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  background:#282828;
+ transform:translateY(-5px);
+ background:#292929;
 }
 
-.card-icon{font-size:38px;margin-bottom:12px}
-.card-title{font-size:19px;font-weight:bold}
-.card-desc{color:#888;font-size:13px;margin-top:6px}
+.card-icon{font-size:40px}
+.card-title{
+ margin-top:10px;
+ font-size:19px;
+ font-weight:bold;
+}
 
-/* SONG */
+.card-desc{
+ margin-top:6px;
+ color:#888;
+ font-size:13px;
+}
 
 .song{
-  background:#171717;
-  border-radius:12px;
-  padding:15px;
-  margin:11px 0;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  cursor:pointer;
-  transition:.2s;
+ display:flex;
+ align-items:center;
+ gap:14px;
+ margin:11px 0;
+ padding:15px;
+ background:#171717;
+ border-radius:13px;
+ cursor:pointer;
+ transition:.2s;
 }
 
-.song:hover{background:#282828;transform:translateX(4px)}
+.song:hover{
+ transform:translateX(5px);
+ background:#292929;
+}
 
 .song-icon{
-  width:55px;
-  height:55px;
-  border-radius:9px;
-  background:linear-gradient(135deg,#222,#555);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  flex-shrink:0;
+ width:55px;
+ height:55px;
+ border-radius:10px;
+ background:linear-gradient(135deg,#222,#555);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:25px;
+ flex-shrink:0;
 }
 
 .song-info{flex:1}
@@ -264,114 +225,103 @@ main{
 .artist{color:#888;font-size:13px;margin-top:5px}
 
 .play-button{
-  border:0;
-  border-radius:50%;
-  background:#1ed760;
-  width:42px;
-  height:42px;
-  cursor:pointer;
+ width:42px;
+ height:42px;
+ border:0;
+ border-radius:50%;
+ background:#1ed760;
+ color:#000;
 }
 
-/* PAGE */
-
 .page-title{
-  font-size:42px;
-  margin:40px 0 8px;
+ font-size:42px;
+ margin-top:45px;
 }
 
 .page-sub{
-  color:#888;
-  margin-bottom:28px;
+ color:#888;
+ margin-bottom:30px;
 }
 
 .back{
-  display:block;
-  margin:30px 0 70px;
-  padding:14px 22px;
-  border:0;
-  border-radius:30px;
-  background:#1ed760;
-  font-weight:bold;
-  cursor:pointer;
+ border:0;
+ border-radius:25px;
+ padding:13px 22px;
+ background:#1ed760;
+ color:#000;
+ font-weight:bold;
+ margin:25px 0;
 }
 
-/* PEOPLE */
+.person,
+.settings-box,
+.profile-box{
+ background:#171717;
+ border-radius:16px;
+ padding:20px;
+ margin:14px 0;
+}
 
 .person{
-  background:#171717;
-  border-radius:12px;
-  padding:20px;
-  margin:12px 0;
-  font-size:19px;
-  font-weight:bold;
+ font-size:19px;
+ font-weight:bold;
 }
 
 .person span{
-  display:block;
-  color:#888;
-  font-size:14px;
-  margin-top:6px;
-  font-weight:normal;
+ display:block;
+ color:#888;
+ font-size:14px;
+ margin-top:7px;
+ font-weight:normal;
 }
 
 .info-btn{
-  margin-top:15px;
-  border:0;
-  border-radius:20px;
-  padding:9px 15px;
-  background:#292929;
-  color:#fff;
+ margin-top:14px;
+ border:0;
+ border-radius:20px;
+ padding:9px 15px;
+ background:#292929;
+ color:#fff;
 }
 
 .person-detail{
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transition:.5s;
+ max-height:0;
+ overflow:hidden;
+ opacity:0;
+ transition:.4s;
 }
 
 .person-detail.open{
-  max-height:300px;
-  opacity:1;
-  padding-top:15px;
+ max-height:300px;
+ opacity:1;
+ padding-top:15px;
 }
 
 .person-detail-text{
-  color:#bbb;
-  line-height:1.7;
+ color:#bbb;
+ line-height:1.7;
 }
 
 /* SETTINGS */
 
-.settings-box,
-.profile-box{
-  background:#171717;
-  border-radius:15px;
-  padding:20px;
-  margin:15px 0;
-}
-
 .setting-title{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:15px;
+ font-size:20px;
+ font-weight:bold;
+ margin-bottom:15px;
 }
 
 .theme-buttons{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
 }
 
 .theme-btn{
-  border:2px solid transparent;
-  border-radius:12px;
-  padding:12px 18px;
-  cursor:pointer;
-  font-weight:bold;
+ border:0;
+ padding:12px 18px;
+ border-radius:12px;
+ font-weight:bold;
 }
-
-.theme-btn.active{border-color:#1ed760}
 
 .theme-dark{background:#111;color:#fff}
 .theme-white{background:#fff;color:#111}
@@ -379,85 +329,91 @@ main{
 .theme-poop{background:#6b431d;color:#fff}
 
 .lang{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  padding:15px;
-  background:#222;
-  border-radius:12px;
-  margin:8px 0;
-  cursor:pointer;
+ display:flex;
+ gap:15px;
+ align-items:center;
+ background:#222;
+ border-radius:12px;
+ padding:15px;
+ margin:8px 0;
+ cursor:pointer;
 }
 
 .lang small{
-  display:block;
-  color:#888;
-  margin-top:4px;
+ display:block;
+ color:#888;
+ margin-top:4px;
 }
 
 /* PROFILE */
 
-.profile-head{text-align:center;padding:15px 0 30px}
+.profile-head{
+ text-align:center;
+ padding:10px 0 30px;
+}
 
 .profile-avatar{
-  width:130px;
-  height:130px;
-  margin:auto;
-  border-radius:50%;
-  background:#fff;
-  color:#111;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:42px;
-  font-weight:900;
-  overflow:hidden;
+ width:130px;
+ height:130px;
+ margin:auto;
+ border-radius:50%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#fff;
+ color:#111;
+ font-size:42px;
+ font-weight:900;
+ overflow:hidden;
 }
 
 .profile-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+ width:100%;
+ height:100%;
+ object-fit:cover;
 }
 
 .profile-name{
-  font-size:28px;
-  font-weight:bold;
-  margin-top:17px;
+ margin-top:18px;
+ font-size:28px;
+ font-weight:bold;
 }
 
-.profile-desc{color:#888;margin-top:7px}
+.profile-desc{
+ color:#888;
+ margin-top:7px;
+}
 
 .edit-input{
-  width:100%;
-  padding:14px;
-  margin:6px 0;
-  border:0;
-  border-radius:10px;
-  background:#292929;
-  color:#fff;
-  outline:none;
+ width:100%;
+ padding:14px;
+ margin:7px 0;
+ border:0;
+ outline:0;
+ border-radius:10px;
+ background:#292929;
+ color:#fff;
 }
 
 .avatar-options{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
 }
 
 .avatar-option{
-  width:65px;
-  height:65px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  border:2px solid #444;
-  font-weight:bold;
+ width:65px;
+ height:65px;
+ border-radius:50%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ border:2px solid #444;
+ font-size:22px;
 }
 
 .avatar-white{background:#fff;color:#111}
+.avatar-green{background:#1ed760}
 .avatar-blue{background:#2563eb}
 .avatar-purple{background:#7c3aed}
 .avatar-red{background:#dc2626}
@@ -466,271 +422,421 @@ main{
 .file{display:none}
 
 .save{
-  margin-top:15px;
-  border:0;
-  border-radius:25px;
-  padding:13px 25px;
-  background:#1ed760;
-  font-weight:bold;
+ border:0;
+ border-radius:25px;
+ padding:13px 25px;
+ background:#1ed760;
+ color:#000;
+ font-weight:bold;
+ margin-top:15px;
 }
 
-/* MINI GAME */
+/* UPDATE */
 
-.game-card.disabled{
-  opacity:.4;
-  filter:grayscale(1);
-  cursor:not-allowed;
+.update-popup{
+ position:relative;
+ padding:24px;
+ margin-bottom:25px;
+ border-radius:18px;
+ background:linear-gradient(135deg,#171717,#292929);
+ border:1px solid #333;
 }
 
-.game-screen{
-  position:fixed;
-  inset:0;
-  z-index:20000;
-  background:#080808;
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
+.update-close{
+ position:absolute;
+ top:7px;
+ right:12px;
+ border:0;
+ background:none;
+ color:#888;
+ font-size:28px;
 }
 
-.game-screen.open{display:flex}
-
-.game-top{
-  height:65px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 15px;
-  background:#151515;
-  border-bottom:1px solid #292929;
+.update-icon{font-size:45px}
+.update-title{font-size:23px;font-weight:900}
+.update-version{
+ color:#1ed760;
+ font-weight:bold;
+ margin-top:5px;
 }
 
-.game-top button{
-  border:0;
-  border-radius:12px;
-  background:#292929;
-  color:#fff;
-  width:42px;
-  height:42px;
-  font-size:20px;
+.update-popup p{color:#999}
+
+.update-game{
+ border:0;
+ border-radius:25px;
+ padding:12px 20px;
+ background:#1ed760;
+ font-weight:bold;
 }
 
-.game-top-center{text-align:center}
-.game-top-center b{display:block}
-.game-top-center small{color:#888}
+/* GAMES */
 
-.game-menu{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-top:30px;
+.game-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:16px;
 }
 
-/* POOP GAME */
-
-#poopGameArea{
-  position:relative;
-  flex:1;
-  overflow:hidden;
-  background:linear-gradient(#101010,#181818);
-  touch-action:none;
+.game-card{
+ background:#171717;
+ border-radius:18px;
+ padding:25px;
+ min-height:190px;
+ cursor:pointer;
+ transition:.25s;
 }
 
-.dodge-player{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  background:#fff;
-  color:#111;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-  user-select:none;
+.game-card:hover{
+ background:#292929;
+ transform:translateY(-6px);
 }
 
-.falling-poop{
-  position:absolute;
-  top:-70px;
-  font-size:48px;
-  user-select:none;
+.game-icon{font-size:50px}
+.game-name{
+ margin-top:10px;
+ font-size:22px;
+ font-weight:900;
 }
 
-.poop-score{
-  position:absolute;
-  top:15px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:5;
-  font-size:20px;
-  font-weight:bold;
+.game-desc{
+ color:#888;
+ margin-top:8px;
+ line-height:1.5;
 }
 
-/* GAME OVER */
-
-.game-over{
-  position:absolute;
-  inset:0;
-  z-index:50;
-  background:rgba(0,0,0,.82);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+.dev{
+ opacity:.4;
+ cursor:not-allowed;
 }
-
-.game-over.show{display:flex}
-
-.game-over-box{
-  background:#181818;
-  border-radius:20px;
-  padding:35px;
-  width:min(85%,350px);
-}
-
-.game-over-box h1{font-size:38px}
-
-.game-over-box button{
-  width:100%;
-  padding:13px;
-  margin-top:10px;
-  border:0;
-  border-radius:12px;
-  background:#1ed760;
-  font-weight:bold;
-}
-
-/* BLOCK GAME */
-
-#blockGameArea{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  overflow:auto;
-}
-
-.block-board{
-  width:min(92vw,500px);
-  aspect-ratio:1;
-  margin:25px auto 15px;
-  padding:5px;
-  display:grid;
-  grid-template-columns:repeat(8,1fr);
-  gap:4px;
-  background:#151515;
-  border-radius:15px;
-}
-
-.block-cell{
-  background:#292929;
-  border-radius:5px;
-}
-
-.block-cell.filled{box-shadow:inset 0 0 0 2px #ffffff18}
-
-.block-info{
-  width:min(92vw,500px);
-  display:flex;
-  justify-content:space-between;
-  color:#aaa;
-}
-
-.block-pieces{
-  width:min(92vw,500px);
-  min-height:140px;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-}
-
-.block-piece{
-  padding:12px;
-  border-radius:12px;
-  cursor:pointer;
-}
-
-.block-piece.selected{
-  background:#333;
-  transform:scale(1.08);
-}
-
-.mini-grid{
-  display:grid;
-  gap:3px;
-}
-
-.mini-cell{
-  width:20px;
-  height:20px;
-  border-radius:4px;
-}
-
-.block-piece.used{
-  opacity:.15;
-  pointer-events:none;
-}
-
-.block-overlay{
-  position:absolute;
-  inset:0;
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:#000b;
-}
-
-.block-overlay.show{display:flex}
 
 /* PLAYER */
 
 .player{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  z-index:500;
-  background:rgba(24,24,24,.97);
-  padding:10px 20px;
-  border-top:1px solid #333;
+ position:fixed;
+ left:0;
+ right:0;
+ bottom:0;
+ z-index:300;
+ padding:10px 20px;
+ background:rgba(20,20,20,.97);
+ backdrop-filter:blur(15px);
+ border-top:1px solid #333;
 }
 
 .player-top{
-  display:flex;
-  gap:10px;
-  margin-bottom:6px;
+ display:flex;
+ gap:10px;
+ margin-bottom:6px;
 }
 
 #playerArtist{color:#888}
 
 audio{width:100%}
 
+/* ==============================
+   FULLSCREEN GAME
+============================== */
+
+#gameFullscreen{
+ position:fixed;
+ inset:0;
+ z-index:999999;
+ background:#050505;
+ display:none;
+ color:#fff;
+}
+
+#gameFullscreen.active{
+ display:flex;
+}
+
+.game-screen{
+ width:100%;
+ height:100%;
+ display:flex;
+ flex-direction:column;
+}
+
+.game-header{
+ height:65px;
+ padding:10px 18px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ background:#111;
+ border-bottom:1px solid #292929;
+ flex-shrink:0;
+}
+
+.game-header-left{
+ display:flex;
+ align-items:center;
+ gap:15px;
+}
+
+.game-title{
+ font-size:21px;
+ font-weight:900;
+}
+
+.game-score-big{
+ font-size:20px;
+ font-weight:bold;
+}
+
+.exit-game{
+ border:0;
+ border-radius:20px;
+ padding:9px 16px;
+ background:#292929;
+ color:#fff;
+}
+
+.game-canvas-wrap{
+ flex:1;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:15px;
+ overflow:hidden;
+}
+
+/* DODGE */
+
+#dodgeCanvas{
+ position:relative;
+ width:min(700px,95vw);
+ height:min(700px,75vh);
+ min-height:400px;
+ background:
+ radial-gradient(circle at 20% 20%,#333 0 2px,transparent 3px),
+ linear-gradient(#151515,#050505);
+ background-size:80px 80px,100% 100%;
+ border:2px solid #333;
+ border-radius:20px;
+ overflow:hidden;
+}
+
+.dodge-player{
+ position:absolute;
+ bottom:25px;
+ left:50%;
+ transform:translateX(-50%);
+ font-size:48px;
+ width:55px;
+ height:55px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ z-index:5;
+ user-select:none;
+}
+
+.dodge-poop{
+ position:absolute;
+ top:-70px;
+ font-size:43px;
+ z-index:4;
+}
+
+@keyframes poopFall{
+ from{transform:translateY(-80px) rotate(0)}
+ to{transform:translateY(900px) rotate(540deg)}
+}
+
+.dodge-controls{
+ position:absolute;
+ bottom:20px;
+ left:50%;
+ transform:translateX(-50%);
+ display:flex;
+ gap:12px;
+ z-index:20;
+}
+
+.dodge-control{
+ width:75px;
+ height:55px;
+ border:0;
+ border-radius:15px;
+ background:rgba(40,40,40,.9);
+ color:#fff;
+ font-size:25px;
+}
+
+.game-over{
+ position:absolute;
+ inset:0;
+ z-index:50;
+ background:rgba(0,0,0,.78);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+}
+
+.game-over.show{display:flex}
+
+.game-over-box{
+ background:#171717;
+ border:1px solid #444;
+ border-radius:22px;
+ padding:35px;
+ min-width:280px;
+}
+
+.game-over h2{
+ font-size:34px;
+ margin:0 0 10px;
+}
+
+.restart-game{
+ border:0;
+ border-radius:25px;
+ padding:13px 25px;
+ background:#1ed760;
+ font-weight:bold;
+ margin-top:15px;
+}
+
+/* BLOCK BLAST */
+
+#blockGameBoard{
+ width:min(500px,94vw);
+ aspect-ratio:1;
+ padding:7px;
+ background:#181818;
+ border-radius:18px;
+ display:grid;
+ grid-template-columns:repeat(8,1fr);
+ gap:5px;
+}
+
+.blast-cell{
+ min-width:0;
+ aspect-ratio:1;
+ border-radius:6px;
+ background:#292929;
+ cursor:pointer;
+ transition:.12s;
+}
+
+.blast-cell:hover{
+ filter:brightness(1.25);
+}
+
+.blast-cell.filled{
+ background:var(--block-color,#1ed760);
+ box-shadow:inset 0 2px 4px rgba(255,255,255,.15);
+}
+
+.block-bottom{
+ padding:12px 15px 20px;
+ background:#101010;
+}
+
+.shape-tray{
+ display:flex;
+ justify-content:center;
+ gap:15px;
+ height:100px;
+}
+
+.shape-piece{
+ width:90px;
+ height:85px;
+ border:0;
+ border-radius:15px;
+ background:#222;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+
+.shape-piece.selected{
+ outline:3px solid #fff;
+}
+
+.mini-shape{
+ display:grid;
+ grid-template-columns:repeat(4,15px);
+ grid-template-rows:repeat(4,15px);
+ gap:2px;
+}
+
+.mini-cell{
+ width:15px;
+ height:15px;
+ border-radius:3px;
+}
+
+.empty-mini{background:transparent}
+
+.blast-message{
+ text-align:center;
+ color:#888;
+ min-height:20px;
+}
+
 /* MOBILE */
 
 @media(max-width:600px){
 
-  header{flex-wrap:wrap}
+ header{
+  flex-wrap:wrap;
+ }
 
-  #search{
-    order:3;
-    flex-basis:100%;
-  }
+ #search{
+  order:3;
+  flex-basis:100%;
+ }
 
-  .hero h1{font-size:34px}
-  .page-title{font-size:34px}
+ .cards,
+ .game-grid{
+  grid-template-columns:1fr;
+ }
 
-  .cards,
-  .game-menu{
-    grid-template-columns:1fr;
-  }
+ .hero h1{
+  font-size:34px;
+ }
 
-  .intro-dtb{font-size:52px}
-  .intro-studio{font-size:20px}
+ .page-title{
+  font-size:34px;
+ }
 
+ .intro-dtb{
+  font-size:45px;
+ }
+
+ .intro-studio{
+  font-size:20px;
+ }
+
+ .game-header{
+  height:58px;
+ }
+
+ #dodgeCanvas{
+  height:65vh;
+  min-height:330px;
+ }
+
+ .dodge-controls{
+  bottom:12px;
+ }
+
+ .game-canvas-wrap{
+  padding:8px;
+ }
+
+ .shape-tray{
+  gap:6px;
+ }
+
+ .shape-piece{
+  width:80px;
+ }
 }
 </style>
 </head>
@@ -740,55 +846,38 @@ audio{width:100%}
 <!-- INTRO -->
 
 <div id="intro">
-  <div class="intro-wrap">
-    <div class="intro-dtb">D.T.B.</div>
-    <div class="intro-studio">STUDIO</div>
-  </div>
+ <div class="intro-wrap">
+  <div class="intro-dtb">D.T.B.</div>
+  <div class="intro-studio">STUDIO</div>
+ </div>
 </div>
-
-<!-- TRANSITION -->
-
-<div id="transition">
-  <div id="transitionText"></div>
-</div>
-
-
-<div id="site">
 
 <header>
 
-  <b>🎵 똥꼬브라더스 <span>MUSIC</span></b>
+<b>🎵 똥꼬브라더스 <span>MUSIC</span></b>
 
-  <input id="search" placeholder="🔍 노래 검색">
+<input id="search" placeholder="🔍 노래 검색">
 
-  <div class="header-actions">
+<div class="header-actions">
 
-    <button
-      class="header-btn profile-header-btn"
-      onclick="openPage('profile')"
-    >
-      <span id="headerAvatar">똥</span>
-      프로필
-    </button>
+<button class="header-btn" onclick="openPage('profile')">
+ 👤
+</button>
 
-    <button
-      class="header-btn"
-      onclick="openPage('minigame')"
-    >
-      🎮
-    </button>
+<button class="header-btn" onclick="openPage('games')">
+ 🎮
+</button>
 
-    <button
-      class="header-btn"
-      onclick="openPage('settings')"
-    >
-      ⚙️
-    </button>
+<button class="header-btn" onclick="setTheme('poop')">
+ 💩
+</button>
 
-  </div>
+<button class="header-btn" onclick="openPage('settings')">
+ ⚙️
+</button>
 
+</div>
 </header>
-
 
 <main>
 
@@ -796,47 +885,67 @@ audio{width:100%}
 
 <div id="homePage" class="page active">
 
-  <section class="hero">
+<div id="update14" class="update-popup">
 
-    <h1>똥꼬브라더스 뮤직</h1>
+<button class="update-close" onclick="closeUpdate()">×</button>
 
-    <p>똥꼬브라더스의 새 이름은 D.T.B.입니다</p>
+<div class="update-icon">🎮</div>
 
-  </section>
+<div class="update-title">D.T.B. MUSIC</div>
+<div class="update-version">UPDATE 2.0</div>
 
+<p>
+미니게임 시스템이 완전히 새롭게 바뀌었습니다.
+</p>
 
-  <div id="recommendArea">
+<button class="update-game"
+onclick="openPage('games');closeUpdate()">
+🎮 게임 하러가기
+</button>
 
-    <h2>추천 똥꼬똥꼬</h2>
+</div>
 
-    <div class="cards">
+<section class="hero">
 
-      <div class="card" onclick="openPage('hits')">
-        <div class="card-icon">🔥</div>
-        <div class="card-title">히트곡</div>
-        <div class="card-desc">똥꼬브라더스 인기곡</div>
-      </div>
+<h1>똥꼬브라더스 MUSIC</h1>
 
-      <div class="card" onclick="openPage('new')">
-        <div class="card-icon">🆕</div>
-        <div class="card-title">신곡</div>
-        <div class="card-desc">새롭게 나온 노래</div>
-      </div>
+<p>
+똥꼬브라더스의 새 이름은 D.T.B.입니다
+</p>
 
-      <div class="card" onclick="openPage('people')">
-        <div class="card-icon">🎤</div>
-        <div class="card-title">노래 만든 사람</div>
-        <div class="card-desc">똥꼬브라더스 제작진</div>
-      </div>
+</section>
 
-    </div>
+<div id="recommendArea">
 
-  </div>
+<h2>추천 똥꼬똥꼬</h2>
 
+<div class="cards">
 
-  <h2 id="allTitle">전체 노래</h2>
+<div class="card" onclick="openPage('hits')">
+ <div class="card-icon">🔥</div>
+ <div class="card-title">히트곡</div>
+ <div class="card-desc">똥꼬브라더스 인기곡</div>
+</div>
 
-  <div id="songList"></div>
+<div class="card" onclick="openPage('new')">
+ <div class="card-icon">🆕</div>
+ <div class="card-title">신곡</div>
+ <div class="card-desc">새롭게 나온 노래</div>
+</div>
+
+<div class="card" onclick="openPage('people')">
+ <div class="card-icon">🎤</div>
+ <div class="card-title">노래 만든 사람</div>
+ <div class="card-desc">똥꼬브라더스 제작진</div>
+</div>
+
+</div>
+
+</div>
+
+<h2 id="allTitle">전체 노래</h2>
+
+<div id="songList"></div>
 
 </div>
 
@@ -845,12 +954,17 @@ audio{width:100%}
 
 <div id="hits" class="page">
 
-  <h1 class="page-title">🔥 히트곡</h1>
-  <p class="page-sub">똥꼬브라더스의 대표 히트곡</p>
+<h1 class="page-title">🔥 히트곡</h1>
 
-  <div id="hitList"></div>
+<p class="page-sub">
+똥꼬브라더스의 대표 히트곡
+</p>
 
-  <button class="back" onclick="goHome()">← 홈으로 돌아가기</button>
+<div id="hitList"></div>
+
+<button class="back" onclick="goHome()">
+← 홈으로 돌아가기
+</button>
 
 </div>
 
@@ -859,12 +973,17 @@ audio{width:100%}
 
 <div id="new" class="page">
 
-  <h1 class="page-title">🆕 신곡</h1>
-  <p class="page-sub">똥꼬브라더스의 새로운 노래</p>
+<h1 class="page-title">🆕 신곡</h1>
 
-  <div id="newList"></div>
+<p class="page-sub">
+새롭게 나온 똥꼬브라더스 노래
+</p>
 
-  <button class="back" onclick="goHome()">← 홈으로 돌아가기</button>
+<div id="newList"></div>
+
+<button class="back" onclick="goHome()">
+← 홈으로 돌아가기
+</button>
 
 </div>
 
@@ -873,46 +992,56 @@ audio{width:100%}
 
 <div id="people" class="page">
 
-  <h1 class="page-title">🎤 노래 만든 사람</h1>
-  <p class="page-sub">똥꼬브라더스를 만든 사람들</p>
+<h1 class="page-title">🎤 노래 만든 사람</h1>
 
-  <div class="person">
-    김지완
-    <span>지꼬똥</span>
+<p class="page-sub">
+똥꼬브라더스를 만든 사람들
+</p>
 
-    <button class="info-btn" onclick="togglePerson('kimInfo')">
-      설명보기
-    </button>
+<div class="person">
 
-    <div id="kimInfo" class="person-detail">
-      <div class="person-detail-text">
-        똥꼬브라더스 공동창업자,<br>
-        비트박스, 게임,<br>
-        덩득과자 맛평가 잘함,<br>
-        아이디어 좋음
-      </div>
-    </div>
-  </div>
+김지완
+<span>지꼬똥</span>
 
+<button class="info-btn"
+onclick="togglePerson('kimInfo')">
+설명보기
+</button>
 
-  <div class="person">
-    이호빈
-    <span>호꼬똥</span>
+<div id="kimInfo" class="person-detail">
+<div class="person-detail-text">
+똥꼬브라더스 공동창업자,<br>
+비트박스, 게임,<br>
+덩득과자 맛평가 잘함,<br>
+아이디어 좋음
+</div>
+</div>
 
-    <button class="info-btn" onclick="togglePerson('leeInfo')">
-      설명보기
-    </button>
+</div>
 
-    <div id="leeInfo" class="person-detail">
-      <div class="person-detail-text">
-        똥꼬브라더스 공동창업자,<br>
-        덩득과자 제조 잘함,<br>
-        영상편집 잘함
-      </div>
-    </div>
-  </div>
+<div class="person">
 
-  <button class="back" onclick="goHome()">← 홈으로 돌아가기</button>
+이호빈
+<span>호꼬똥</span>
+
+<button class="info-btn"
+onclick="togglePerson('leeInfo')">
+설명보기
+</button>
+
+<div id="leeInfo" class="person-detail">
+<div class="person-detail-text">
+똥꼬브라더스 공동창업자,<br>
+덩득과자 제조 잘함,<br>
+영상편집 잘함
+</div>
+</div>
+
+</div>
+
+<button class="back" onclick="goHome()">
+← 홈으로 돌아가기
+</button>
 
 </div>
 
@@ -921,74 +1050,76 @@ audio{width:100%}
 
 <div id="settings" class="page">
 
-  <h1 class="page-title">⚙️ 설정</h1>
-  <p class="page-sub">이것은 매우 설정인 브로</p>
+<h1 class="page-title">⚙️ 설정</h1>
 
+<p class="page-sub">
+이것은 매우 설정인 브로
+</p>
 
-  <div class="settings-box">
+<div class="settings-box">
 
-    <div class="setting-title">🎨 테마</div>
+<div class="setting-title">🎨 테마</div>
 
-    <div class="theme-buttons">
+<div class="theme-buttons">
 
-      <button class="theme-btn theme-dark" onclick="setTheme('dark')">
-        다크
-      </button>
+<button class="theme-btn theme-dark"
+onclick="setTheme('dark')">
+다크
+</button>
 
-      <button class="theme-btn theme-white" onclick="setTheme('white')">
-        화이트
-      </button>
+<button class="theme-btn theme-white"
+onclick="setTheme('white')">
+화이트
+</button>
 
-      <button class="theme-btn theme-green" onclick="setTheme('green')">
-        그린
-      </button>
+<button class="theme-btn theme-green"
+onclick="setTheme('green')">
+그린
+</button>
 
-      <button class="theme-btn theme-poop" onclick="setTheme('poop')">
-        💩 똥
-      </button>
+<button class="theme-btn theme-poop"
+onclick="setTheme('poop')">
+💩 똥
+</button>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
+<div class="settings-box">
 
-  <div class="settings-box">
+<div class="setting-title">🌐 언어</div>
 
-    <div class="setting-title">🌐 언어</div>
+<div class="lang" onclick="setLanguage('ko')">
+🇰🇷
+<div>한국어<small>기본 언어</small></div>
+</div>
 
-    <div class="lang" onclick="setLanguage('ko')">
-      🇰🇷
-      <div>한국어<small>기본 언어</small></div>
-    </div>
+<div class="lang" onclick="setLanguage('en')">
+🇺🇸
+<div>English<small>English mode</small></div>
+</div>
 
-    <div class="lang" onclick="setLanguage('en')">
-      🇺🇸
-      <div>English<small>English mode</small></div>
-    </div>
+<div class="lang" onclick="setLanguage('zh')">
+🇨🇳
+<div>中文<small>中文模式</small></div>
+</div>
 
-    <div class="lang" onclick="setLanguage('zh')">
-      🇨🇳
-      <div>中文<small>中文模式</small></div>
-    </div>
+<div class="lang" onclick="setLanguage('ja')">
+🇯🇵
+<div>日本語<small>日本語モード</small></div>
+</div>
 
-    <div class="lang" onclick="setLanguage('ja')">
-      🇯🇵
-      <div>日本語<small>日本語モード</small></div>
-    </div>
+<div class="lang" onclick="setLanguage('hi')">
+🇮🇳
+<div>हिन्दी<small>हिन्दी भाषा</small></div>
+</div>
 
-    <div class="lang" onclick="setLanguage('hi')">
-      🇮🇳
-      <div>हिन्दी<small>हिन्दी भाषा</small></div>
-    </div>
+</div>
 
-    <div class="lang" onclick="setLanguage('north')">
-      🇰🇵
-      <div>북조선어<small>내래 내 북조선에서 왔디</small></div>
-    </div>
-
-  </div>
-
-  <button class="back" onclick="goHome()">← 설정 나가기</button>
+<button class="back" onclick="goHome()">
+← 설정 나가기
+</button>
 
 </div>
 
@@ -997,105 +1128,165 @@ audio{width:100%}
 
 <div id="profile" class="page">
 
-  <h1 class="page-title">👤 프로필</h1>
-  <p class="page-sub">프로프로프로프로프로필☆☆</p>
+<h1 class="page-title">👤 프로필</h1>
 
-  <div class="profile-box">
+<p class="page-sub">
+프로프로프로프로프로필☆☆
+</p>
 
-    <div class="profile-head">
+<div class="profile-box">
 
-      <div id="profileAvatar" class="profile-avatar">똥</div>
+<div class="profile-head">
 
-      <div id="profileName" class="profile-name">
-        똥꼬브라더스
-      </div>
+<div id="profileAvatar" class="profile-avatar">
+똥
+</div>
 
-      <div id="profileDesc" class="profile-desc">
-        우리들의 음악 프로필 🎵
-      </div>
+<div id="profileName" class="profile-name">
+똥꼬브라더스
+</div>
 
-    </div>
+<div id="profileDesc" class="profile-desc">
+우리들의 음악 프로필 🎵
+</div>
 
+</div>
 
-    <div class="setting-title">프로필 편집</div>
+<div class="setting-title">
+프로필 편집
+</div>
 
-    <input id="nameInput" class="edit-input" placeholder="이름">
+<input id="nameInput"
+class="edit-input"
+placeholder="이름">
 
-    <input id="descInput" class="edit-input" placeholder="설명">
+<input id="descInput"
+class="edit-input"
+placeholder="설명">
 
+<div class="setting-title" style="margin-top:25px">
+프로필 사진
+</div>
 
-    <div class="setting-title" style="margin-top:25px">
-      프로필 사진 바꾸기
-    </div>
+<div class="avatar-options">
 
-    <div class="avatar-options">
+<div class="avatar-option avatar-white"
+onclick="chooseAvatar('white')">
+똥
+</div>
 
-      <div class="avatar-option avatar-white"
-           onclick="chooseAvatar('white')">똥</div>
+<div class="avatar-option avatar-green"
+onclick="chooseAvatar('green')">
+똥
+</div>
 
-      <div class="avatar-option avatar-blue"
-           onclick="chooseAvatar('blue')">똥</div>
+<div class="avatar-option avatar-blue"
+onclick="chooseAvatar('blue')">
+똥
+</div>
 
-      <div class="avatar-option avatar-purple"
-           onclick="chooseAvatar('purple')">똥</div>
+<div class="avatar-option avatar-purple"
+onclick="chooseAvatar('purple')">
+똥
+</div>
 
-      <div class="avatar-option avatar-red"
-           onclick="chooseAvatar('red')">똥</div>
+<div class="avatar-option avatar-red"
+onclick="chooseAvatar('red')">
+똥
+</div>
 
-      <div class="avatar-option avatar-poop"
-           onclick="chooseAvatar('poop')">💩</div>
+<div class="avatar-option avatar-poop"
+onclick="chooseAvatar('poop')">
+💩
+</div>
 
-      <label class="avatar-option" style="background:#333">
-        📷
-        <input
-          class="file"
-          type="file"
-          accept="image/*"
-          onchange="choosePhoto(event)"
-        >
-      </label>
+<label class="avatar-option"
+style="background:#333">
+📷
+<input class="file"
+type="file"
+accept="image/*"
+onchange="choosePhoto(event)">
+</label>
 
-    </div>
+</div>
 
-    <button class="save" onclick="saveProfile()">저장</button>
+<button class="save" onclick="saveProfile()">
+저장
+</button>
 
-  </div>
+</div>
 
-  <button class="back" onclick="goHome()">← 홈으로 돌아가기</button>
+<button class="back" onclick="goHome()">
+← 홈으로 돌아가기
+</button>
 
 </div>
 
 
-<!-- MINI GAME MENU -->
+<!-- GAMES -->
 
-<div id="minigame" class="page">
+<div id="games" class="page">
 
-  <h1 class="page-title">🎮 미니게임</h1>
-  <p class="page-sub">D.T.B. 미니게임 모음</p>
+<h1 class="page-title">🎮 미니게임</h1>
 
-  <div class="game-menu">
+<p class="page-sub">
+D.T.B. 미니게임
+</p>
 
-    <div class="card" onclick="startDodgeGame()">
-      <div class="card-icon">💩</div>
-      <div class="card-title">똥피하기</div>
-      <div class="card-desc">떨어지는 똥을 피하세요</div>
-    </div>
+<div class="game-grid">
 
-    <div class="card" onclick="startBlockGame()">
-      <div class="card-icon">🧱</div>
-      <div class="card-title">블록 때려넣기</div>
-      <div class="card-desc">블록을 배치해서 줄을 없애세요</div>
-    </div>
+<div class="game-card"
+onclick="startDodgeGame()">
 
-    <div class="card game-card disabled">
-      <div class="card-icon">🎵</div>
-      <div class="card-title">리듬 맞추기</div>
-      <div class="card-desc">개발 중...</div>
-    </div>
+<div class="game-icon">💩</div>
 
-  </div>
+<div class="game-name">
+똥 피하기
+</div>
 
-  <button class="back" onclick="goHome()">← 홈으로 돌아가기</button>
+<div class="game-desc">
+떨어지는 똥을 피하세요.<br>
+맞으면 즉시 게임오버!
+</div>
+
+</div>
+
+<div class="game-card"
+onclick="startBlastGame()">
+
+<div class="game-icon">🧱</div>
+
+<div class="game-name">
+블록 때려넣기
+</div>
+
+<div class="game-desc">
+블록을 배치해서 줄을 없애고<br>
+최고 점수를 만들어보세요.
+</div>
+
+</div>
+
+<div class="game-card dev">
+
+<div class="game-icon">🎵</div>
+
+<div class="game-name">
+리듬 맞추기
+</div>
+
+<div class="game-desc">
+현재 개발 중입니다.
+</div>
+
+</div>
+
+</div>
+
+<button class="back" onclick="goHome()">
+← 홈으로 돌아가기
+</button>
 
 </div>
 
@@ -1106,1239 +1297,1438 @@ audio{width:100%}
 
 <div class="player">
 
-  <div class="player-top">
-    <b id="playerTitle">노래를 선택하세요</b>
-    <span id="playerArtist">똥꼬브라더스</span>
-  </div>
+<div class="player-top">
+<b id="playerTitle">
+노래를 선택하세요
+</b>
 
-  <audio id="audio" controls></audio>
-
+<span id="playerArtist">
+똥꼬브라더스
+</span>
 </div>
 
-</div>
-
-
-<!-- DODGE GAME -->
-
-<div id="dodgeGame" class="game-screen">
-
-  <div class="game-top">
-
-    <button onclick="closeDodgeGame()">←</button>
-
-    <div class="game-top-center">
-      <b>💩 똥피하기</b>
-      <small id="dodgeScore">점수 0</small>
-    </div>
-
-    <button onclick="restartDodgeGame()">↻</button>
-
-  </div>
-
-
-  <div id="poopGameArea">
-
-    <div class="poop-score" id="dodgeHint">
-      ← → 로 이동
-    </div>
-
-    <div id="dodgePlayer" class="dodge-player">
-      🧑
-    </div>
-
-
-    <div id="dodgeOver" class="game-over">
-
-      <div class="game-over-box">
-
-        <div style="font-size:60px">💩💥</div>
-
-        <h1>똥 맞음!</h1>
-
-        <p id="dodgeFinal">점수 0</p>
-
-        <button onclick="restartDodgeGame()">
-          다시하기
-        </button>
-
-        <button onclick="closeDodgeGame()">
-          게임 나가기
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
+<audio id="audio" controls></audio>
 
 </div>
 
 
-<!-- BLOCK GAME -->
+<!-- =====================================
+     FULLSCREEN GAME SYSTEM
+===================================== -->
 
-<div id="blockGame" class="game-screen">
+<div id="gameFullscreen">
 
-  <div class="game-top">
+<div class="game-screen">
 
-    <button onclick="closeBlockGame()">←</button>
+<div class="game-header">
 
-    <div class="game-top-center">
-      <b>🧱 블록 때려넣기</b>
-      <small id="blockScore">점수 0</small>
-    </div>
+<div class="game-header-left">
 
-    <button onclick="restartBlockGame()">↻</button>
+<div id="gameTitle" class="game-title">
+🎮 GAME
+</div>
 
-  </div>
+<div id="gameScore"
+class="game-score-big">
+0
+</div>
 
+</div>
 
-  <div id="blockGameArea">
+<button class="exit-game"
+onclick="exitFullscreenGame()">
+나가기 ✕
+</button>
 
-    <div class="block-board" id="blockBoard"></div>
-
-    <div class="block-info">
-      <span id="blockCombo">콤보 ×0</span>
-      <span id="blockBest">최고점수 0</span>
-    </div>
-
-    <div class="block-pieces" id="blockPieces"></div>
-
-  </div>
+</div>
 
 
-  <div id="blockOver" class="block-overlay">
+<div id="gameContent"
+class="game-canvas-wrap">
+</div>
 
-    <div class="game-over-box">
-
-      <div style="font-size:60px">💥</div>
-
-      <h1>게임 오버</h1>
-
-      <p id="blockFinal">점수 0</p>
-
-      <button onclick="restartBlockGame()">다시하기</button>
-
-      <button onclick="closeBlockGame()">게임 나가기</button>
-
-    </div>
-
-  </div>
+</div>
 
 </div>
 
 
 <script>
 
-/* SONGS */
+/* =====================================
+   SONG SYSTEM
+===================================== */
 
 const songs=[
-  "알피지",
-  "고구마호박",
-  "국민여러분",
-  "깔롱질 것",
-  "치킨먹고싶다",
-  "고구마호박 phonk"
+"알피지",
+"고구마호박",
+"국민여러분",
+"깔롱질 것",
+"치킨먹고싶다",
+"고구마호박 phonk"
 ];
 
 const hitSongs=[
-  "고구마호박",
-  "치킨먹고싶다"
+"고구마호박",
+"치킨먹고싶다"
 ];
 
 const newSongs=[
-  "치킨먹고싶다",
-  "고구마호박 phonk"
+"치킨먹고싶다",
+"고구마호박 phonk"
 ];
 
 const audio=document.getElementById("audio");
 
+const songFiles={
+"알피지":"alpg.mp3",
+"고구마호박":"goguma-hobak.mp3",
+"국민여러분":"gukmin.mp3",
+"깔롱질 것":"kkalong.mp3",
+"치킨먹고싶다":"chicken.mp3",
+"고구마호박 phonk":"goguma-phonk.mp3"
+};
 
 function makeSong(name){
 
-  const d=document.createElement("div");
+const d=document.createElement("div");
 
-  d.className="song";
+d.className="song";
 
-  d.innerHTML=`
-    <div class="song-icon">🎵</div>
+d.innerHTML=`
+<div class="song-icon">🎵</div>
 
-    <div class="song-info">
-      <div class="song-title">${name}</div>
-      <div class="artist">똥꼬브라더스</div>
-    </div>
+<div class="song-info">
+<div class="song-title">${name}</div>
+<div class="artist">똥꼬브라더스</div>
+</div>
 
-    <button class="play-button">▶</button>
-  `;
+<button class="play-button">▶</button>
+`;
 
-  d.onclick=()=>playSong(name);
+d.onclick=()=>{
+ playSong(name);
+};
 
-  return d;
-
+return d;
 }
-
 
 function renderSongs(){
 
-  const box=document.getElementById("songList");
+const list=document.getElementById("songList");
 
-  box.innerHTML="";
+list.innerHTML="";
 
-  songs.forEach(
-    s=>box.appendChild(makeSong(s))
-  );
+songs.forEach(x=>{
+ list.appendChild(makeSong(x));
+});
 
 }
-
 
 function renderHits(){
 
-  const box=document.getElementById("hitList");
+const list=document.getElementById("hitList");
 
-  box.innerHTML="";
+list.innerHTML="";
 
-  hitSongs.forEach(
-    s=>box.appendChild(makeSong(s))
-  );
+hitSongs.forEach(x=>{
+ list.appendChild(makeSong(x));
+});
 
 }
-
 
 function renderNew(){
 
-  const box=document.getElementById("newList");
+const list=document.getElementById("newList");
 
-  box.innerHTML="";
+list.innerHTML="";
 
-  newSongs.forEach(
-    s=>box.appendChild(makeSong(s))
-  );
+newSongs.forEach(x=>{
+ list.appendChild(makeSong(x));
+});
 
 }
-
 
 function playSong(name){
 
-  document.getElementById("playerTitle").textContent=name;
+document.getElementById("playerTitle").textContent=name;
 
-  const files={
-    "알피지":"alpg.mp3",
-    "고구마호박":"goguma-hobak.mp3",
-    "국민여러분":"gukmin.mp3",
-    "깔롱질 것":"kkalong.mp3",
-    "치킨먹고싶다":"chicken.mp3",
-    "고구마호박 phonk":"goguma-phonk.mp3"
-  };
-
-  if(files[name]){
-    audio.src=files[name];
-    audio.play().catch(()=>{});
-  }
+audio.src=songFiles[name]||"";
+audio.play().catch(()=>{});
 
 }
 
 
-/* PAGE */
+/* =====================================
+   PAGE SYSTEM
+===================================== */
 
 function openPage(page){
 
-  const transition=document.getElementById("transition");
-  const text=document.getElementById("transitionText");
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
-  const names={
-    hits:"히트곡",
-    new:"신곡",
-    people:"노래 만든 사람",
-    settings:"이것은 매우 설정인 브로",
-    profile:"프로프로프로프로프로필☆☆",
-    minigame:"🎮 미니게임"
-  };
+document.getElementById(page)
+.classList.add("active");
 
-  text.textContent=names[page]||page;
+window.scrollTo(0,0);
 
-  transition.classList.add("show");
-
-  setTimeout(()=>{
-
-    document
-      .querySelectorAll(".page")
-      .forEach(p=>p.classList.remove("active"));
-
-    document
-      .getElementById(page)
-      .classList.add("active");
-
-    window.scrollTo(0,0);
-
-    if(page==="hits")renderHits();
-    if(page==="new")renderNew();
-    if(page==="profile")loadProfile();
-
-  },650);
-
-  setTimeout(()=>{
-    transition.classList.remove("show");
-  },1300);
+if(page==="hits")renderHits();
+if(page==="new")renderNew();
+if(page==="profile")loadProfile();
 
 }
-
 
 function goHome(){
 
-  document
-    .querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
-  document
-    .getElementById("homePage")
-    .classList.add("active");
+document.getElementById("homePage")
+.classList.add("active");
 
-  window.scrollTo(0,0);
+window.scrollTo(0,0);
 
-  renderSongs();
+document.getElementById("search").value="";
 
-}
+document.getElementById("recommendArea").style.display="";
 
+document.getElementById("allTitle").textContent="전체 노래";
 
-/* SEARCH */
-
-document
-  .getElementById("search")
-  .addEventListener("input",function(){
-
-    const q=this.value.toLowerCase().trim();
-
-    const recommend=
-      document.getElementById("recommendArea");
-
-    const title=
-      document.getElementById("allTitle");
-
-    if(!q){
-
-      recommend.style.display="";
-      title.textContent="전체 노래";
-      renderSongs();
-      return;
-
-    }
-
-    recommend.style.display="none";
-    title.textContent="검색 결과";
-
-    const box=document.getElementById("songList");
-
-    box.innerHTML="";
-
-    songs
-      .filter(s=>s.toLowerCase().includes(q))
-      .forEach(s=>box.appendChild(makeSong(s)));
-
-  });
-
-
-/* PEOPLE */
-
-function togglePerson(id){
-  document
-    .getElementById(id)
-    .classList.toggle("open");
-}
-
-
-/* THEME */
-
-function setTheme(theme){
-
-  document.body.classList.remove(
-    "white",
-    "green",
-    "poop"
-  );
-
-  if(theme!=="dark"){
-    document.body.classList.add(theme);
-  }
-
-  localStorage.setItem("dtbTheme",theme);
-
-  document
-    .querySelectorAll(".theme-btn")
-    .forEach(btn=>btn.classList.remove("active"));
-
-  const active={
-    dark:".theme-dark",
-    white:".theme-white",
-    green:".theme-green",
-    poop:".theme-poop"
-  };
-
-  const btn=document.querySelector(active[theme]);
-
-  if(btn)btn.classList.add("active");
+renderSongs();
 
 }
 
 
-/* LANGUAGE */
+/* =====================================
+   SEARCH
+===================================== */
 
-function setLanguage(lang){
+document.getElementById("search")
+.addEventListener("input",function(){
 
-  localStorage.setItem("dtbLanguage",lang);
+const q=this.value
+.toLowerCase()
+.trim();
 
-  const data={
+const recommend=
+document.getElementById("recommendArea");
 
-    ko:{
-      home:"똥꼬브라더스 뮤직",
-      sub:"똥꼬브라더스의 새 이름은 D.T.B.입니다",
-      all:"전체 노래",
-      rec:"추천 똥꼬똥꼬"
-    },
+const title=
+document.getElementById("allTitle");
 
-    en:{
-      home:"D.T.B. MUSIC",
-      sub:"The new name of D.T.B. is D.T.B.",
-      all:"All Songs",
-      rec:"Recommended"
-    },
+const list=
+document.getElementById("songList");
 
-    zh:{
-      home:"D.T.B. MUSIC",
-      sub:"똥꼬브라더스的新名字是D.T.B.",
-      all:"全部歌曲",
-      rec:"推荐"
-    },
+if(!q){
 
-    ja:{
-      home:"D.T.B. MUSIC",
-      sub:"똥꼬브라더스の新しい名前はD.T.B.です",
-      all:"すべての曲",
-      rec:"おすすめ"
-    },
+recommend.style.display="";
+title.textContent="전체 노래";
 
-    hi:{
-      home:"D.T.B. MUSIC",
-      sub:"D.T.B. का नया नाम",
-      all:"सभी गाने",
-      rec:"अनुशंसित"
-    },
+renderSongs();
 
-    north:{
-      home:"똥꼬브라더스 음악",
-      sub:"내래 우리 음악을 한곳에서 듣자우",
-      all:"전체 노래",
-      rec:"추천 똥꼬똥꼬"
-    }
-
-  };
-
-  const t=data[lang];
-
-  if(!t)return;
-
-  document.querySelector(".hero h1").textContent=t.home;
-  document.querySelector(".hero p").textContent=t.sub;
-  document.getElementById("allTitle").textContent=t.all;
-  document.querySelector("#recommendArea h2").textContent=t.rec;
+return;
 
 }
 
+recommend.style.display="none";
+title.textContent="검색 결과";
 
-/* PROFILE */
+const result=songs.filter(x=>
+x.toLowerCase().includes(q)
+);
 
-let selectedAvatar=
-  localStorage.getItem("dtbAvatar")||"white";
+list.innerHTML="";
 
-let selectedPhoto=
-  localStorage.getItem("dtbPhoto")||"";
+if(!result.length){
 
+list.innerHTML=`
+<p style="color:#888;padding:20px">
+검색 결과가 없습니다.
+</p>`;
 
-function chooseAvatar(type){
-
-  selectedAvatar=type;
-  selectedPhoto="";
-
-  localStorage.removeItem("dtbPhoto");
-
-  updateAvatar();
-
-}
-
-
-function choosePhoto(event){
-
-  const file=event.target.files[0];
-
-  if(!file)return;
-
-  const reader=new FileReader();
-
-  reader.onload=function(){
-
-    selectedAvatar="photo";
-    selectedPhoto=reader.result;
-
-    updateAvatar();
-
-  };
-
-  reader.readAsDataURL(file);
+return;
 
 }
 
-
-function applyAvatar(el){
-
-  el.innerHTML="";
-
-  if(selectedAvatar==="photo" && selectedPhoto){
-
-    const img=document.createElement("img");
-    img.src=selectedPhoto;
-    el.appendChild(img);
-    return;
-
-  }
-
-  if(selectedAvatar==="poop"){
-
-    el.textContent="💩";
-    el.style.background="#8b5a2b";
-    el.style.color="#fff";
-    return;
-
-  }
-
-  el.textContent="똥";
-
-  const colors={
-    white:"#fff",
-    blue:"#2563eb",
-    purple:"#7c3aed",
-    red:"#dc2626"
-  };
-
-  el.style.background=
-    colors[selectedAvatar]||"#fff";
-
-  el.style.color=
-    selectedAvatar==="white"?"#111":"#fff";
-
-}
-
-
-function updateAvatar(){
-
-  applyAvatar(
-    document.getElementById("profileAvatar")
-  );
-
-  applyAvatar(
-    document.getElementById("headerAvatar")
-  );
-
-}
-
-
-function saveProfile(){
-
-  const name=
-    document.getElementById("nameInput").value.trim()
-    ||"똥꼬브라더스";
-
-  const desc=
-    document.getElementById("descInput").value.trim()
-    ||"우리들의 음악 프로필 🎵";
-
-  localStorage.setItem("dtbName",name);
-  localStorage.setItem("dtbDesc",desc);
-  localStorage.setItem("dtbAvatar",selectedAvatar);
-
-  if(selectedPhoto){
-    localStorage.setItem("dtbPhoto",selectedPhoto);
-  }
-
-  document.getElementById("profileName").textContent=name;
-  document.getElementById("profileDesc").textContent=desc;
-
-  updateAvatar();
-
-}
-
-
-function loadProfile(){
-
-  const name=
-    localStorage.getItem("dtbName")
-    ||"똥꼬브라더스";
-
-  const desc=
-    localStorage.getItem("dtbDesc")
-    ||"우리들의 음악 프로필 🎵";
-
-  selectedAvatar=
-    localStorage.getItem("dtbAvatar")
-    ||"white";
-
-  selectedPhoto=
-    localStorage.getItem("dtbPhoto")
-    ||"";
-
-  document.getElementById("nameInput").value=name;
-  document.getElementById("descInput").value=desc;
-  document.getElementById("profileName").textContent=name;
-  document.getElementById("profileDesc").textContent=desc;
-
-  updateAvatar();
-
-}
-
-
-/* ================= DODGE GAME ================= */
-
-let dodgeRunning=false;
-let dodgeScore=0;
-let dodgeTimer=null;
-let poopTimer=null;
-let playerX=50;
-
-
-function startDodgeGame(){
-
-  document
-    .getElementById("dodgeGame")
-    .classList.add("open");
-
-  restartDodgeGame();
-
-}
-
-
-function closeDodgeGame(){
-
-  dodgeRunning=false;
-
-  clearInterval(dodgeTimer);
-  clearTimeout(poopTimer);
-
-  document
-    .getElementById("dodgeGame")
-    .classList.remove("open");
-
-  document
-    .querySelectorAll(".falling-poop")
-    .forEach(p=>p.remove());
-
-}
-
-
-function restartDodgeGame(){
-
-  clearInterval(dodgeTimer);
-  clearTimeout(poopTimer);
-
-  document
-    .getElementById("dodgeOver")
-    .classList.remove("show");
-
-  document
-    .querySelectorAll(".falling-poop")
-    .forEach(p=>p.remove());
-
-  dodgeScore=0;
-  playerX=50;
-  dodgeRunning=true;
-
-  updateDodgePlayer();
-
-  dodgeTimer=setInterval(()=>{
-
-    if(!dodgeRunning)return;
-
-    dodgeScore++;
-
-    document.getElementById("dodgeScore").textContent=
-      "점수 "+dodgeScore;
-
-  },100);
-
-  spawnPoop();
-
-}
-
-
-function updateDodgePlayer(){
-
-  document
-    .getElementById("dodgePlayer")
-    .style.left=playerX+"%";
-
-}
-
-
-document.addEventListener("keydown",e=>{
-
-  if(!dodgeRunning)return;
-
-  if(e.key==="ArrowLeft"){
-    playerX=Math.max(7,playerX-5);
-    updateDodgePlayer();
-  }
-
-  if(e.key==="ArrowRight"){
-    playerX=Math.min(93,playerX+5);
-    updateDodgePlayer();
-  }
+result.forEach(x=>{
+ list.appendChild(makeSong(x));
+});
 
 });
 
 
-document
-  .getElementById("poopGameArea")
-  .addEventListener("pointermove",e=>{
+/* =====================================
+   PERSON
+===================================== */
 
-    if(!dodgeRunning)return;
+function togglePerson(id){
 
-    const rect=
-      e.currentTarget.getBoundingClientRect();
-
-    playerX=
-      ((e.clientX-rect.left)/rect.width)*100;
-
-    playerX=Math.max(7,Math.min(93,playerX));
-
-    updateDodgePlayer();
-
-  });
-
-
-function spawnPoop(){
-
-  if(!dodgeRunning)return;
-
-  const area=
-    document.getElementById("poopGameArea");
-
-  const poop=
-    document.createElement("div");
-
-  poop.className="falling-poop";
-  poop.textContent="💩";
-
-  const x=
-    Math.random()*88+2;
-
-  poop.style.left=x+"%";
-
-  area.appendChild(poop);
-
-  const start=performance.now();
-  const duration=2200;
-
-  function fall(now){
-
-    if(!dodgeRunning){
-      poop.remove();
-      return;
-    }
-
-    const progress=
-      Math.min(1,(now-start)/duration);
-
-    poop.style.top=
-      (-70+progress*(area.clientHeight+80))+"px";
-
-    const poopRect=poop.getBoundingClientRect();
-    const player=
-      document.getElementById("dodgePlayer")
-        .getBoundingClientRect();
-
-    if(
-      poopRect.left < player.right &&
-      poopRect.right > player.left &&
-      poopRect.top < player.bottom &&
-      poopRect.bottom > player.top
-    ){
-
-      poop.remove();
-      dodgeGameOver();
-      return;
-
-    }
-
-    if(progress<1){
-      requestAnimationFrame(fall);
-    }else{
-      poop.remove();
-    }
-
-  }
-
-  requestAnimationFrame(fall);
-
-  poopTimer=setTimeout(
-    spawnPoop,
-    Math.max(250,850-dodgeScore/2)
-  );
+document.getElementById(id)
+.classList.toggle("open");
 
 }
 
 
-function dodgeGameOver(){
+/* =====================================
+   THEME
+===================================== */
 
-  dodgeRunning=false;
+function setTheme(theme){
 
-  clearInterval(dodgeTimer);
-  clearTimeout(poopTimer);
+document.body.classList.remove(
+"white",
+"green",
+"poop"
+);
 
-  document.getElementById("dodgeFinal").textContent=
-    "점수 "+dodgeScore;
+if(theme!=="dark"){
+ document.body.classList.add(theme);
+}
 
-  document
-    .getElementById("dodgeOver")
-    .classList.add("show");
+localStorage.setItem("dtbTheme",theme);
 
 }
 
 
-/* ================= BLOCK GAME ================= */
+/* =====================================
+   LANGUAGE
+===================================== */
 
-const SIZE=8;
+function setLanguage(lang){
 
-const shapes=[
-  [[1]],
-  [[1,1]],
-  [[1,1,1]],
-  [[1,1,1,1]],
-  [[1,1],[1,1]],
-  [[1,1,1],[0,1,0]],
-  [[1,0],[1,1]],
-  [[0,1],[1,1]],
-  [[1,1,0],[0,1,1]],
-  [[1,1,1],[1,0,0]],
-  [[1,1],[0,1]]
+localStorage.setItem("dtbLanguage",lang);
+
+const data={
+
+ko:{
+home:"똥꼬브라더스 MUSIC",
+sub:"똥꼬브라더스의 새 이름은 D.T.B.입니다",
+all:"전체 노래",
+recommend:"추천 똥꼬똥꼬"
+},
+
+en:{
+home:"D.T.B. MUSIC",
+sub:"D.T.B. is the new name of D.T.B.",
+all:"All Songs",
+recommend:"Recommended"
+},
+
+zh:{
+home:"똥꼬브라더스 MUSIC",
+sub:"D.T.B. 是新的名字",
+all:"全部歌曲",
+recommend:"推荐"
+},
+
+ja:{
+home:"똥꼬브라더스 MUSIC",
+sub:"D.T.B.は新しい名前です",
+all:"すべての曲",
+recommend:"おすすめ"
+},
+
+hi:{
+home:"똥꼬브라더스 MUSIC",
+sub:"D.T.B. हमारा नया नाम है",
+all:"सभी गाने",
+recommend:"अनुशंसित"
+}
+
+};
+
+const t=data[lang];
+
+if(!t)return;
+
+document.querySelector(".hero h1")
+.textContent=t.home;
+
+document.querySelector(".hero p")
+.textContent=t.sub;
+
+document.getElementById("allTitle")
+.textContent=t.all;
+
+document.querySelector("#recommendArea h2")
+.textContent=t.recommend;
+
+}
+
+
+/* =====================================
+   PROFILE
+===================================== */
+
+let selectedAvatar=
+localStorage.getItem("dtbAvatar")||"white";
+
+let selectedPhoto=
+localStorage.getItem("dtbPhoto")||"";
+
+function chooseAvatar(type){
+
+selectedAvatar=type;
+selectedPhoto="";
+
+localStorage.removeItem("dtbPhoto");
+
+updateAvatar();
+
+}
+
+function choosePhoto(event){
+
+const file=event.target.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=function(){
+
+selectedAvatar="photo";
+selectedPhoto=reader.result;
+
+updateAvatar();
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+function avatarColor(type){
+
+const colors={
+white:"#fff",
+green:"#1ed760",
+blue:"#2563eb",
+purple:"#7c3aed",
+red:"#dc2626",
+poop:"#8b5a2b"
+};
+
+return colors[type]||"#fff";
+
+}
+
+function makeAvatar(el){
+
+el.innerHTML="";
+
+if(selectedAvatar==="photo"&&selectedPhoto){
+
+const img=document.createElement("img");
+
+img.src=selectedPhoto;
+
+el.appendChild(img);
+
+return;
+
+}
+
+if(selectedAvatar==="poop"){
+
+el.textContent="💩";
+el.style.background="#8b5a2b";
+el.style.color="#fff";
+
+return;
+
+}
+
+el.textContent="똥";
+el.style.background=
+avatarColor(selectedAvatar);
+
+el.style.color=
+selectedAvatar==="white"
+?"#111"
+:"#fff";
+
+}
+
+function updateAvatar(){
+
+makeAvatar(
+document.getElementById("profileAvatar")
+);
+
+}
+
+function saveProfile(){
+
+const name=
+document.getElementById("nameInput")
+.value.trim()
+||"똥꼬브라더스";
+
+const desc=
+document.getElementById("descInput")
+.value.trim()
+||"우리들의 음악 프로필 🎵";
+
+localStorage.setItem("dtbName",name);
+localStorage.setItem("dtbDesc",desc);
+localStorage.setItem("dtbAvatar",selectedAvatar);
+
+if(selectedPhoto){
+ localStorage.setItem("dtbPhoto",selectedPhoto);
+}
+
+document.getElementById("profileName")
+.textContent=name;
+
+document.getElementById("profileDesc")
+.textContent=desc;
+
+updateAvatar();
+
+}
+
+function loadProfile(){
+
+const name=
+localStorage.getItem("dtbName")
+||"똥꼬브라더스";
+
+const desc=
+localStorage.getItem("dtbDesc")
+||"우리들의 음악 프로필 🎵";
+
+selectedAvatar=
+localStorage.getItem("dtbAvatar")
+||"white";
+
+selectedPhoto=
+localStorage.getItem("dtbPhoto")
+||"";
+
+document.getElementById("nameInput")
+.value=name;
+
+document.getElementById("descInput")
+.value=desc;
+
+document.getElementById("profileName")
+.textContent=name;
+
+document.getElementById("profileDesc")
+.textContent=desc;
+
+updateAvatar();
+
+}
+
+
+/* =====================================
+   UPDATE
+===================================== */
+
+function closeUpdate(){
+
+const box=
+document.getElementById("update14");
+
+if(box)box.remove();
+
+}
+
+
+/* =====================================
+   FULLSCREEN GAME CORE
+===================================== */
+
+const fullscreen=
+document.getElementById("gameFullscreen");
+
+function openFullscreenGame(title){
+
+fullscreen.classList.add("active");
+
+document.getElementById("gameTitle")
+.textContent=title;
+
+document.body.style.overflow="hidden";
+
+}
+
+function exitFullscreenGame(){
+
+stopDodgeGame();
+stopBlastGame();
+
+fullscreen.classList.remove("active");
+
+document.getElementById("gameContent")
+.innerHTML="";
+
+document.body.style.overflow="";
+
+}
+
+
+/* =====================================
+   GAME 1
+   DODGE
+===================================== */
+
+let dodgeRunning=false;
+let dodgeScore=0;
+let dodgePlayerX=50;
+let dodgeTimer=null;
+let dodgeSpawnTimer=null;
+
+function startDodgeGame(){
+
+stopBlastGame();
+
+openFullscreenGame("💩 똥 피하기");
+
+dodgeScore=0;
+dodgePlayerX=50;
+dodgeRunning=true;
+
+const content=
+document.getElementById("gameContent");
+
+content.innerHTML=`
+
+<div id="dodgeCanvas">
+
+<div id="dodgePlayer"
+class="dodge-player">
+🧍
+</div>
+
+<div id="dodgeGameOver"
+class="game-over">
+
+<div class="game-over-box">
+
+<h2>💩 게임 오버!</h2>
+
+<div>
+똥에 맞았습니다!
+</div>
+
+<div style="margin-top:8px">
+최종 점수:
+<strong id="finalDodgeScore">0</strong>
+</div>
+
+<button class="restart-game"
+onclick="startDodgeGame()">
+다시 하기
+</button>
+
+</div>
+
+</div>
+
+<div class="dodge-controls">
+
+<button class="dodge-control"
+onpointerdown="startMove(-1)"
+onpointerup="stopMove()"
+onpointerleave="stopMove()">
+◀
+</button>
+
+<button class="dodge-control"
+onpointerdown="startMove(1)"
+onpointerup="stopMove()"
+onpointerleave="stopMove()">
+▶
+</button>
+
+</div>
+
+</div>
+`;
+
+const canvas=
+document.getElementById("dodgeCanvas");
+
+canvas.addEventListener("pointermove",e=>{
+
+if(!dodgeRunning)return;
+
+const rect=canvas.getBoundingClientRect();
+
+dodgePlayerX=
+((e.clientX-rect.left)/rect.width)*100;
+
+dodgePlayerX=
+Math.max(6,Math.min(94,dodgePlayerX));
+
+updateDodgePlayer();
+
+});
+
+clearInterval(dodgeTimer);
+clearInterval(dodgeSpawnTimer);
+
+dodgeTimer=setInterval(()=>{
+
+if(!dodgeRunning)return;
+
+dodgeScore++;
+
+const score=
+document.getElementById("gameScore");
+
+if(score)
+score.textContent="점수 "+dodgeScore;
+
+},1000);
+
+dodgeSpawnTimer=setInterval(
+spawnDodgePoop,
+520
+);
+
+updateDodgePlayer();
+
+}
+
+function updateDodgePlayer(){
+
+const player=
+document.getElementById("dodgePlayer");
+
+if(player)
+player.style.left=dodgePlayerX+"%";
+
+}
+
+let movingDirection=0;
+let moveAnimation=null;
+
+function startMove(direction){
+
+movingDirection=direction;
+
+clearInterval(moveAnimation);
+
+moveAnimation=setInterval(()=>{
+
+if(!dodgeRunning)return;
+
+dodgePlayerX+=direction*2;
+
+dodgePlayerX=
+Math.max(6,Math.min(94,dodgePlayerX));
+
+updateDodgePlayer();
+
+},20);
+
+}
+
+function stopMove(){
+
+movingDirection=0;
+
+clearInterval(moveAnimation);
+
+}
+
+function spawnDodgePoop(){
+
+if(!dodgeRunning)return;
+
+const canvas=
+document.getElementById("dodgeCanvas");
+
+if(!canvas)return;
+
+const poop=
+document.createElement("div");
+
+poop.className="dodge-poop";
+poop.textContent="💩";
+
+const x=
+Math.random()*88+6;
+
+poop.style.left=x+"%";
+
+const duration=
+1.8+Math.random()*1.4;
+
+poop.style.animation=
+`poopFall ${duration}s linear forwards`;
+
+canvas.appendChild(poop);
+
+const hitTimer=setInterval(()=>{
+
+if(!dodgeRunning){
+ clearInterval(hitTimer);
+ return;
+}
+
+const pRect=
+poop.getBoundingClientRect();
+
+const player=
+document.getElementById("dodgePlayer");
+
+if(!player){
+ clearInterval(hitTimer);
+ return;
+}
+
+const playerRect=
+player.getBoundingClientRect();
+
+const hit=
+pRect.left<playerRect.right-8 &&
+pRect.right>playerRect.left+8 &&
+pRect.top<playerRect.bottom-8 &&
+pRect.bottom>playerRect.top+8;
+
+if(hit){
+
+clearInterval(hitTimer);
+gameOverDodge();
+
+}
+
+},30);
+
+setTimeout(()=>{
+
+clearInterval(hitTimer);
+
+if(poop.isConnected)
+poop.remove();
+
+},duration*1000+300);
+
+}
+
+function gameOverDodge(){
+
+if(!dodgeRunning)return;
+
+dodgeRunning=false;
+
+clearInterval(dodgeTimer);
+clearInterval(dodgeSpawnTimer);
+clearInterval(moveAnimation);
+
+document.getElementById("finalDodgeScore")
+.textContent=dodgeScore;
+
+document.getElementById("dodgeGameOver")
+.classList.add("show");
+
+}
+
+function stopDodgeGame(){
+
+dodgeRunning=false;
+
+clearInterval(dodgeTimer);
+clearInterval(dodgeSpawnTimer);
+clearInterval(moveAnimation);
+
+}
+
+
+/* KEYBOARD */
+
+document.addEventListener("keydown",e=>{
+
+if(!dodgeRunning)return;
+
+if(e.key==="ArrowLeft"){
+ dodgePlayerX-=5;
+ dodgePlayerX=Math.max(6,dodgePlayerX);
+ updateDodgePlayer();
+}
+
+if(e.key==="ArrowRight"){
+ dodgePlayerX+=5;
+ dodgePlayerX=Math.min(94,dodgePlayerX);
+ updateDodgePlayer();
+}
+
+});
+
+
+/* =====================================
+   GAME 2
+   BLOCK BLAST STYLE
+===================================== */
+
+let blastRunning=false;
+let blastBoard=[];
+let blastPieces=[];
+let selectedPiece=-1;
+let blastScore=0;
+
+const PIECES=[
+
+[[1]],
+
+[[1,1]],
+
+[[1],
+ [1]],
+
+[[1,1,1]],
+
+[[1],
+ [1],
+ [1]],
+
+[[1,1],
+ [1,1]],
+
+[[1,1,1],
+ [0,1,0]],
+
+[[1,0],
+ [1,1]],
+
+[[0,1],
+ [1,1]],
+
+[[1,1,1,1]],
+
+[[1],
+ [1],
+ [1],
+ [1]],
+
+[[1,1,1],
+ [1,0,0]],
+
+[[1,1,1],
+ [0,0,1]]
+
 ];
 
-const colors=[
-  "#1ed760",
-  "#3b82f6",
-  "#a855f7",
-  "#f97316",
-  "#ef4444",
-  "#eab308"
+const BLOCK_COLORS=[
+"#1ed760",
+"#38bdf8",
+"#f59e0b",
+"#a855f7",
+"#ef4444",
+"#f43f5e",
+"#22c55e"
 ];
 
-let board=[];
-let blockScore=0;
-let combo=0;
-let selectedBlock=null;
+function startBlastGame(){
 
+stopDodgeGame();
 
-function startBlockGame(){
+openFullscreenGame("🧱 블록 때려넣기");
 
-  document
-    .getElementById("blockGame")
-    .classList.add("open");
+blastRunning=true;
+blastScore=0;
+selectedPiece=-1;
 
-  restartBlockGame();
+blastBoard=
+Array.from(
+{length:8},
+()=>Array(8).fill(null)
+);
+
+blastPieces=[
+ randomPiece(),
+ randomPiece(),
+ randomPiece()
+];
+
+renderBlast();
+
+}
+
+function randomPiece(){
+
+const shape=
+PIECES[
+Math.floor(Math.random()*PIECES.length)
+];
+
+return {
+ shape:shape,
+ color:
+ BLOCK_COLORS[
+ Math.floor(Math.random()*BLOCK_COLORS.length)
+ ]
+};
+
+}
+
+function renderBlast(){
+
+const content=
+document.getElementById("gameContent");
+
+content.innerHTML=`
+
+<div style="
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+">
+
+<div id="blockGameBoard"></div>
+
+<div class="block-bottom">
+
+<div id="shapeTray"
+class="shape-tray">
+</div>
+
+<div id="blastMessage"
+class="blast-message">
+블록을 골라서 빈칸에 놓으세요
+</div>
+
+</div>
+
+</div>
+`;
+
+drawBoard();
+drawPieces();
+
+document.getElementById("gameScore")
+.textContent="점수 "+blastScore;
+
+}
+
+function drawBoard(){
+
+const board=
+document.getElementById("blockGameBoard");
+
+if(!board)return;
+
+board.innerHTML="";
+
+for(let y=0;y<8;y++){
+
+for(let x=0;x<8;x++){
+
+const cell=
+document.createElement("div");
+
+cell.className="blast-cell";
+
+const value=
+blastBoard[y][x];
+
+if(value){
+
+cell.classList.add("filled");
+
+cell.style
+.setProperty("--block-color",value);
+
+}
+
+cell.onclick=()=>{
+ placeBlastPiece(x,y);
+};
+
+board.appendChild(cell);
+
+}
+
+}
+
+}
+
+function drawPieces(){
+
+const tray=
+document.getElementById("shapeTray");
+
+tray.innerHTML="";
+
+blastPieces.forEach((piece,index)=>{
+
+const button=
+document.createElement("button");
+
+button.className="shape-piece";
+
+if(index===selectedPiece)
+button.classList.add("selected");
+
+button.onclick=()=>{
+ selectBlastPiece(index);
+};
+
+const mini=
+document.createElement("div");
+
+mini.className="mini-shape";
+
+const h=piece.shape.length;
+const w=piece.shape[0].length;
+
+for(let y=0;y<4;y++){
+
+for(let x=0;x<4;x++){
+
+const c=
+document.createElement("div");
+
+c.className="mini-cell empty-mini";
+
+if(
+y<h &&
+x<w &&
+piece.shape[y][x]
+){
+
+c.classList.remove("empty-mini");
+c.style.background=piece.color;
+
+}
+
+mini.appendChild(c);
+
+}
+
+}
+
+button.appendChild(mini);
+
+tray.appendChild(button);
+
+});
+
+}
+
+function selectBlastPiece(index){
+
+if(!blastPieces[index])return;
+
+selectedPiece=index;
+
+document.getElementById("blastMessage")
+.textContent="선택 완료! 칸을 눌러 배치하세요.";
+
+drawPieces();
+
+}
+
+function canPlace(piece,x,y){
+
+const shape=piece.shape;
+
+for(let dy=0;dy<shape.length;dy++){
+
+for(let dx=0;dx<shape[dy].length;dx++){
+
+if(!shape[dy][dx])continue;
+
+const nx=x+dx;
+const ny=y+dy;
+
+if(
+nx<0 ||
+nx>=8 ||
+ny<0 ||
+ny>=8 ||
+blastBoard[ny][nx]
+){
+
+return false;
+
+}
+
+}
+
+}
+
+return true;
+
+}
+
+function placeBlastPiece(x,y){
+
+if(!blastRunning)return;
+
+if(selectedPiece<0){
+
+document.getElementById("blastMessage")
+.textContent="먼저 아래에서 블록을 선택하세요.";
+
+return;
+
+}
+
+const piece=
+blastPieces[selectedPiece];
+
+if(!canPlace(piece,x,y)){
+
+document.getElementById("blastMessage")
+.textContent="여기에는 놓을 수 없습니다!";
+
+return;
+
+}
+
+for(
+let dy=0;
+dy<piece.shape.length;
+dy++
+){
+
+for(
+let dx=0;
+dx<piece.shape[dy].length;
+dx++
+){
+
+if(piece.shape[dy][dx]){
+
+blastBoard[y+dy][x+dx]
+=piece.color;
+
+}
+
+}
+
+}
+
+blastScore+=
+piece.shape.flat().filter(Boolean).length;
+
+blastPieces[selectedPiece]=null;
+
+clearBlastLines();
+
+if(blastPieces.every(p=>p===null)){
+
+blastPieces=[
+ randomPiece(),
+ randomPiece(),
+ randomPiece()
+];
+
+}
+
+selectedPiece=-1;
+
+drawBoard();
+drawPieces();
+
+document.getElementById("gameScore")
+.textContent="점수 "+blastScore;
+
+checkBlastGameOver();
+
+}
+
+function clearBlastLines(){
+
+let cleared=0;
+
+/* 가로 */
+
+for(let y=7;y>=0;y--){
+
+if(blastBoard[y].every(Boolean)){
+
+blastBoard.splice(y,1);
+
+blastBoard.unshift(
+Array(8).fill(null)
+);
+
+cleared++;
+y++;
+
+}
+
+}
+
+/* 세로 */
+
+for(let x=0;x<8;x++){
+
+let full=true;
+
+for(let y=0;y<8;y++){
+
+if(!blastBoard[y][x]){
+
+full=false;
+break;
+
+}
+
+}
+
+if(full){
+
+for(let y=0;y<8;y++)
+blastBoard[y][x]=null;
+
+cleared++;
+
+}
+
+}
+
+if(cleared){
+
+blastScore+=
+cleared*cleared*10;
+
+document.getElementById("blastMessage")
+.textContent=
+"🔥 "+cleared+"줄 제거! +"+(cleared*cleared*10);
+
+}
+
+}
+
+function hasAnyMove(piece){
+
+if(!piece)return true;
+
+for(let y=0;y<8;y++){
+
+for(let x=0;x<8;x++){
+
+if(canPlace(piece,x,y))
+return true;
+
+}
+
+}
+
+return false;
+
+}
+
+function checkBlastGameOver(){
+
+const available=
+blastPieces.filter(Boolean);
+
+if(
+available.length &&
+available.every(p=>!hasAnyMove(p))
+){
+
+setTimeout(()=>{
+
+showBlastGameOver();
+
+},150);
+
+}
+
+}
+
+function showBlastGameOver(){
+
+blastRunning=false;
+
+const content=
+document.getElementById("gameContent");
+
+content.innerHTML=`
+
+<div style="
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+">
+
+<div class="game-over-box">
+
+<h2>🧱 게임 오버!</h2>
+
+<p>
+더 이상 블록을 놓을 공간이 없습니다.
+</p>
+
+<div style="margin-top:10px">
+최종 점수:
+<strong>${blastScore}</strong>
+</div>
+
+<button class="restart-game"
+onclick="startBlastGame()">
+다시 하기
+</button>
+
+</div>
+
+</div>
+`;
+
+}
+
+function stopBlastGame(){
+
+blastRunning=false;
+blastBoard=[];
+blastPieces=[];
+selectedPiece=-1;
 
 }
 
 
-function closeBlockGame(){
-
-  document
-    .getElementById("blockGame")
-    .classList.remove("open");
-
-}
-
-
-function restartBlockGame(){
-
-  board=
-    Array.from(
-      {length:SIZE},
-      ()=>Array(SIZE).fill(null)
-    );
-
-  blockScore=0;
-  combo=0;
-  selectedBlock=null;
-
-  document
-    .getElementById("blockOver")
-    .classList.remove("show");
-
-  renderBoard();
-  createBlocks();
-  updateBlockScore();
-
-}
-
-
-function renderBoard(){
-
-  const el=document.getElementById("blockBoard");
-
-  el.innerHTML="";
-
-  for(let r=0;r<SIZE;r++){
-
-    for(let c=0;c<SIZE;c++){
-
-      const cell=document.createElement("div");
-
-      cell.className="block-cell";
-
-      if(board[r][c]){
-        cell.classList.add("filled");
-        cell.style.background=board[r][c];
-      }
-
-      cell.dataset.r=r;
-      cell.dataset.c=c;
-
-      el.appendChild(cell);
-
-    }
-
-  }
-
-}
-
-
-function createBlocks(){
-
-  const box=document.getElementById("blockPieces");
-
-  box.innerHTML="";
-
-  for(let i=0;i<3;i++){
-
-    const shape=
-      shapes[
-        Math.floor(Math.random()*shapes.length)
-      ];
-
-    const color=
-      colors[
-        Math.floor(Math.random()*colors.length)
-      ];
-
-    const piece=document.createElement("div");
-
-    piece.className="block-piece";
-
-    piece.dataset.shape=JSON.stringify(shape);
-    piece.dataset.color=color;
-
-    const grid=document.createElement("div");
-
-    grid.className="mini-grid";
-
-    grid.style.gridTemplateColumns=
-      `repeat(${shape[0].length},20px)`;
-
-    shape.forEach(row=>{
-
-      row.forEach(v=>{
-
-        const cell=document.createElement("div");
-
-        cell.className="mini-cell";
-
-        if(v){
-          cell.style.background=color;
-        }else{
-          cell.style.visibility="hidden";
-        }
-
-        grid.appendChild(cell);
-
-      });
-
-    });
-
-    piece.appendChild(grid);
-
-    piece.onclick=()=>{
-
-      document
-        .querySelectorAll(".block-piece")
-        .forEach(p=>p.classList.remove("selected"));
-
-      piece.classList.add("selected");
-
-      selectedBlock=piece;
-
-    };
-
-    box.appendChild(piece);
-
-  }
-
-}
-
-
-document
-  .getElementById("blockBoard")
-  .addEventListener("click",e=>{
-
-    if(!selectedBlock)return;
-
-    const cell=
-      e.target.closest(".block-cell");
-
-    if(!cell)return;
-
-    const r=Number(cell.dataset.r);
-    const c=Number(cell.dataset.c);
-
-    const shape=
-      JSON.parse(selectedBlock.dataset.shape);
-
-    const color=
-      selectedBlock.dataset.color;
-
-    if(!canPlace(shape,r,c))return;
-
-    placeBlock(shape,r,c,color);
-
-    selectedBlock.classList.add("used");
-    selectedBlock.classList.remove("selected");
-    selectedBlock=null;
-
-    clearLines();
-
-    renderBoard();
-
-    if(
-      !document.querySelector(
-        ".block-piece:not(.used)"
-      )
-    ){
-      createBlocks();
-    }
-
-    if(!hasMove())gameOverBlock();
-
-  });
-
-
-function canPlace(shape,r,c){
-
-  for(let y=0;y<shape.length;y++){
-
-    for(let x=0;x<shape[y].length;x++){
-
-      if(!shape[y][x])continue;
-
-      const yy=r+y;
-      const xx=c+x;
-
-      if(
-        yy<0||
-        yy>=SIZE||
-        xx<0||
-        xx>=SIZE||
-        board[yy][xx]
-      ){
-        return false;
-      }
-
-    }
-
-  }
-
-  return true;
-
-}
-
-
-function placeBlock(shape,r,c,color){
-
-  let amount=0;
-
-  for(let y=0;y<shape.length;y++){
-
-    for(let x=0;x<shape[y].length;x++){
-
-      if(shape[y][x]){
-
-        board[r+y][c+x]=color;
-        amount++;
-
-      }
-
-    }
-
-  }
-
-  blockScore+=amount*10;
-
-}
-
-
-function clearLines(){
-
-  const rows=[];
-  const cols=[];
-
-  for(let r=0;r<SIZE;r++){
-
-    if(board[r].every(Boolean))
-      rows.push(r);
-
-  }
-
-  for(let c=0;c<SIZE;c++){
-
-    let full=true;
-
-    for(let r=0;r<SIZE;r++){
-
-      if(!board[r][c]){
-        full=false;
-        break;
-      }
-
-    }
-
-    if(full)cols.push(c);
-
-  }
-
-  if(rows.length||cols.length){
-
-    combo++;
-
-    const count=
-      rows.length+cols.length;
-
-    blockScore+=count*100+combo*25;
-
-    rows.forEach(r=>{
-      for(let c=0;c<SIZE;c++)
-        board[r][c]=null;
-    });
-
-    cols.forEach(c=>{
-      for(let r=0;r<SIZE;r++)
-        board[r][c]=null;
-    });
-
-  }else{
-
-    combo=0;
-
-  }
-
-  updateBlockScore();
-
-}
-
-
-function hasMove(){
-
-  const pieces=
-    document.querySelectorAll(
-      ".block-piece:not(.used)"
-    );
-
-  for(const piece of pieces){
-
-    const shape=
-      JSON.parse(piece.dataset.shape);
-
-    for(let r=0;r<SIZE;r++){
-
-      for(let c=0;c<SIZE;c++){
-
-        if(canPlace(shape,r,c))
-          return true;
-
-      }
-
-    }
-
-  }
-
-  return false;
-
-}
-
-
-function updateBlockScore(){
-
-  document.getElementById("blockScore").textContent=
-    "점수 "+blockScore;
-
-  document.getElementById("blockCombo").textContent=
-    "콤보 ×"+combo;
-
-  const best=
-    Number(localStorage.getItem("dtbBlockBest")||0);
-
-  if(blockScore>best){
-    localStorage.setItem(
-      "dtbBlockBest",
-      blockScore
-    );
-  }
-
-  document.getElementById("blockBest").textContent=
-    "최고점수 "+
-    Math.max(
-      best,
-      blockScore
-    );
-
-}
-
-
-function gameOverBlock(){
-
-  document.getElementById("blockFinal").textContent=
-    "최종 점수 "+blockScore;
-
-  document
-    .getElementById("blockOver")
-    .classList.add("show");
-
-}
-
-
-/* LOAD */
+/* =====================================
+   LOAD
+===================================== */
 
 const savedTheme=
-  localStorage.getItem("dtbTheme");
+localStorage.getItem("dtbTheme");
 
-if(savedTheme)setTheme(savedTheme);
-else setTheme("dark");
+if(savedTheme)
+setTheme(savedTheme);
 
 const savedLanguage=
-  localStorage.getItem("dtbLanguage");
+localStorage.getItem("dtbLanguage");
 
-if(savedLanguage)setLanguage(savedLanguage);
+if(savedLanguage)
+setLanguage(savedLanguage);
 
 renderSongs();
 loadProfile();
 
 
-/* INTRO END */
+/* =====================================
+   INTRO END
+===================================== */
 
 setTimeout(()=>{
 
-  const intro=document.getElementById("intro");
+const intro=
+document.getElementById("intro");
 
-  intro.style.transition="opacity .8s";
-  intro.style.opacity="0";
+intro.style.opacity="0";
 
-  setTimeout(()=>{
-    intro.remove();
-  },800);
+setTimeout(()=>{
+ intro.remove();
+},1000);
 
-},3500);
+},3800);
 
 </script>
 
